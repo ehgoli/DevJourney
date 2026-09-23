@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{644E7EFA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Domain", "src\DevJourney.Domain\DevJourney.Domain.csproj", "{13377DE5-E949-4F9C-A5FB-1C57EB27B6E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Infrastructure", "DevJourney.Infrastructure\DevJourney.Infrastructure.csproj", "{4CA42323-2967-419C-9CFB-F59484E2A7AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Infrastructure", "src\DevJourney.Infrastructure\DevJourney.Infrastructure.csproj", "{4CA42323-2967-419C-9CFB-F59484E2A7AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Application", "DevJourney.Application\DevJourney.Application.csproj", "{AFBE8F1E-2132-43FC-ADE2-72563BD136AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Application", "src\DevJourney.Application\DevJourney.Application.csproj", "{AFBE8F1E-2132-43FC-ADE2-72563BD136AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Web", "DevJourney.Web\DevJourney.Web.csproj", "{977C18C2-D5BC-4B5B-A44F-4468F3F8D3D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevJourney.Web", "src\DevJourney.Web\DevJourney.Web.csproj", "{977C18C2-D5BC-4B5B-A44F-4468F3F8D3D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
