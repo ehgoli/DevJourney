@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="OcanelShop project details — full description, screenshots, tech stack, contributors, and a link to the GitHub source.">
+
+        <title>
+            OcanelShop — Large E-Commerce Store | Ehsan Goli — Personal Website
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap (standard build — this page is dir="ltr") -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Styles CSS -->
+        <!-- Layout: variables, base reset, container, shared header & footer -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: reusable cards & elements (sidebar widget, breadcrumb, etc.) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Project detail page styles (extends layout.css / components.css) -->
+        <link href="assets/css/project-details.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="Toggle dark/light mode" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+
+        <!--
+            ======================================================
+            SITE HEADER (Partial)
+            This block is identical across all pages (home, article, project
+            details). Nav links point to section ids on the homepage
+            (Resume.en.html#id).
+            ======================================================
+        -->
+        <header class="site-header">
+            <div class="container site-header-inner">
+
+                <a class="site-logo" href="Resume.en.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text">
+                        Ehsan Goli
+                    </span>
+                </a>
+
+                <!-- DESKTOP NAV -->
+                <nav aria-label="Main navigation" class="site-nav d-none d-lg-flex">
+                    <a class="site-nav-link" href="Resume.en.html#about">
+                        About
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#skills">
+                        Skills
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#projects">
+                        Portfolio
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#articles">
+                        Articles
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#contact">
+                        Contact
+                    </a>
+                </nav>
+
+                <div class="site-header-actions">
+                    <a class="site-header-cta d-none d-lg-inline-flex" href="Resume.en.html#contact">
+                        Work with me
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <button aria-controls="siteOffcanvas" aria-label="Open menu" class="site-header-toggle d-lg-none" data-bs-target="#siteOffcanvas" data-bs-toggle="offcanvas" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- MOBILE OFFCANVAS MENU -->
+        <div aria-labelledby="siteOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas" id="siteOffcanvas" tabindex="-1">
+            <div class="offcanvas-header">
+                <a class="site-logo" href="Resume.en.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text" id="siteOffcanvasLabel">
+                        Ehsan Goli
+                    </span>
+                </a>
+                <button aria-label="Close menu" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav aria-label="Mobile navigation" class="site-offcanvas-nav">
+                    <a href="Resume.en.html#about">
+                        <i class="bi bi-person"></i>
+                        About
+                    </a>
+                    <a href="Resume.en.html#skills">
+                        <i class="bi bi-stars"></i>
+                        Skills
+                    </a>
+                    <a href="Resume.en.html#projects">
+                        <i class="bi bi-kanban"></i>
+                        Portfolio
+                    </a>
+                    <a href="Resume.en.html#articles">
+                        <i class="bi bi-journal-text"></i>
+                        Articles
+                    </a>
+                    <a href="Resume.en.html#contact">
+                        <i class="bi bi-envelope"></i>
+                        Contact
+                    </a>
+                </nav>
+
+                <div class="site-offcanvas-footer">
+                    <a class="site-offcanvas-cta" href="Resume.en.html#contact">
+                        Work with me
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <div class="site-offcanvas-socials">
+                        <a aria-label="GitHub" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a aria-label="Email" href="mailto:demo@example.com">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a aria-label="LinkedIn" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <section class="project-page-section">
+                <div class="container">
+
+                    <!-- BREADCRUMB -->
+                    <nav aria-label="breadcrumb" class="project-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="Resume.en.html">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="Resume.en.html#projects">Portfolio</a>
+                            </li>
+                            <li aria-current="page" class="breadcrumb-item active">
+                                OcanelShop — Large E-Commerce Store
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <div class="row g-4">
+
+                        <!-- ================= SIDEBAR ================= -->
+                        <aside class="col-lg-4 order-2 project-sidebar-col">
+
+                            <!-- AUTHOR CARD (fixed) -->
+                            <div class="card-custom sidebar-widget author-widget">
+                                <img alt="Ehsan Goli" class="author-widget-avatar" src="assets/images/avatar.jpg">
+                                <h3 class="author-widget-name">
+                                    Ehsan Goli
+                                </h3>
+                                <p class="author-widget-role">
+                                    Backend &amp; Full-Stack Developer
+                                </p>
+                                <p class="author-widget-bio">
+                                    Designer and developer of this project, focused on clean,
+                                    scalable architecture in the .NET ecosystem.
+                                </p>
+                                <a class="author-widget-link" href="Resume.en.html">
+                                    View my resume
+                                    <i class="bi bi-arrow-left"></i>
+                                </a>
+                            </div>
+
+                            <!-- QUICK INFO -->
+                            <div class="card-custom sidebar-widget">
+                                <h3 class="widget-title">
+                                    Project Info
+                                </h3>
+                                <ul class="project-info-list">
+                                    <li>
+                                        <span class="project-info-label">
+                                            Status
+                                        </span>
+                                        <span class="project-info-value">
+                                            Modular Monolith
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="project-info-label">
+                                            Project type
+                                        </span>
+                                        <span class="project-info-value">
+                                            E-Commerce Store
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="project-info-label">
+                                            Main language
+                                        </span>
+                                        <span class="project-info-value">
+                                            C#
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="project-info-label">
+                                            Framework
+                                        </span>
+                                        <span class="project-info-value">
+                                            ASP.NET Core
+                                        </span>
+                                    </li>
+                                </ul>
+                                <a class="project-github-btn project-github-btn--block" href="#" rel="noopener noreferrer" target="_blank">
+                                    <i class="bi bi-github"></i>
+                                    View on GitHub
+                                </a>
+                            </div>
+
+                            <!-- TECH STACK -->
+                            <div class="card-custom sidebar-widget">
+                                <h3 class="widget-title">
+                                    Tech Stack
+                                </h3>
+                                <div class="project-stack-list">
+                                    <span class="project-stack-item">
+                                        C#
+                                    </span>
+                                    <span class="project-stack-item">
+                                        ASP.NET Core
+                                    </span>
+                                    <span class="project-stack-item">
+                                        Minimal API
+                                    </span>
+                                    <span class="project-stack-item">
+                                        CQRS / MediatR
+                                    </span>
+                                    <span class="project-stack-item">
+                                        EF Core
+                                    </span>
+                                    <span class="project-stack-item">
+                                        SQL Server
+                                    </span>
+                                    <span class="project-stack-item">
+                                        Redis
+                                    </span>
+                                    <span class="project-stack-item">
+                                        Docker
+                                    </span>
+                                    <span class="project-stack-item">
+                                        JWT / Identity
+                                    </span>
+                                    <span class="project-stack-item">
+                                        AutoMapper
+                                    </span>
+                                    <span class="project-stack-item">
+                                        FluentValidation
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- OTHER PROJECTS -->
+                            <div class="card-custom sidebar-widget">
+                                <h3 class="widget-title">
+                                    Other Projects
+                                </h3>
+                                <ul class="widget-list">
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                Sales Management System
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                Business
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                Order Processing Service
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                Microservice
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                Online Booking Management System
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                Portfolio
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                Admin Dashboard
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                Dashboard
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </aside>
+
+                        <!-- ================= MAIN COLUMN ================= -->
+                        <div class="col-lg-8 order-1 project-main-col">
+
+                            <article class="card-custom project-detail-card">
+
+                                <span class="project-category">
+                                    Featured Project
+                                </span>
+
+                                <h1 class="project-detail-title">
+                                    OcanelShop — Large E-Commerce Store
+                                </h1>
+
+                                <p class="project-detail-excerpt">
+                                    A large online store built as two parallel versions to showcase two
+                                    different architectural approaches in .NET: one built on Minimal API
+                                    and Clean Architecture, the other a full-stack approach with MVC and
+                                    Razor Pages.
+                                </p>
+
+                                <!-- META -->
+                                <div class="project-detail-meta">
+                                    <span class="project-detail-meta-item">
+                                        <i class="bi bi-code-slash"></i>
+                                        C# / ASP.NET Core
+                                    </span>
+                                    <span class="project-detail-meta-item">
+                                        <i class="bi bi-diagram-3"></i>
+                                        Clean Architecture
+                                    </span>
+                                    <span class="project-detail-meta-item">
+                                        <i class="bi bi-clock-history"></i>
+                                        In active development
+                                    </span>
+                                </div>
+
+                                <!-- GALLERY -->
+                                <div class="project-gallery">
+                                    <div class="carousel slide" data-bs-ride="carousel" id="projectGallery">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img alt="OcanelShop storefront homepage" src="assets/images/projects/ocanelshop-1.jpg">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img alt="OcanelShop admin panel" src="assets/images/projects/ocanelshop-2.jpg">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img alt="OcanelShop product page" src="assets/images/projects/ocanelshop-3.jpg">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev gallery-control gallery-control-prev" data-bs-slide="prev" data-bs-target="#projectGallery" type="button">
+                                            <span aria-hidden="true" class="gallery-arrow">
+                                                <i class="bi bi-chevron-right"></i>
+                                            </span>
+                                            <span class="visually-hidden">
+                                                Previous
+                                            </span>
+                                        </button>
+                                        <button class="carousel-control-next gallery-control gallery-control-next" data-bs-slide="next" data-bs-target="#projectGallery" type="button">
+                                            <span aria-hidden="true" class="gallery-arrow">
+                                                <i class="bi bi-chevron-left"></i>
+                                            </span>
+                                            <span class="visually-hidden">
+                                                Next
+                                            </span>
+                                        </button>
+                                        <div class="carousel-indicators gallery-indicators">
+                                            <button aria-current="true" aria-label="Image 1" class="active" data-bs-slide-to="0" data-bs-target="#projectGallery" type="button"></button>
+                                            <button aria-label="Image 2" data-bs-slide-to="1" data-bs-target="#projectGallery" type="button"></button>
+                                            <button aria-label="Image 3" data-bs-slide-to="2" data-bs-target="#projectGallery" type="button"></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- BODY -->
+                                <div class="project-detail-body">
+                                    <p>
+                                        I designed OcanelShop from scratch to be both a real, complete online
+                                        store and a place to demonstrate two different architectural approaches
+                                        for .NET projects. That's why the project is developed as two parallel
+                                        versions, each following a different architectural path.
+                                    </p>
+
+                                    <h2>
+                                        Two versions, two architectural approaches
+                                    </h2>
+                                    <p>
+                                        The first version is built on Minimal API and Clean Architecture,
+                                        following a full separation of layers (Domain, Application,
+                                        Infrastructure, and Presentation). The second version takes a
+                                        full-stack approach with MVC and Razor Pages, using a Razor Class
+                                        Library to manage the UI in a modular way.
+                                    </p>
+
+                                    <h2>
+                                        Key features
+                                    </h2>
+                                    <ul>
+                                        <li>
+                                            <strong>CQRS + MediatR:</strong>
+                                            Separates read and write paths for better scalability.
+                                        </li>
+                                        <li>
+                                            <strong>Authentication:</strong>
+                                            User and access management with JWT and ASP.NET Identity.
+                                        </li>
+                                        <li>
+                                            <strong>Two-tier caching:</strong>
+                                            Uses Redis to reduce database load in high-traffic scenarios.
+                                        </li>
+                                        <li>
+                                            <strong>Deployment:</strong>
+                                            Fully containerized with Docker for consistent behavior across
+                                            environments.
+                                        </li>
+                                    </ul>
+
+                                    <h2>
+                                        What's next for the project
+                                    </h2>
+                                    <p>
+                                        The project is currently a modular monolith, and the next step is a
+                                        gradual migration to microservices — starting with strengthening the
+                                        messaging layer (RabbitMQ) and gRPC, followed by patterns like Saga
+                                        for managing distributed transactions.
+                                    </p>
+                                </div>
+
+                                <!-- CONTRIBUTORS -->
+                                <div class="project-contributors">
+                                    <h3 class="project-contributors-title">
+                                        Project Contributors
+                                    </h3>
+                                    <ul class="contributors-list">
+                                        <li class="contributor-card">
+                                            <img alt="Ehsan Goli" class="contributor-avatar" src="assets/images/avatar.jpg">
+                                            <h3 class="contributor-name">
+                                                Ehsan Goli
+                                            </h3>
+                                            <span class="contributor-role">
+                                                Architecture &amp; Backend
+                                            </span>
+                                            <a aria-label="Ehsan Goli's GitHub" class="contributor-link" href="#" rel="noopener noreferrer" target="_blank">
+                                                <i class="bi bi-github"></i>
+                                            </a>
+                                        </li>
+                                        <li class="contributor-card">
+                                            <img alt="Project contributor" class="contributor-avatar" src="assets/images/default-avatar.jpg">
+                                            <h3 class="contributor-name">
+                                                Contributor name
+                                            </h3>
+                                            <span class="contributor-role">
+                                                UI Design
+                                            </span>
+                                            <a aria-label="Contributor's GitHub" class="contributor-link" href="#" rel="noopener noreferrer" target="_blank">
+                                                <i class="bi bi-github"></i>
+                                            </a>
+                                        </li>
+                                        <li class="contributor-card">
+                                            <img alt="Project contributor" class="contributor-avatar" src="assets/images/default-avatar.jpg">
+                                            <h3 class="contributor-name">
+                                                Contributor name
+                                            </h3>
+                                            <span class="contributor-role">
+                                                Testing &amp; QA
+                                            </span>
+                                            <a aria-label="Contributor's GitHub" class="contributor-link" href="#" rel="noopener noreferrer" target="_blank">
+                                                <i class="bi bi-github"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- ACTIONS -->
+                            </article>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-content">
+                    <div class="footer-copyright">
+                        © 2026 Ehsan Goli — All rights reserved.
+                    </div>
+                    <div class="footer-project">
+                        This project is built with
+                        <strong>
+                            ASP.NET Core .NET
+                        </strong>
+                        and its
+                        <a href="#" rel="noopener noreferrer" target="_blank">
+                            source is published on GitHub
+                        </a>.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+    </body>
+</html>

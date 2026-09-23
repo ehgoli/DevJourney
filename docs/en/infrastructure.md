@@ -583,7 +583,9 @@ DevJourney is a public website and includes publicly accessible operations such 
 
 ## Authentication
 
-Authentication is used to protect the administration area.
+Authentication serves two audiences: it protects the administration area, and it powers public user accounts (sign up, sign in, password recovery) on the public website.
+
+Public accounts are identified by phone number rather than email. Sign-up, login, and password recovery all use the phone number as the primary identifier; password recovery is a code-based flow (phone number, verification code, new password).
 
 ## Authorization
 

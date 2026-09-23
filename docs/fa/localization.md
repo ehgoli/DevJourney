@@ -582,6 +582,8 @@ URLهای سایت برای زبان قابل تشخیص هستند.
 
 Direction باید از Culture فعلی ناشی شود.
 
+در قالب Frontend، این موضوع با استفاده از CSS Logical Properties (مثل `margin-inline-start`، `padding-inline-end`) به‌جای خواص فیزیکی `left`/`right` پیاده‌سازی شده است؛ به این ترتیب یک Stylesheet واحد هر دو جهت را بدون تکرار پوشش می‌دهد. تعداد کمی از خواص که معادل Logical ندارند از یک متغیر ضریب‌دار جهت‌محور استفاده می‌کنند، و آیکون‌های جهت‌دار به‌جای تعویض در Markup، با CSS برای حالت LTR آینه می‌شوند.
+
 ---
 
 # 17. Localization and Caching

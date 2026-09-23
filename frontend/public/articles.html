@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="آرشیو کامل مقالات احسان گلی؛ یادداشت‌ها و تجربیات درباره معماری نرم‌افزار، ASP.NET Core، پایگاه داده و میکروسرویس‌ها با قابلیت جست‌وجو.">
+
+        <title>
+            مقالات | سایت شخصی احسان گلی
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+        
+        <!-- Bootstrap RTL -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Styles CSS -->
+        <!-- Layout: variables, base reset, container, shared header & footer -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: reusable cards & elements (including the base article-card shell) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Articles archive page styles (extends layout.css / components.css) -->
+        <link href="assets/css/articles.css" rel="stylesheet">
+
+        <!-- Same tsParticles layer styles used by Resume.html -->
+        <link href="assets/css/particles-bg.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="articles-page-body">
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+
+        <!--
+            ======================================================
+            SITE HEADER (Partial)
+            Identical across all pages (home, article, project
+            details, article archive). Nav links point to section
+            ids on the homepage (Resume.html#id).
+            ======================================================
+        -->
+        <header class="site-header">
+            <div class="container site-header-inner">
+
+                <a class="site-logo" href="Resume.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text">
+                        احسان گلی
+                    </span>
+                </a>
+
+                <!-- DESKTOP NAV -->
+                <nav aria-label="ناوبری اصلی" class="site-nav d-none d-lg-flex">
+                    <a class="site-nav-link" href="Resume.html#about">
+                        درباره من
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#skills">
+                        مهارت‌ها
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#projects">
+                        نمونه‌کارها
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#articles">
+                        مقالات
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#contact">
+                        تماس با من
+                    </a>
+                </nav>
+
+                <div class="site-header-actions">
+                    <a class="site-header-cta d-none d-lg-inline-flex" href="Resume.html#contact">
+                        همکاری با من
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <button aria-controls="siteOffcanvas" aria-label="باز کردن منو" class="site-header-toggle d-lg-none" data-bs-target="#siteOffcanvas" data-bs-toggle="offcanvas" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- MOBILE OFFCANVAS MENU -->
+        <div aria-labelledby="siteOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas" id="siteOffcanvas" tabindex="-1">
+            <div class="offcanvas-header">
+                <a class="site-logo" href="Resume.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text" id="siteOffcanvasLabel">
+                        احسان گلی
+                    </span>
+                </a>
+                <button aria-label="بستن منو" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav aria-label="ناوبری موبایل" class="site-offcanvas-nav">
+                    <a href="Resume.html#about">
+                        <i class="bi bi-person"></i>
+                        درباره من
+                    </a>
+                    <a href="Resume.html#skills">
+                        <i class="bi bi-stars"></i>
+                        مهارت‌ها
+                    </a>
+                    <a href="Resume.html#projects">
+                        <i class="bi bi-kanban"></i>
+                        نمونه‌کارها
+                    </a>
+                    <a href="Resume.html#articles">
+                        <i class="bi bi-journal-text"></i>
+                        مقالات
+                    </a>
+                    <a href="Resume.html#contact">
+                        <i class="bi bi-envelope"></i>
+                        تماس با من
+                    </a>
+                </nav>
+
+                <div class="site-offcanvas-footer">
+                    <a class="site-offcanvas-cta" href="Resume.html#contact">
+                        همکاری با من
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <div class="site-offcanvas-socials">
+                        <a aria-label="گیت‌هاب" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a aria-label="ایمیل" href="mailto:demo@example.com">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a aria-label="لینکدین" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- HERO / SEARCH -->
+            <section class="articles-hero">
+                <div aria-hidden="true" id="particles-bg"></div>
+                <div class="container">
+                    <div class="articles-hero-content">
+                        <h1 class="articles-page-title">چیزهایی که نوشتم.</h1>
+                        <p class="articles-page-subtitle">
+                            تجربه‌ها، یادداشت‌ها و چیزهایی که در مسیر توسعه نرم‌افزار، معماری Backend و حل مسئله یاد گرفته‌ام.
+                        </p>
+                    </div>
+
+                    <form action="articles-ajax.html" class="articles-search" id="articlesSearchForm" method="get" role="search" autocomplete="off">
+                        <div class="articles-search-main">
+                            <button class="articles-search-submit" id="articlesSearchSubmit" type="submit">
+                                <span>جست‌وجو</span>
+                                <i aria-hidden="true" class="bi bi-arrow-left"></i>
+                            </button>
+                            <div class="articles-search-field">
+                                <label class="visually-hidden" for="articlesSearchInput">جستجو در مقالات</label>
+                                <i aria-hidden="true" class="bi bi-search articles-search-icon"></i>
+                                <input aria-controls="articlesSearchResults" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" class="articles-search-input" id="articlesSearchInput" name="q" placeholder="مثلاً CQRS، Clean Architecture یا ASP.NET Core..." type="search">
+                                <button aria-label="پاک کردن جستجو" class="articles-search-clear" id="articlesSearchClear" type="button" hidden>
+                                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                                </button>
+                                <span aria-hidden="true" class="articles-search-loader" id="articlesSearchLoader"></span>
+                            </div>
+                        </div>
+                        <div class="articles-search-helper">
+                            <span><i class="bi bi-lightning-charge-fill"></i> جست‌وجوی زنده در عنوان، خلاصه و برچسب‌ها</span>
+                            <kbd>Enter</kbd>
+                        </div>
+                        <div aria-live="polite" class="articles-search-status" id="articlesSearchStatus"></div>
+                        <div aria-label="نتایج جستجو" class="articles-search-results" id="articlesSearchResults" role="listbox" hidden></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- FILTER & SORT -->
+            <section class="articles-filter-section">
+                <div class="container">
+                    <form action="articles-ajax.html" class="articles-filter-card" method="get">
+                        <div class="articles-filter-head">
+                            <div class="articles-filter-heading">
+                                <span class="articles-filter-icon" aria-hidden="true">
+                                    <i class="bi bi-sliders2"></i>
+                                </span>
+                                <div>
+                                    <h2>فیلتر و مرتب‌سازی</h2>
+                                    <p>نوشته‌ای که دنبالش هستی را سریع‌تر پیدا کن.</p>
+                                </div>
+                            </div>
+                            <a class="articles-filter-clear" href="articles-ajax.html">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                حذف فیلترها
+                            </a>
+                        </div>
+
+                        <div class="articles-filter-body">
+                            <fieldset class="articles-filter-group articles-filter-topics">
+                                <legend class="visually-hidden">موضوع</legend>
+                                <div class="articles-filter-legend" aria-hidden="true">موضوع</div>
+                                <p class="articles-filter-description">یک دسته را انتخاب کنید</p>
+                                <div class="articles-topic-list">
+                                    <label class="articles-topic-pill is-active">
+                                        <input type="radio" name="category" value="all" checked>
+                                        <span>همه مقالات</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="software-architecture">
+                                        <span>معماری نرم‌افزار</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="backend">
+                                        <span>Backend</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="aspnet-core">
+                                        <span>ASP.NET Core</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="clean-code">
+                                        <span>Clean Code</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="database">
+                                        <span>Database</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="testing">
+                                        <span>Testing</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="design-pattern">
+                                        <span>Design Pattern</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="articles-filter-group articles-filter-sort">
+                                <legend class="visually-hidden">مرتب‌سازی</legend>
+                                <div class="articles-filter-legend" aria-hidden="true">مرتب‌سازی</div>
+                                <p class="articles-filter-description">نمایش نتایج بر اساس</p>
+                                <div class="articles-sort-grid">
+                                    <label class="articles-sort-option is-active">
+                                        <input type="radio" name="sort" value="newest" checked>
+                                        <span class="articles-sort-copy">
+                                            <strong>جدیدترین</strong>
+                                            <small>تازه‌ترین نوشته‌ها اول</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-stars"></i>
+                                    </label>
+                                    <label class="articles-sort-option">
+                                        <input type="radio" name="sort" value="popular">
+                                        <span class="articles-sort-copy">
+                                            <strong>محبوب‌ترین</strong>
+                                            <small>بر اساس بازدید و تعامل</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-fire"></i>
+                                    </label>
+                                    <label class="articles-sort-option">
+                                        <input type="radio" name="sort" value="oldest">
+                                        <span class="articles-sort-copy">
+                                            <strong>قدیمی‌ترین</strong>
+                                            <small>از اولین نوشته‌ها</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-hourglass-split"></i>
+                                    </label>
+                                    <label class="articles-sort-option">
+                                        <input type="radio" name="sort" value="shortest">
+                                        <span class="articles-sort-copy">
+                                            <strong>کوتاه‌ترین مطالعه</strong>
+                                            <small>کم‌زمان‌ترین نوشته‌ها</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-stopwatch"></i>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="articles-filter-footer">
+                            <button class="articles-filter-apply" type="submit">
+                                اعمال فیلتر
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <div class="articles-filter-meta">
+                                <span><i class="bi bi-circle-fill"></i> نمایش <strong>۲۴ مقاله</strong></span>
+                                <span>صفحه <strong>۱</strong> از <strong>۱</strong></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="articles-listing">
+                <div class="container">
+                    <div class="articles-listing-head">
+                        <div>
+                            <span class="articles-listing-eyebrow">LATEST NOTES</span>
+                            <h2 class="articles-listing-title">نوشته‌ها اینجا هستند.</h2>
+                        </div>
+                        <span class="articles-listing-count"><strong>۲۴</strong> مقاله</span>
+                    </div>
+
+                    <!-- ARTICLES GRID (sample output for page 1) -->
+                    <div class="articles-grid">
+
+                        <a class="card-custom article-card" href="article.html">
+                            <div class="article-card-cover">
+                                <img alt="عنوان نمونه مقاله" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">معماری نرم‌افزار</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">عنوان نمونه مقاله</h2>
+                                <p class="article-card-excerpt">
+                                    لورم ایپسوم متن ساختگی است. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>۱۰ مرداد ۱۴۰۵</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>۵ دقیقه مطالعه</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.html">
+                            <div class="article-card-cover">
+                                <img alt="CQRS در پروژه‌های واقعی" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">معماری نرم‌افزار</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">CQRS در پروژه‌های واقعی</h2>
+                                <p class="article-card-excerpt">
+                                    جدا کردن مسیرهای خواندن و نوشتن داده با CQRS و MediatR؛ چه زمانی واقعاً به‌کار
+                                    می‌آید و چه زمانی فقط یک پیچیدگی اضافه است.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>۱۶ مرداد ۱۴۰۵</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>۶ دقیقه مطالعه</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.html">
+                            <div class="article-card-cover">
+                                <img alt="از MVC تا Minimal API" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">ASP.NET Core</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">از MVC تا Minimal API</h2>
+                                <p class="article-card-excerpt">
+                                    دلایلی که باعث شد در پروژه‌های جدید سراغ Minimal API بروم و تجربه‌ام از این
+                                    مهاجرت در عمل.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>۵ مرداد ۱۴۰۵</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>۴ دقیقه مطالعه</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.html">
+                            <div class="article-card-cover">
+                                <img alt="اصول Dependency Injection در ASP.NET Core" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">ASP.NET Core</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">اصول Dependency Injection در ASP.NET Core</h2>
+                                <p class="article-card-excerpt">
+                                    نگاهی به Service Lifetimeها (Singleton، Scoped، Transient) و چند اشتباه رایج در
+                                    تزریق وابستگی.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>۲۸ تیر ۱۴۰۵</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>۶ دقیقه مطالعه</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.html">
+                            <div class="article-card-cover">
+                                <img alt="تجربه من از مهاجرت به .NET 8" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">ASP.NET Core</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">تجربه من از مهاجرت به .NET 8</h2>
+                                <p class="article-card-excerpt">
+                                    چالش‌ها و مزایای ارتقای یک پروژه بزرگ از .NET 6 به .NET 8، همراه با چند نکته
+                                    عملی.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>۲۰ تیر ۱۴۰۵</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>۵ دقیقه مطالعه</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.html">
+                            <div class="article-card-cover">
+                                <img alt="مقایسه Monolith و Microservices" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">معماری نرم‌افزار</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">مقایسه Monolith و Microservices</h2>
+                                <p class="article-card-excerpt">
+                                    قبل از مهاجرت به میکروسرویس این تفاوت‌ها را در نظر بگیرید؛ از پیچیدگی عملیاتی
+                                    تا سرعت توسعه تیم.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>۱۰ تیر ۱۴۰۵</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>۷ دقیقه مطالعه</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!--
+                        EMPTY STATE
+                        When the search has no results, the backend renders this
+                        block (without the hidden attribute) instead of the grid above.
+                    -->
+                    <div class="articles-empty" hidden>
+                        <span class="articles-empty-icon">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <h2 class="articles-empty-title">
+                            مقاله‌ای پیدا نشد
+                        </h2>
+                        <p class="articles-empty-text">
+                            متأسفانه مقاله‌ای مطابق با این جست‌وجو پیدا نشد. عبارت جست‌وجو را تغییر بده یا
+                            دوباره تلاش کن.
+                        </p>
+                        <a class="articles-empty-reset" href="articles-ajax.html">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            پاک‌کردن جست‌وجو
+                        </a>
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <nav aria-label="صفحه‌بندی مقالات" class="articles-pagination-nav">
+                        <ul class="pagination articles-pagination">
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                            </li>
+                            <li aria-current="page" class="page-item active">
+                                <a class="page-link" href="articles-ajax.html?page=1">۱</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="articles-ajax.html?page=2">۲</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="articles-ajax.html?page=3">۳</a>
+                            </li>
+                            <li class="page-item">
+                                <a aria-label="صفحه بعد" class="page-link" href="articles-ajax.html?page=2"><i class="bi bi-chevron-left"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-content">
+                    <div class="footer-copyright">
+                        © ۱۴۰۵ احسان گلی — تمامی حقوق مادی و معنوی این وب‌سایت محفوظ است.
+                    </div>
+                    <div class="footer-project">
+                        این پروژه با
+                        <strong>
+                            ASP.NET Core .NET
+                        </strong>
+                        توسعه داده شده و
+                        <a href="#" rel="noopener noreferrer" target="_blank">
+                            سورس آن در GitHub
+                        </a>
+                        منتشر شده است.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+
+        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+        <script src="assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        <script src="assets/js/particles-bg.js"></script>
+
+        <script src="assets/js/articles-search.js"></script>
+    </body>
+</html>

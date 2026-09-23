@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="Access to this section is restricted. Return to the homepage of Ehsan Goli's personal site.">
+
+        <title>
+            Access Denied | Ehsan Goli — Personal Website
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap (standard build — this page is dir="ltr") -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Layout: variables, base reset, container, shared header & footer -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Error page styles (shared with other error pages) -->
+        <link href="assets/css/error-page.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="Toggle dark/light mode" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <section class="error-page-section">
+                <div class="container">
+                    <div class="error-page-content">
+
+                        <div class="error-illustration">
+                            <svg role="img" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
+                                <title>
+                                    Terminal output: HTTP 403 Forbidden
+                                </title>
+                                
+                                <rect fill="#2f3439" height="304" rx="14" width="464" x="8" y="8"></rect>
+                                <circle cx="34" cy="34" fill="#e5e7eb" opacity="0.3" r="5"></circle>
+                                <circle cx="52" cy="34" fill="#e5e7eb" opacity="0.3" r="5"></circle>
+                                <circle cx="70" cy="34" fill="#e5e7eb" opacity="0.3" r="5"></circle>
+                                <line stroke="#454b52" stroke-width="1" x1="8" x2="472" y1="58" y2="58"></line>
+                                <text fill="#9ca3af" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="13" x="34" y="92">$ curl -i https://ehsangoli.dev/admin/dashboard</text>
+                                <g transform="translate(34, 108)">
+                                    <path d="M3 8V6.5a4 4 0 0 1 8 0V8" fill="none" stroke="#f87171" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+                                    <rect fill="#f87171" height="10.5" rx="2.5" width="14" x="0.5" y="8"></rect>
+                                </g>
+                                <text fill="#f87171" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="16" font-weight="700" x="58" y="132">HTTP/1.1 403 Forbidden</text>
+                                <text fill="#6b7280" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="12.5" x="34" y="160">Content-Type: application/json</text>
+                                <text fill="#e5e7eb" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="13.5" x="34" y="196">{</text>
+                                <text fill="#e5e7eb" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="13.5" x="52" y="220"><tspan fill="#93c5fd">"status"</tspan>: <tspan fill="#fbbf24">403</tspan>,</text>
+                                <text fill="#e5e7eb" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="13.5" x="52" y="244"><tspan fill="#93c5fd">"error"</tspan>: <tspan fill="#86efac">"Forbidden"</tspan>,</text>
+                                <text fill="#e5e7eb" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="12" x="52" y="268"><tspan fill="#93c5fd">"message"</tspan>: <tspan fill="#86efac">"Access restricted"</tspan></text>
+                                <text fill="#e5e7eb" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="13.5" x="34" y="292">}</text>
+                            </svg>
+                        </div>
+
+                        <span class="error-eyebrow">
+                            403 error
+                        </span>
+
+                        <h1 class="error-title error-title--danger">
+                            You don't have access to this section
+                        </h1>
+
+                        <p class="error-description">
+                            This page needs a different permission level (like the site's admin area). If
+                            you think this is a mistake, get in touch using the links below.
+                        </p>
+
+                        <!--
+                            <div class="error-actions">
+                                <a class="error-primary-btn" href="Resume.en.html">
+                                    <i class="bi bi-house-door"></i>
+                                    Back to homepage
+                                </a>
+                            </div>
+                        -->
+
+                        <nav aria-label="Suggested links" class="error-links">
+                            <a href="Resume.en.html#projects">
+                                Portfolio
+                            </a>
+                            <span class="error-links-sep">
+                                ·
+                            </span>
+                            <a href="Resume.en.html#articles">
+                                Articles
+                            </a>
+                            <span class="error-links-sep">
+                                ·
+                            </span>
+                            <a href="Resume.en.html#contact">
+                                Contact
+                            </a>
+                        </nav>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+    </body>
+</html>

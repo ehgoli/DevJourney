@@ -1,0 +1,78 @@
+/* =========================================================
+   VIDEO PLAYER THEME
+   Re-skins the vendored video.js player (assets/vendor/video-js)
+   to match the template's palette instead of its default dark
+   gray, using the same --primary/--surface variables as
+   everything else. Load after video-js.min.css.
+========================================================= */
+
+.course-player-wrap {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-js {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    font-family: inherit;
+}
+
+.video-js .vjs-big-play-button {
+    top: 50%;
+    left: 50%;
+    width: 2.4em;
+    height: 2.4em;
+    margin-top: -1.2em;
+    margin-left: -1.2em;
+    line-height: 2.3em;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-dark);
+    background-color: color-mix(in srgb, var(--primary-dark) 82%, transparent);
+}
+
+.video-js:hover .vjs-big-play-button,
+.video-js .vjs-big-play-button:focus {
+    background-color: var(--primary-dark);
+}
+
+.video-js .vjs-control-bar {
+    background-color: rgba(17, 24, 39, 0.82);
+}
+
+.video-js .vjs-play-progress,
+.video-js .vjs-volume-level {
+    background-color: var(--primary);
+}
+
+.video-js .vjs-slider {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.video-js .vjs-play-progress:before {
+    color: var(--primary);
+}
+
+.video-js .vjs-loading-spinner {
+    border-color: var(--primary);
+}
+
+/* Caption under the player naming the lesson currently loaded */
+
+.course-player-caption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 13px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.course-player-caption i {
+    color: var(--primary-dark);
+    font-size: 15px;
+}

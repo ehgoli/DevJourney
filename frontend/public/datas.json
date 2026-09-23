@@ -1,0 +1,234 @@
+[
+  {
+    "title": "Clean Architecture دقیقاً چیست؟",
+    "summary": "نگاهی عملی به Clean Architecture و اینکه چرا در پروژه‌های واقعی می‌تواند مفید باشد.",
+    "category": "معماری نرم‌افزار",
+    "readingTime": "8 دقیقه",
+    "url": "/articles/13/what-is-clean-architecture",
+    "id": 2
+  },
+  {
+    "title": "چرا Backend را دوست دارم؟",
+    "summary": "چند تجربه شخصی از دنیای Backend و چالش‌هایی که در مسیر توسعه با آن‌ها روبه‌رو شدم.",
+    "category": "Backend",
+    "readingTime": "6 دقیقه",
+    "url": "/articles/14/why-i-love-backend",
+    "id": 3
+  },
+  {
+    "title": "Dependency Injection در ASP.NET Core",
+    "summary": "بررسی Dependency Injection در ASP.NET Core و نحوه استفاده صحیح از Service Container.",
+    "category": "ASP.NET Core",
+    "readingTime": "10 دقیقه",
+    "url": "/articles/15/dependency-injection-aspnet-core",
+    "id": 4
+  },
+  {
+    "title": "چند اشتباه رایج در طراحی API",
+    "summary": "اشتباهاتی که ممکن است هنگام طراحی REST API مرتکب شویم و راه‌های جلوگیری از آن‌ها.",
+    "category": "Backend",
+    "readingTime": "7 دقیقه",
+    "url": "/articles/16/common-api-mistakes",
+    "id": 5
+  },
+  {
+    "title": "SOLID به زبان ساده",
+    "summary": "پنج اصل SOLID را با مثال‌های ساده و قابل استفاده در پروژه‌های واقعی بررسی می‌کنیم.",
+    "category": "Clean Code",
+    "readingTime": "12 دقیقه",
+    "url": "/articles/17/solid-principles-simple",
+    "id": 6
+  },
+  {
+    "title": "Repository Pattern؛ خوب یا بد؟",
+    "summary": "آیا استفاده از Repository Pattern همیشه تصمیم درستی است؟ بررسی مزایا و معایب آن.",
+    "category": "Design Pattern",
+    "readingTime": "9 دقیقه",
+    "url": "/articles/18/repository-pattern",
+    "id": 7
+  },
+  {
+    "title": "CQRS چیست و چه زمانی به آن نیاز داریم؟",
+    "summary": "معماری CQRS را بررسی می‌کنیم و می‌بینیم چه زمانی استفاده از آن منطقی است.",
+    "category": "معماری نرم‌افزار",
+    "readingTime": "11 دقیقه",
+    "url": "/articles/19/cqrs-introduction",
+    "id": 8
+  },
+  {
+    "title": "EF Core و نکاتی که باید بدانید",
+    "summary": "چند نکته کاربردی درباره Entity Framework Core که می‌تواند کیفیت کد و Performance را بهتر کند.",
+    "category": "Database",
+    "readingTime": "9 دقیقه",
+    "url": "/articles/20/ef-core-tips",
+    "id": 9
+  },
+  {
+    "title": "Unit Test واقعاً لازم است؟",
+    "summary": "نگاهی واقع‌بینانه به تست واحد و اینکه چه زمانی نوشتن Unit Test ارزش دارد.",
+    "category": "Testing",
+    "readingTime": "7 دقیقه",
+    "url": "/articles/21/are-unit-tests-needed",
+    "id": 10
+  },
+  {
+    "title": "فرق Interface و Abstract Class",
+    "summary": "تفاوت Interface و Abstract Class در C# را با چند مثال کاربردی بررسی می‌کنیم.",
+    "category": "ASP.NET Core",
+    "readingTime": "6 دقیقه",
+    "url": "/articles/22/interface-vs-abstract",
+    "id": 11
+  },
+  {
+    "title": "وقتی کد زیادی پیچیده می‌شود",
+    "summary": "چطور Complexity را تشخیص دهیم و چه کارهایی برای ساده‌تر کردن کد می‌توان انجام داد.",
+    "category": "Clean Code",
+    "readingTime": "8 دقیقه",
+    "url": "/articles/23/code-complexity",
+    "id": 12
+  },
+  {
+    "title": "Database Index دقیقاً چه کاری می‌کند؟",
+    "summary": "مفهوم Index در دیتابیس و تأثیر آن روی سرعت Queryها را با یک مثال ساده بررسی می‌کنیم.",
+    "category": "Database",
+    "readingTime": "10 دقیقه",
+    "url": "/articles/24/database-index",
+    "id": 13
+  },
+  {
+    "title": "Middleware در ASP.NET Core",
+    "summary": "Middleware چیست و Pipeline پردازش درخواست در ASP.NET Core چگونه کار می‌کند؟",
+    "category": "ASP.NET Core",
+    "readingTime": "8 دقیقه",
+    "url": "/articles/25/aspnet-core-middleware",
+    "id": 14
+  },
+  {
+    "title": "چطور یک API تمیز طراحی کنیم؟",
+    "summary": "اصول مهم برای طراحی APIهای قابل نگهداری، خوانا و قابل توسعه.",
+    "category": "Backend",
+    "readingTime": "12 دقیقه",
+    "url": "/articles/26/design-clean-api",
+    "id": 15
+  },
+  {
+    "title": "Strategy Pattern با یک مثال واقعی",
+    "summary": "پیاده‌سازی Strategy Pattern در یک سناریوی واقعی و بررسی زمانی که این Pattern مفید است.",
+    "category": "Design Pattern",
+    "readingTime": "9 دقیقه",
+    "url": "/articles/27/strategy-pattern",
+    "id": 16
+  },
+  {
+    "title": "Logging حرفه‌ای در Backend",
+    "summary": "چرا Logging مهم است و چطور می‌توان لاگ‌های مفیدتری برای Debug و Monitoring داشت.",
+    "category": "Backend",
+    "readingTime": "7 دقیقه",
+    "url": "/articles/28/professional-logging",
+    "id": 17
+  },
+  {
+    "title": "Exception Handling اصولی",
+    "summary": "اشتباهات رایج در مدیریت Exception و روش‌های بهتر برای کنترل خطاها در Backend.",
+    "category": "Clean Code",
+    "readingTime": "8 دقیقه",
+    "url": "/articles/29/exception-handling",
+    "id": 18
+  },
+  {
+    "title": "آیا Microservice برای پروژه ما مناسب است؟",
+    "summary": "قبل از رفتن به سمت Microservice چه چیزهایی را باید بررسی کنیم؟",
+    "category": "معماری نرم‌افزار",
+    "readingTime": "13 دقیقه",
+    "url": "/articles/30/microservices-worth-it",
+    "id": 19
+  },
+  {
+    "title": "Docker برای توسعه‌دهندگان Backend",
+    "summary": "Docker چیست و چطور می‌تواند محیط توسعه Backend را ساده‌تر و قابل تکرار کند.",
+    "category": "Backend",
+    "readingTime": "10 دقیقه",
+    "url": "/articles/31/docker-for-backend",
+    "id": 20
+  },
+  {
+    "title": "Async و Await را درست بفهمیم",
+    "summary": "درک صحیح Async و Await در C# و چند اشتباه رایج هنگام استفاده از آن‌ها.",
+    "category": "ASP.NET Core",
+    "readingTime": "11 دقیقه",
+    "url": "/articles/32/async-await",
+    "id": 21
+  },
+  {
+    "title": "Pagination در API چگونه باید باشد؟",
+    "summary": "بررسی روش‌های مختلف Pagination و نکاتی که برای طراحی APIهای بزرگ باید در نظر گرفت.",
+    "category": "Backend",
+    "readingTime": "9 دقیقه",
+    "url": "/articles/33/api-pagination",
+    "id": 22
+  },
+  {
+    "title": "Code Review واقعاً چه فایده‌ای دارد؟",
+    "summary": "چرا Code Review فقط برای پیدا کردن Bug نیست و چه تأثیری روی کیفیت تیم دارد.",
+    "category": "Clean Code",
+    "readingTime": "6 دقیقه",
+    "url": "/articles/34/code-review",
+    "id": 23
+  },
+  {
+    "title": "Transaction در دیتابیس",
+    "summary": "Transaction چیست و چرا در عملیات حساس دیتابیس باید به Atomicity توجه کنیم.",
+    "category": "Database",
+    "readingTime": "8 دقیقه",
+    "url": "/articles/35/database-transactions",
+    "id": 24
+  },
+  {
+    "title": "Integration Test یا Unit Test؟",
+    "summary": "مقایسه Unit Test و Integration Test و اینکه هرکدام چه زمانی کاربرد بیشتری دارند.",
+    "category": "Testing",
+    "readingTime": "10 دقیقه",
+    "url": "/articles/36/integration-vs-unit-test",
+    "id": 25
+  },
+  {
+    "title": "Refactoring بدون ترس",
+    "summary": "چند تکنیک ساده برای Refactoring کد بدون اینکه رفتار اصلی سیستم را خراب کنیم.",
+    "category": "Clean Code",
+    "readingTime": "9 دقیقه",
+    "url": "/articles/37/refactoring-without-fear",
+    "id": 26
+  },
+  {
+    "title": "Redis کِی به درد ما می‌خورد؟",
+    "summary": "بررسی کاربردهای Redis در Cache، Session و سناریوهای پرترافیک Backend.",
+    "category": "Backend",
+    "readingTime": "8 دقیقه",
+    "url": "/articles/38/when-to-use-redis",
+    "id": 27
+  },
+  {
+    "title": "Naming؛ کوچک اما بسیار مهم",
+    "summary": "چرا انتخاب نام مناسب برای متغیرها، کلاس‌ها و متدها بخش مهمی از Clean Code است.",
+    "category": "Clean Code",
+    "readingTime": "5 دقیقه",
+    "url": "/articles/39/naming-matters",
+    "id": 28
+  },
+  {
+    "title": "Design Patternها را حفظ نکنید!",
+    "summary": "چرا بهتر است به جای حفظ کردن Patternها، مسئله‌ای که قرار است حل کنند را بفهمیم.",
+    "category": "Design Pattern",
+    "readingTime": "7 دقیقه",
+    "url": "/articles/40/dont-memorize-patterns",
+    "id": 29
+  },
+  {
+    "title": "یک Backend خوب چه ویژگی‌هایی دارد؟",
+    "summary": "جمع‌بندی چند اصل مهم برای ساخت Backendهایی که قابل توسعه، تست و نگهداری باشند.",
+    "category": "Backend",
+    "readingTime": "12 دقیقه",
+    "url": "/articles/41/good-backend",
+    "id": 30
+  }
+]

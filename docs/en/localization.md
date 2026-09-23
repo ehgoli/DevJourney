@@ -581,6 +581,8 @@ RTL/LTR logic should not be manually duplicated across individual UI components.
 
 Direction should derive from the resolved Culture.
 
+On the frontend template, this is implemented with CSS logical properties (`margin-inline-start`, `padding-inline-end`, etc.) instead of physical `left`/`right` properties, so the same stylesheet serves both directions without duplication. The small number of properties without a logical equivalent use a direction-aware multiplier variable, and directional icons are mirrored in CSS for the LTR direction rather than swapped in markup.
+
 ---
 
 # 18. Localization and Caching

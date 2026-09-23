@@ -1,0 +1,181 @@
+<!--
+    ==============================================================
+    SIGNUP (EN / LTR) — English counterpart of Signup.html.
+    Differences from Signup.html: <html lang="en" dir="ltr">,
+    bootstrap.css instead of bootstrap.rtl.css, and English text —
+    structure and classes stay identical (same rule layout.en.html
+    follows). See DEVELOPER-GUIDE.md for details.
+    ==============================================================
+-->
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="Create a new account on Ehsan Goli's personal website.">
+
+        <title>
+            Sign Up | Ehsan Goli — Personal Website
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap — standard build, vendor (this <html> is dir="ltr") -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Bootstrap icons (vendor) -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Layout: variables, base reset, container, .card-custom -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: form fields (contact-label / contact-input / contact-submit) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts: switches automatically based on <html lang> -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
+        <link href="assets/css/auth.css" rel="stylesheet">
+
+        <!-- Same tsParticles layer styles used by Resume.html -->
+        <link href="assets/css/particles-bg.css" rel="stylesheet">
+
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="auth-body">
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="Toggle dark/light mode" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+        <!--
+            ======================================================
+            AUTH CARD
+            ======================================================
+        -->
+        <main class="auth-page">
+            <div aria-hidden="true" id="particles-bg"></div>
+
+            <div class="auth-card card-custom">
+
+                <!-- Brand — also doubles as the way back to the site -->
+                <div class="auth-brand">
+                    <a class="site-logo" href="Resume.en.html">
+                        <span class="site-logo-mark">
+                            EG
+                        </span>
+                        <span class="site-logo-text">
+                            Ehsan Goli
+                        </span>
+                    </a>
+                </div>
+
+                <div class="auth-heading">
+                    <h1 class="auth-title">
+                        Create Your Account
+                    </h1>
+                    <p class="auth-subtitle">
+                        Fill in the details below to use the site's features.
+                    </p>
+                </div>
+
+                <!--
+                    Server-side message placeholder — hidden by default.
+                    Remove d-none once the backend can render a real
+                    error here (e.g. duplicate phone number).
+                -->
+                <div class="auth-alert d-none" id="signupAlert" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <span>
+                        This phone number is already registered.
+                    </span>
+                </div>
+
+                <form action="#" class="auth-form" id="signupForm" method="post">
+                    <div class="row g-3">
+
+                        <!-- Full Name -->
+                        <div class="col-12">
+                            <label class="contact-label" for="signupFullName">
+                                Full Name
+                            </label>
+                            <input autocomplete="name" class="form-control contact-input" id="signupFullName" name="fullName" placeholder="Your full name" required="" type="text">
+                        </div>
+
+                        <!-- Phone — kept LTR like any digit string (see .github-stars in components.css for the same convention) -->
+                        <div class="col-12">
+                            <label class="contact-label" for="signupPhone">
+                                Phone Number
+                            </label>
+                            <input autocomplete="tel" class="form-control contact-input" dir="ltr" id="signupPhone" inputmode="tel" name="phone" placeholder="09123456789" required="" type="tel">
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-12">
+                            <label class="contact-label" for="signupPassword">
+                                Password
+                            </label>
+                            <div class="auth-password-field">
+                                <input autocomplete="new-password" class="form-control contact-input" id="signupPassword" name="password" placeholder="Password" required="" type="password">
+                                <button aria-label="Show password" aria-pressed="false" class="auth-password-toggle" data-hide-label="Hide password" data-show-label="Show password" data-target="signupPassword" type="button">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Terms -->
+                        <div class="col-12">
+                            <div class="auth-check">
+                                <input class="form-check-input" id="signupTerms" name="terms" required="" type="checkbox">
+                                <label for="signupTerms">
+                                    I agree to the
+                                    <a class="auth-link" href="terms.en.html">site's terms and conditions</a>.
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12">
+                            <button class="contact-submit" type="submit">
+                                <span>
+                                    Sign Up
+                                </span>
+                                <i class="bi bi-person-plus"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <div class="auth-switch">
+                    Already have an account?
+                    <a class="auth-link" href="Login.en.html">
+                        Sign in
+                    </a>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+
+        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+        <script src="assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        <script src="assets/js/particles-bg.js"></script>
+
+        <script src="assets/js/auth-password-toggle.js"></script>
+    </body>
+</html>

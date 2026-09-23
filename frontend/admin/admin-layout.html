@@ -1,0 +1,296 @@
+<!--
+    ==============================================================
+    ADMIN LAYOUT — starting point for admin pages
+    ==============================================================
+    Not a real page — a starting point for the admin section
+    (sidebar + header + footer), the same role layout.html plays
+    for public pages. This file doubles as the sample "Dashboard"
+    page shown in the nav.
+
+    To create a new admin page:
+      1. Copy this file and rename it.
+      2. Update <title>, the header eyebrow/title, and mark the
+         matching sidebar link (in both the desktop sidebar and
+         the mobile offcanvas copy of it) with class="is-active".
+      3. Replace the content inside <main class="admin-content">.
+         Leave the sidebar, header chrome, and footer as they are.
+
+    See DEVELOPER-GUIDE.md for the full walkthrough.
+    ==============================================================
+-->
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="پنل مدیریت محتوای سایت شخصی احسان گلی.">
+
+        <title>
+            داشبورد | پنل مدیریت
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="../public/assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap RTL -->
+        <link href="../public/assets/vendor/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="../public/assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Layout: variables, base reset, card-custom -->
+        <link href="../public/assets/css/layout.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="../public/assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Admin layout: sidebar, header, footer -->
+        <link href="../public/assets/css/admin-layout.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="../public/assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="admin-body">
+
+        <div class="admin-shell" id="adminShell">
+
+            <!-- ================= DESKTOP SIDEBAR ================= -->
+            <aside class="admin-sidebar d-none d-lg-flex">
+                <div class="admin-sidebar-header">
+                    <a class="admin-sidebar-brand" href="AdminLayout.html">
+                        <span class="admin-sidebar-brand-mark">
+                            EG
+                        </span>
+                        <span class="admin-sidebar-brand-text">
+                            <span class="admin-sidebar-brand-title">
+                                پنل مدیریت
+                            </span>
+                            <span class="admin-sidebar-brand-subtitle">
+                                احسان گلی
+                            </span>
+                        </span>
+                    </a>
+                    <button aria-expanded="true" aria-label="جمع/باز کردن سایدبار" class="admin-sidebar-collapse-btn" id="adminSidebarCollapseBtn" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+                <nav aria-label="ناوبری پنل مدیریت" class="admin-nav">
+                    <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.html" title="داشبورد">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <span>داشبورد</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="پروژه‌ها">
+                        <i class="bi bi-kanban"></i>
+                        <span>پروژه‌ها</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="مقالات">
+                        <i class="bi bi-journal-text"></i>
+                        <span>مقالات</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="دوره‌ها">
+                        <i class="bi bi-mortarboard"></i>
+                        <span>دوره‌ها</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="گواهی‌نامه‌ها">
+                        <i class="bi bi-award"></i>
+                        <span>گواهی‌نامه‌ها</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="پیام‌ها">
+                        <i class="bi bi-envelope"></i>
+                        <span>پیام‌ها</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="تنظیمات">
+                        <i class="bi bi-gear"></i>
+                        <span>تنظیمات</span>
+                    </a>
+                </nav>
+
+                <div class="admin-sidebar-footer">
+                    <a class="admin-sidebar-back" href="Resume.html" title="بازگشت به سایت">
+                        <i class="bi bi-house-door"></i>
+                        <span>بازگشت به سایت</span>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- ================= MOBILE OFFCANVAS SIDEBAR ================= -->
+            <div aria-labelledby="adminOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas admin-offcanvas" id="adminOffcanvas" tabindex="-1">
+                <div class="offcanvas-header">
+                    <a class="admin-sidebar-brand" href="AdminLayout.html">
+                        <span class="admin-sidebar-brand-mark">
+                            EG
+                        </span>
+                        <span class="admin-sidebar-brand-text">
+                            <span class="admin-sidebar-brand-title" id="adminOffcanvasLabel">
+                                پنل مدیریت
+                            </span>
+                            <span class="admin-sidebar-brand-subtitle">
+                                احسان گلی
+                            </span>
+                        </span>
+                    </a>
+                    <button aria-label="بستن منو" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <nav aria-label="ناوبری پنل مدیریت (موبایل)" class="admin-nav">
+                        <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.html">
+                            <i class="bi bi-grid-1x2-fill"></i>
+                            <span>داشبورد</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-kanban"></i>
+                            <span>پروژه‌ها</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-journal-text"></i>
+                            <span>مقالات</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-mortarboard"></i>
+                            <span>دوره‌ها</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-award"></i>
+                            <span>گواهی‌نامه‌ها</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-envelope"></i>
+                            <span>پیام‌ها</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-gear"></i>
+                            <span>تنظیمات</span>
+                        </a>
+                    </nav>
+                    <div class="admin-sidebar-footer">
+                        <a class="admin-sidebar-back" href="Resume.html">
+                            <i class="bi bi-house-door"></i>
+                            <span>بازگشت به سایت</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= MAIN COLUMN ================= -->
+            <div class="admin-main">
+
+                <!-- HEADER -->
+                <header class="admin-header">
+                    <button aria-controls="adminOffcanvas" aria-label="باز کردن منو" class="admin-header-menu-btn" data-bs-target="#adminOffcanvas" data-bs-toggle="offcanvas" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+
+                    <div class="admin-header-titles">
+                        <div class="admin-header-eyebrow">
+                            پنل مدیریت
+                        </div>
+                        <h1 class="admin-header-title">
+                            داشبورد
+                        </h1>
+                    </div>
+
+                    <div class="admin-header-actions">
+                        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="admin-header-theme-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
+                            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+                            <i class="bi bi-sun theme-toggle-icon-light"></i>
+                        </button>
+
+                        <div class="dropdown">
+                            <button aria-expanded="false" class="admin-user" data-bs-toggle="dropdown" type="button">
+                                <img alt="احسان گلی" class="admin-user-avatar" src="../public/assets/images/avatar.jpg">
+                                <span class="admin-user-name">
+                                    احسان گلی
+                                </span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end admin-user-menu">
+                                <div class="admin-user-menu-header">
+                                    <img alt="احسان گلی" class="admin-user-menu-avatar" src="../public/assets/images/avatar.jpg">
+                                    <div class="admin-user-menu-identity">
+                                        <span class="admin-user-menu-name">
+                                            احسان گلی
+                                        </span>
+                                        <span class="admin-user-menu-email">
+                                            demo@example.com
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="admin-user-menu-group">
+                                    <a class="admin-user-menu-item" href="Resume.html">
+                                        <i class="bi bi-house"></i>
+                                        نمایش صفحه اصلی
+                                    </a>
+                                    <a class="admin-user-menu-item" href="#">
+                                        <i class="bi bi-person"></i>
+                                        پروفایل من
+                                    </a>
+                                    <a class="admin-user-menu-item" href="#">
+                                        <i class="bi bi-gear"></i>
+                                        تنظیمات سایت
+                                    </a>
+                                    <a class="admin-user-menu-item" href="DEVELOPER-GUIDE.md">
+                                        <i class="bi bi-question-circle"></i>
+                                        راهنمای سیستم
+                                    </a>
+                                </div>
+                                <div class="admin-user-menu-divider"></div>
+                                <div class="admin-user-menu-group">
+                                    <a class="admin-user-menu-item admin-user-menu-item--danger" href="#">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        خروج
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- PAGE CONTENT — replace with the real page content -->
+                <main class="admin-content">
+                    <div class="admin-page-intro">
+                        <p>
+                            این یک صفحه‌ی نمونه است تا چیدمان پنل مدیریت (سایدبار، هدر و فوتر) رو نشون بده.
+                        </p>
+                        <p>
+                            برای اضافه‌کردن صفحه‌ی واقعی، از همین فایل به‌عنوان نقطه‌ی شروع کپی بگیر و بخش
+                            <code>admin-content</code>
+                            رو با محتوای موردنظرت جایگزین کن — جزئیات کامل در
+                            <a href="DEVELOPER-GUIDE.md">راهنمای توسعه</a>
+                            .
+                        </p>
+                    </div>
+
+                    <div class="card-custom admin-sample-card">
+                        <h2>
+                            نمونه‌ی یک کارت محتوا
+                        </h2>
+                        <p>
+                            این کارت از همون کلاس مشترک
+                            <code>card-custom</code>
+                            استفاده می‌کنه که توی کارت پروفایل و ویجت‌های سایدبار صفحات دیگه هم هست — یعنی هر
+                            چیزی که برای بخش عمومی سایت ساختی، همین‌جا هم بدون تغییر اضافی درست کار می‌کنه.
+                        </p>
+                    </div>
+                </main>
+
+                <!-- FOOTER -->
+                <footer class="admin-footer">
+                    <a href="DEVELOPER-GUIDE.md">
+                        مستندات
+                    </a>
+                    <div class="admin-footer-credit">
+                        <strong>پنل مدیریت</strong>
+                        — © ۱۴۰۵ احسان گلی
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="../public/assets/js/theme-toggle.js"></script>
+        <script src="../public/assets/js/admin-sidebar.js"></script>
+    </body>
+</html>

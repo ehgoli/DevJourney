@@ -1,0 +1,189 @@
+<!--
+    ==============================================================
+    SIGNUP — part of the auth page family (Login / Signup /
+    Forgot Password). Shares assets/css/auth.css and the same
+    card layout as Login.html; every class used here already
+    exists in auth.css / components.css, so this page adds no
+    new CSS of its own.
+
+    No site header/footer/offcanvas here by design: just the
+    theme toggle button and a centered card on the default page
+    background. See DEVELOPER-GUIDE.md for the shared head
+    pattern this still follows.
+    ==============================================================
+-->
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="ساخت حساب کاربری جدید در سایت شخصی احسان گلی.">
+
+        <title>
+            ثبت‌نام | سایت شخصی احسان گلی
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap RTL (vendor) -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
+
+        <!-- Bootstrap icons (vendor) -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Layout: variables, base reset, container, .card-custom -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: form fields (contact-label / contact-input / contact-submit) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts: switches automatically based on <html lang> -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
+        <link href="assets/css/auth.css" rel="stylesheet">
+
+        <!-- Same tsParticles layer styles used by Resume.html -->
+        <link href="assets/css/particles-bg.css" rel="stylesheet">
+
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="auth-body">
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+        <!--
+            ======================================================
+            AUTH CARD
+            ======================================================
+        -->
+        <main class="auth-page">
+            <div aria-hidden="true" id="particles-bg"></div>
+
+            <div class="auth-card card-custom">
+
+                <!-- Brand — also doubles as the way back to the site -->
+                <div class="auth-brand">
+                    <a class="site-logo" href="Resume.html">
+                        <span class="site-logo-mark">
+                            EG
+                        </span>
+                        <span class="site-logo-text">
+                            احسان گلی
+                        </span>
+                    </a>
+                </div>
+
+                <div class="auth-heading">
+                    <h1 class="auth-title">
+                        ایجاد حساب کاربری
+                    </h1>
+                    <p class="auth-subtitle">
+                        برای استفاده از امکانات سایت، اطلاعات زیر را تکمیل کنید.
+                    </p>
+                </div>
+
+                <!--
+                    Server-side message placeholder — hidden by default.
+                    Remove d-none once the backend can render a real
+                    error here (e.g. duplicate phone number).
+                -->
+                <div class="auth-alert d-none" id="signupAlert" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <span>
+                        این شماره تماس قبلاً ثبت شده است.
+                    </span>
+                </div>
+
+                <form action="#" class="auth-form" id="signupForm" method="post">
+                    <div class="row g-3">
+
+                        <!-- Full Name -->
+                        <div class="col-12">
+                            <label class="contact-label" for="signupFullName">
+                                نام و نام خانوادگی
+                            </label>
+                            <input autocomplete="name" class="form-control contact-input" id="signupFullName" name="fullName" placeholder="نام و نام خانوادگی شما" required="" type="text">
+                        </div>
+
+                        <!-- Phone — kept LTR like any digit string (see .github-stars in components.css for the same convention) -->
+                        <div class="col-12">
+                            <label class="contact-label" for="signupPhone">
+                                شماره تماس
+                            </label>
+                            <input autocomplete="tel" class="form-control contact-input" dir="ltr" id="signupPhone" inputmode="tel" name="phone" placeholder="09123456789" required="" type="tel">
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-12">
+                            <label class="contact-label" for="signupPassword">
+                                رمز عبور
+                            </label>
+                            <div class="auth-password-field">
+                                <input autocomplete="new-password" class="form-control contact-input" id="signupPassword" name="password" placeholder="رمز عبور" required="" type="password">
+                                <button aria-label="نمایش رمز عبور" aria-pressed="false" class="auth-password-toggle" data-hide-label="پنهان کردن رمز عبور" data-show-label="نمایش رمز عبور" data-target="signupPassword" type="button">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Terms -->
+                        <div class="col-12">
+                            <div class="auth-check">
+                                <input class="form-check-input" id="signupTerms" name="terms" required="" type="checkbox">
+                                <label for="signupTerms">
+                                    با
+                                    <a class="auth-link" href="terms.html">
+                                        قوانین و مقررات سایت
+                                    </a>
+                                    موافقم.
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12">
+                            <button class="contact-submit" type="submit">
+                                <span>
+                                    ثبت‌نام
+                                </span>
+                                <i class="bi bi-person-plus"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <div class="auth-switch">
+                    حساب کاربری دارید؟
+                    <a class="auth-link" href="Login.html">
+                        وارد شوید
+                    </a>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+
+        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+        <script src="assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        <script src="assets/js/particles-bg.js"></script>
+
+        <script src="assets/js/auth-password-toggle.js"></script>
+    </body>
+</html>

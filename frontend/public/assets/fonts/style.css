@@ -1,0 +1,96 @@
+@import url(fontiran.css); /* بارگذاری فونت فارسی (IRANYekanX) */
+@import url(fontinter.css); /* بارگذاری فونت انگلیسی (Inter Variable) */
+
+/* =========================================================
+   فونت بر اساس زبان صفحه
+   -----------------------------------------------------------
+   پیش‌فرض (:root) فارسی است چون کل سایت با همین فرض ساخته
+   شده؛ روی صفحاتی که <html lang="en"> دارند، به‌طور خودکار
+   Inter جایگزین می‌شود — بدون نیاز به هیچ Layout یا CSS جدا.
+   دقیقاً همین دو متغیر بعداً می‌توانند مستقیم به کلاس CSS روی
+   <html> در _Layout.cshtml هم وصل شوند، اگر لازم شد.
+========================================================= */
+
+:root {
+    --font-fa: 'IRANYekanX', Tahoma, Arial, sans-serif;
+    --font-en: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-base: var(--font-fa);
+}
+
+html[lang="en"] {
+    --font-family-base: var(--font-en);
+}
+
+* {
+    font-family: var(--font-family-base);
+}
+
+h1 {
+    font-weight: bold;
+}
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.ltr {
+    direction: ltr;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-small {
+    font-size: 0.8em;
+}
+.text-xsmall {
+    font-size: 0.6em;
+}
+.text-large {
+    font-size: 1.2em;
+}
+.text-xlarge {
+    font-size: 1.4em;
+}
+.text-underline {
+    text-decoration:underline;
+}
+
+.text-thin {
+    font-weight: 100;
+}
+.text-UltraLight {
+    font-weight: 200;
+}
+.text-light {
+    font-weight: 300;
+}
+.text-regular {
+    font-weight: normal;
+}
+.text-medium {
+    font-weight: 500;
+}
+.text-demibold {
+    font-weight: 600;
+}
+.text-bold {
+    font-weight: bold;
+}
+
+.text-extrabold {
+    font-weight: 800;
+}
+.text-black {
+    font-weight: 900;
+}
+.text-extrablack {
+    font-weight: 950;
+}
+.text-heavy {
+    font-weight: 1000;
+}

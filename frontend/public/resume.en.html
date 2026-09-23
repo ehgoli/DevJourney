@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        
+        <title>
+            Ehsan Goli — Personal Website
+        </title>
+        
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap (standard build — this page is dir="ltr") -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+        
+        <!-- Bootstrap icons -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        
+        <!-- Styles CSS -->
+        <!-- Layout: variables, base reset, container, footer (this page has its own dedicated hero/header) -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+        <!-- Components: reusable cards (article, project, course, GitHub, contact form) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+        <!-- This page's own styles (hero, profile, skills, timeline, etc.) -->
+        <link href="assets/css/resume.css" rel="stylesheet">
+        
+        <!-- Import Fonts -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+        <link href="assets/css/particles-bg.css" rel="stylesheet">
+
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="Toggle dark/light mode" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+        <!-- HERO -->
+        <header class="hero-section mb-5">
+            <div aria-hidden="true" id="particles-bg"></div>
+
+            <!-- profile card & about row -->
+            <div class="container position-relative">
+                <div class="row gy-4 align-items-start">
+                    <!-- Profile card -->
+                    <div class="col-lg-4 d-flex justify-content-center hero-profile-col order-1">
+                        <div class="card-custom profile-card text-center overflow-visible w-100">
+                            <div class="profile-card-badge">
+                                <span class="profile-status-dot"></span>
+                                <span> Open to Work </span>
+                            </div>
+
+                            <div class="profile-top"></div>
+
+                            <img class="profile-avatar" src="assets/images/avatar.jpg" alt="Ehsan Goli" />
+
+                            <div class="profile-card-info p-4">
+                                
+                                <h4 class="profile-fullname"> Ehsan Goli </h4>
+                                
+                                <div class="muted small my-2">
+                                    Developer, Instructor, Student
+                                </div>
+
+                                <div class="muted small my-2">
+                                    Building scalable software and...
+                                </div>
+
+
+                                <div class="my-3 mt-4">
+                                    <a class="d-block small" href="mailto:demo@example.com">
+                                        demo@example.com
+                                    </a>
+                                    <div class="small muted mt-1">
+                                        09123456789
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center gap-2 socials my-3">
+                                    <a class="btn btn-outline-secondary btn-sm" href="#">
+                                        <i class="bi bi-linkedin"></i>
+                                        LinkedIn
+                                    </a>
+                                    <a class="btn btn-outline-secondary btn-sm" href="#">
+                                        <i class="bi bi-github"></i>
+                                        GitHub
+                                    </a>
+                                    <a class="btn btn-outline-secondary btn-sm" href="#">
+                                        <i class="bi bi-twitter"></i>
+                                    </a>
+                                    <a class="btn btn-outline-secondary btn-sm" href="#">
+                                        <i class="bi bi-telegram"></i>
+                                    </a>
+                                </div>
+
+                                <div class="action-tabs d-flex justify-content-center gap-2">
+                                    <button class="btn btn-sm resume-download-btn px-4 py-2">
+                                        <i class="bi bi-download me-1"></i>
+                                        Download Resume
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About -->
+                    <div class="col-lg-8 hero-about-col order-2">
+                        <div class="card-custom about-card h-100">
+                            <p class="text-justify">
+                                I'm a backend-focused software developer with a strong interest in clean,
+                                maintainable architecture and scalable systems. Over the past several years
+                                I've worked across .NET, ASP.NET Core, and modern cloud-native patterns,
+                                building products that need to hold up under real production load rather
+                                than just look good in a demo. I care as much about the shape of the code —
+                                how easy it is for the next developer to reason about — as I do about the
+                                feature actually working.
+                                Alongside client and product work, I teach programming courses and write
+                                technical articles, because explaining a concept clearly is usually the
+                                fastest way to find out whether I actually understand it. I enjoy pairing
+                                pragmatic, well-tested code with architecture patterns like Clean
+                                Architecture and CQRS when the complexity of a project genuinely calls for
+                                them — and staying away from them when it doesn't.
+                                Outside of core development, I spend time exploring event-driven systems,
+                                mentoring newer developers, and contributing small tools and samples back
+                                to the community on GitHub. I'm always happy to talk through an interesting
+                                technical problem, a course idea, or a potential collaboration.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- SKILLS -->
+            <section class="container">
+                <div class="card-custom p-4 mb-4">
+                    <div class="section-header">
+                        <div class="section-eyebrow">
+                            <span class="section-number">
+                                02
+                            </span>
+                            <span class="section-label">
+                                My Expertise
+                            </span>
+                        </div>
+                        <h2 class="section-title">
+                            Skills &amp; technologies I work with
+                        </h2>
+                        <p class="section-description">
+                            A collection of technical skills and technologies I rely on when
+                            building software and backend projects.
+                        </p>
+                    </div>
+                    <div class="row gx-4 gy-3 mt-3">
+                        <!-- Column 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 01
+                                    </div>
+                                    <div class="skill-percent">
+                                        75%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:75%">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 02
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 03
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 04
+                                    </div>
+                                    <div class="skill-percent">
+                                        65%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:65%">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 05
+                                    </div>
+                                    <div class="skill-percent">
+                                        60%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:60%">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 06
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 07
+                                    </div>
+                                    <div class="skill-percent">
+                                        95%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:95%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 08
+                                    </div>
+                                    <div class="skill-percent">
+                                        95%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:95%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 09
+                                    </div>
+                                    <div class="skill-percent">
+                                        80%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:80%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 10
+                                    </div>
+                                    <div class="skill-percent">
+                                        60%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:60%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 11
+                                    </div>
+                                    <div class="skill-percent">
+                                        95%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:95%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 12
+                                    </div>
+                                    <div class="skill-percent">
+                                        85%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:85%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column 3 -->
+                        <div class="col-lg-4 col-md-12">
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 13
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 14
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 15
+                                    </div>
+                                    <div class="skill-percent">
+                                        80%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:80%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 16
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 17
+                                    </div>
+                                    <div class="skill-percent">
+                                        85%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:85%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="skill-name">
+                                        Skill 18
+                                    </div>
+                                    <div class="skill-percent">
+                                        90%
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:90%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- EXPERIENCE / TIMELINE -->
+            <section class="container">
+                <div class="timeline-section">
+                    <div class="section-header">
+                        <div class="section-eyebrow">
+                            <span class="section-number"> 03 </span>
+                            <span class="section-label">
+                                Experience &amp; Activities
+                            </span>
+                        </div>
+                        <h2 class="section-title">
+                            My Journey
+                        </h2>
+                        <p class="section-description">
+                            The learning path, professional activity, and experience I've built up over the years.
+                        </p>
+                    </div>
+                    <div class="timeline">
+                        <!-- Item -->
+                        <div class="timeline-item">
+                            <div class="timeline-meta">
+                                <span>
+                                    Getting started with programming
+                                </span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>
+                                    Started learning to code
+                                </h4>
+                                <p>
+                                    Learned the fundamentals of programming and software development,
+                                    focused on C# and the .NET ecosystem, building the foundation for a
+                                    professional career in backend development.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item -->
+                        <div class="timeline-item">
+                            <div class="timeline-meta">
+                                <span>
+                                    Started professional work
+                                </span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>
+                                    Building backend software
+                                </h4>
+                                <p>
+                                    Worked on designing and developing software systems with ASP.NET
+                                    Core, focused on clean architecture, modular design, performance,
+                                    and maintainability.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item -->
+                        <div class="timeline-item">
+                            <div class="timeline-meta">
+                                <span>
+                                    The OcanelShop project
+                                </span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>
+                                    Built an enterprise architecture for OcanelShop
+                                </h4>
+                                <p>
+                                    Designed and built an enterprise e-commerce system using Clean
+                                    Architecture and a Modular Monolith, together with PostgreSQL,
+                                    MongoDB, Redis, RabbitMQ, and gRPC.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item -->
+                        <div class="timeline-item">
+                            <div class="timeline-meta">
+                                <span>
+                                    Current focus
+                                </span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>
+                                    Focused on architecture and scalability
+                                </h4>
+                                <p>
+                                    Building out event-driven capabilities, improving performance,
+                                    logging and error handling, and preparing the architecture for a
+                                    possible future migration to microservices.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- COURSES -->
+            <section class="courses-section" id="courses">
+                <div class="container">
+                    <!-- Section Header -->
+                    <div class="section-header section-header--with-action">
+                        <div class="section-header-main">
+                            <div class="section-eyebrow">
+                                <span class="section-number">
+                                    04
+                                </span>
+                                <span class="section-label">
+                                    Courses I've Taught
+                                </span>
+                            </div>
+                            <h2 class="section-title">
+                                Things I've taught
+                            </h2>
+                            <p class="section-description">
+                                A sample of the courses I've run so far.
+                                The full, up-to-date list goes here.
+                            </p>
+                        </div>
+                        <a class="section-view-all" href="courses.en.html">
+                            View all courses
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </div>
+                    <!-- Courses Grid -->
+                    <div class="row g-4">
+                        <!-- Course 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="course-card">
+                                <!-- Cover -->
+                                <div class="course-cover">
+                                    <img alt="Object-Oriented Programming with C#" src="assets/images/default-course-cover.jpg">
+                                    <div class="course-cover-overlay">
+                                    </div>
+                                    <span class="course-level">
+                                        Beginner
+                                    </span>
+                                </div>
+                                <!-- Content -->
+                                <div class="course-body">
+                                    <h3 class="course-title">
+                                        Object-Oriented Programming with C#
+                                    </h3>
+                                    <p class="course-description">
+                                        The fundamentals of OOP, abstraction, interfaces, and the core
+                                        principles every .NET developer should know.
+                                    </p>
+                                    <a class="course-link" href="#">
+                                        View details
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Course 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="course-card">
+                                <div class="course-cover">
+                                    <img alt="The Complete ASP.NET Core Course" src="assets/images/default-course-cover.jpg">
+                                    <div class="course-cover-overlay">
+                                    </div>
+                                    <span class="course-level">
+                                        Intermediate
+                                    </span>
+                                </div>
+                                <div class="course-body">
+                                    <h3 class="course-title">
+                                        The Complete ASP.NET Core Course
+                                    </h3>
+                                    <p class="course-description">
+                                        Building web apps and APIs, routing, middleware,
+                                        dependency injection, and Entity Framework Core.
+                                    </p>
+                                    <a class="course-link" href="#">
+                                        View details
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Course 3 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="course-card">
+                                <div class="course-cover">
+                                    <img alt="Sample Course Title" src="assets/images/default-course-cover.jpg">
+                                    <div class="course-cover-overlay">
+                                    </div>
+                                    <span class="course-level">
+                                        Advanced
+                                    </span>
+                                </div>
+                                <div class="course-body">
+                                    <h3 class="course-title">
+                                        Sample Course Title
+                                    </h3>
+                                    <p class="course-description">
+                                        Building a real project with clean layering, CQRS,
+                                        and architectural patterns from the ground up.
+                                    </p>
+                                    <a class="course-link" href="CourseDetails.en.html">
+                                        View details
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Course 4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="course-card">
+                                <div class="course-cover">
+                                    <img alt="Introduction to Microservices" src="assets/images/default-course-cover.jpg">
+                                    <div class="course-cover-overlay">
+                                    </div>
+                                    <span class="course-level">
+                                        Advanced
+                                    </span>
+                                </div>
+                                <div class="course-body">
+                                    <h3 class="course-title">
+                                        Introduction to Microservices
+                                    </h3>
+                                    <p class="course-description">
+                                        Splitting up services, inter-service communication with
+                                        RabbitMQ, and the challenges of distributed systems.
+                                    </p>
+                                    <a class="course-link" href="#">
+                                        View details
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Course 5 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="course-card">
+                                <div class="course-cover">
+                                    <img alt="Professional REST API Design" src="assets/images/default-course-cover.jpg">
+                                    <div class="course-cover-overlay">
+                                    </div>
+                                    <span class="course-level">
+                                        Intermediate
+                                    </span>
+                                </div>
+                                <div class="course-body">
+                                    <h3 class="course-title">
+                                        Professional REST API Design
+                                    </h3>
+                                    <p class="course-description">
+                                        Clean API design principles, versioning, documenting
+                                        with Swagger, and error handling.
+                                    </p>
+                                    <a class="course-link" href="#">
+                                        View details
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Course 6 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="course-card">
+                                <div class="course-cover">
+                                    <img alt="Working with Databases and Entity Framework" src="assets/images/default-course-cover.jpg">
+                                    <div class="course-cover-overlay">
+                                    </div>
+                                    <span class="course-level">
+                                        Intermediate
+                                    </span>
+                                </div>
+                                <div class="course-body">
+                                    <h3 class="course-title">
+                                        Working with Databases and Entity Framework
+                                    </h3>
+                                    <p class="course-description">
+                                        Data modeling, migrations, complex relationships, and
+                                        query optimization with EF Core.
+                                    </p>
+                                    <a class="course-link" href="#">
+                                        View details
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- GITHUB PROJECTS -->
+            <section class="github-projects-section">
+                <div class="container">
+                    <!-- Section Header -->
+                    <div class="section-header section-header--with-action">
+                        <div class="section-header-main">
+                            <div class="section-eyebrow">
+                                <span class="section-number">
+                                    05
+                                </span>
+                                <span class="section-label">
+                                    GitHub Projects
+                                </span>
+                            </div>
+                            <h2 class="section-title">
+                                Code I've published
+                            </h2>
+                            <p class="section-description">
+                                A selection of projects and code samples I've published on GitHub.
+                            </p>
+                        </div>
+                        <a class="section-view-all" href="#">
+                            View all on GitHub
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </div>
+                    <!-- Projects Grid -->
+                    <div class="row g-4">
+                        <!-- Project 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="github-project-card">
+                                <h3 class="github-project-name">
+                                    OcanelShop
+                                </h3>
+                                <p class="github-project-description">
+                                    An online store with two parallel implementations:
+                                    Minimal API + Clean Architecture
+                                    and MVC + Razor Pages.
+                                </p>
+                                <div class="github-project-meta">
+                                    <span class="github-language">
+                                        <span class="language-dot">
+                                        </span>
+                                        C#
+                                    </span>
+                                    <span class="github-stars">
+                                        <i class="bi bi-star-fill">
+                                        </i>
+                                        1
+                                    </span>
+                                </div>
+                                <a class="github-project-link" href="#">
+                                    View on GitHub
+                                    <i class="bi bi-box-arrow-up-left">
+                                    </i>
+                                </a>
+                            </article>
+                        </div>
+                        <!-- Project 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="github-project-card">
+                                <h3 class="github-project-name">
+                                    CleanArchitecture.Starter
+                                </h3>
+                                <p class="github-project-description">
+                                    A starter template for quickly bootstrapping projects with
+                                    Clean Architecture and CQRS
+                                    on ASP.NET Core.
+                                </p>
+                                <div class="github-project-meta">
+                                    <span class="github-language">
+                                        <span class="language-dot">
+                                        </span>
+                                        C#
+                                    </span>
+                                    <span class="github-stars">
+                                        <i class="bi bi-star-fill">
+                                        </i>
+                                        12
+                                    </span>
+                                </div>
+                                <a class="github-project-link" href="#">
+                                    View on GitHub
+                                    <i class="bi bi-box-arrow-up-left">
+                                    </i>
+                                </a>
+                            </article>
+                        </div>
+                        <!-- Project 3 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="github-project-card">
+                                <h3 class="github-project-name">
+                                    OrderService.Sample
+                                </h3>
+                                <p class="github-project-description">
+                                    A sample standalone microservice for order management,
+                                    using message-driven communication over RabbitMQ.
+                                </p>
+                                <div class="github-project-meta">
+                                    <span class="github-language">
+                                        <span class="language-dot">
+                                        </span>
+                                        C#
+                                    </span>
+                                    <span class="github-stars">
+                                        <i class="bi bi-star-fill">
+                                        </i>
+                                        1.1K
+                                    </span>
+                                </div>
+                                <a class="github-project-link" href="#">
+                                    View on GitHub
+                                    <i class="bi bi-box-arrow-up-left">
+                                    </i>
+                                </a>
+                            </article>
+                        </div>
+                        <!-- Project 4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="github-project-card">
+                                <h3 class="github-project-name">
+                                    OcanelShop.Inventory
+                                </h3>
+                                <p class="github-project-description">
+                                    An inventory management module focused on modular
+                                    design, performance, and separation of concerns.
+                                </p>
+                                <div class="github-project-meta">
+                                    <span class="github-language">
+                                        <span class="language-dot">
+                                        </span>
+                                        C#
+                                    </span>
+                                    <span class="github-stars">
+                                        <i class="bi bi-star-fill">
+                                        </i>
+                                        21
+                                    </span>
+                                </div>
+                                <a class="github-project-link" href="#">
+                                    View on GitHub
+                                    <i class="bi bi-box-arrow-up-left">
+                                    </i>
+                                </a>
+                            </article>
+                        </div>
+                        <!-- Project 5 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="github-project-card">
+                                <h3 class="github-project-name">
+                                    EventDriven.Sample
+                                </h3>
+                                <p class="github-project-description">
+                                    A sample Event-Driven Architecture implementation
+                                    for communication between different parts of a system.
+                                </p>
+                                <div class="github-project-meta">
+                                    <span class="github-language">
+                                        <span class="language-dot">
+                                        </span>
+                                        C#
+                                    </span>
+                                    <span class="github-stars">
+                                        <i class="bi bi-star-fill">
+                                        </i>
+                                        97
+                                    </span>
+                                </div>
+                                <a class="github-project-link" href="#">
+                                    View on GitHub
+                                    <i class="bi bi-box-arrow-up-left">
+                                    </i>
+                                </a>
+                            </article>
+                        </div>
+                        <!-- Project 6 -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="github-project-card">
+                                <h3 class="github-project-name">
+                                    DotNet.Backend.Sample
+                                </h3>
+                                <p class="github-project-description">
+                                    A collection of backend samples with
+                                    ASP.NET Core, exploring design patterns and architecture.
+                                </p>
+                                <div class="github-project-meta">
+                                    <span class="github-language">
+                                        <span class="language-dot">
+                                        </span>
+                                        C#
+                                    </span>
+                                    <span class="github-stars">
+                                        <i class="bi bi-star-fill">
+                                        </i>
+                                        432
+                                    </span>
+                                </div>
+                                <a class="github-project-link" href="#">
+                                    View on GitHub
+                                    <i class="bi bi-box-arrow-up-left">
+                                    </i>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- INTERNAL PROJECTS -->
+            <section class="projects-section">
+                <div class="container">
+                    <!-- Section Header -->
+                    <div class="section-header section-header--with-action">
+                        <div class="section-header-main">
+                            <div class="section-eyebrow">
+                                <span class="section-number">
+                                    06
+                                </span>
+                                <span class="section-label">
+                                    Portfolio
+                                </span>
+                            </div>
+                            <h2 class="section-title">
+                                Projects I've built
+                            </h2>
+                            <p class="section-description">
+                                A selection of projects I've designed and built throughout my career.
+                            </p>
+                        </div>
+                        <a class="section-view-all" href="#">
+                            View all portfolio
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </div>
+                    <!-- Projects Carousel -->
+                    <div class="carousel slide projects-carousel" data-bs-interval="7000" data-bs-ride="carousel" id="projectsCarousel">
+                        <div class="carousel-inner">
+                            <!-- SLIDE 1 -->
+                            <div class="carousel-item active">
+                                <div class="row g-4">
+                                    <!-- Project 1 -->
+                                    <div class="col-lg-6">
+                                        <article class="project-card">
+                                            <div class="project-content">
+                                                <h3 class="project-title">
+                                                    OcanelShop — Large E-Commerce Store
+                                                </h3>
+                                                <p class="project-description">
+                                                    Design and implementation of a large online store
+                                                    with two parallel versions; the first built on
+                                                    Minimal API and Clean Architecture, and the second
+                                                    a full-stack approach with MVC and Razor Pages,
+                                                    with fully separated layers and modular UI management.
+                                                </p>
+                                                <div class="project-technologies">
+                                                    <span class="project-tech">
+                                                        Clean Architecture
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        CQRS
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        EF Core
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        Redis
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        Docker
+                                                    </span>
+                                                </div>
+                                                <a class="project-link" href="#">
+                                                    View project details
+                                                    <i class="bi bi-arrow-left">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <!-- Project 2 -->
+                                    <div class="col-lg-6">
+                                        <article class="project-card">
+                                            <div class="project-content">
+                                                <h3 class="project-title">
+                                                    Online Booking Management System
+                                                </h3>
+                                                <p class="project-description">
+                                                    Another portfolio piece showcasing a project built
+                                                    around the architecture and implementation of
+                                                    web-based systems.
+                                                </p>
+                                                <a class="project-link" href="#">
+                                                    View project details
+                                                    <i class="bi bi-arrow-left">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SLIDE 2 -->
+                            <div class="carousel-item">
+                                <div class="row g-4">
+                                    <!-- Project 3 -->
+                                    <div class="col-lg-6">
+                                        <article class="project-card">
+                                            <div class="project-content">
+                                                <h3 class="project-title">
+                                                    Sales Management System
+                                                </h3>
+                                                <p class="project-description">
+                                                    Design and development of a business system
+                                                    focused on modular structure, data management,
+                                                    and scalability at a larger scale.
+                                                </p>
+                                                <div class="project-technologies">
+                                                    <span class="project-tech">
+                                                        ASP.NET Core
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        SQL Server
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        EF Core
+                                                    </span>
+                                                </div>
+                                                <a class="project-link" href="#">
+                                                    View project details
+                                                    <i class="bi bi-arrow-left">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <!-- Project 4 -->
+                                    <div class="col-lg-6">
+                                        <article class="project-card">
+                                            <div class="project-content">
+                                                <h3 class="project-title">
+                                                    User Management System
+                                                </h3>
+                                                <p class="project-description">
+                                                    Built a management system focused on
+                                                    authentication, access levels, and
+                                                    user information management.
+                                                </p>
+                                                <div class="project-technologies">
+                                                    <span class="project-tech">
+                                                        ASP.NET Core
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        Identity
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        JWT
+                                                    </span>
+                                                </div>
+                                                <a class="project-link" href="#">
+                                                    View project details
+                                                    <i class="bi bi-arrow-left">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SLIDE 3 -->
+                            <div class="carousel-item">
+                                <div class="row g-4">
+                                    <!-- Project 5 -->
+                                    <div class="col-lg-6">
+                                        <article class="project-card">
+                                            <div class="project-content">
+                                                <h3 class="project-title">
+                                                    Order Processing Service
+                                                </h3>
+                                                <p class="project-description">
+                                                    Implemented part of a distributed architecture
+                                                    for managing and processing orders, built to
+                                                    scale independently.
+                                                </p>
+                                                <div class="project-technologies">
+                                                    <span class="project-tech">
+                                                        RabbitMQ
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        gRPC
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        Redis
+                                                    </span>
+                                                </div>
+                                                <a class="project-link" href="#">
+                                                    View project details
+                                                    <i class="bi bi-arrow-left">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <!-- Project 6 -->
+                                    <div class="col-lg-6">
+                                        <article class="project-card">
+                                            <div class="project-content">
+                                                <h3 class="project-title">
+                                                    Admin Dashboard
+                                                </h3>
+                                                <p class="project-description">
+                                                    Designed and built an admin dashboard for
+                                                    displaying system information and
+                                                    analyzing data.
+                                                </p>
+                                                <div class="project-technologies">
+                                                    <span class="project-tech">
+                                                        ASP.NET Core
+                                                    </span>
+                                                    <span class="project-tech">
+                                                        Bootstrap
+                                                    </span>
+                                                </div>
+                                                <a class="project-link" href="#">
+                                                    View project details
+                                                    <i class="bi bi-arrow-left">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Controls -->
+                        <button class="carousel-control-prev projects-control projects-control-prev" data-bs-slide="prev" data-bs-target="#projectsCarousel" type="button">
+                            <span aria-hidden="true" class="projects-arrow">
+                                <i class="bi bi-chevron-right">
+                                </i>
+                            </span>
+                            <span class="visually-hidden">
+                                Previous
+                            </span>
+                        </button>
+                        <button class="carousel-control-next projects-control projects-control-next" data-bs-slide="next" data-bs-target="#projectsCarousel" type="button">
+                            <span aria-hidden="true" class="projects-arrow">
+                                <i class="bi bi-chevron-left">
+                                </i>
+                            </span>
+                            <span class="visually-hidden">
+                                Next
+                            </span>
+                        </button>
+                        <!-- Indicators -->
+                        <div class="carousel-indicators projects-indicators">
+                            <button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0" data-bs-target="#projectsCarousel" type="button">
+                            </button>
+                            <button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#projectsCarousel" type="button">
+                            </button>
+                            <button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#projectsCarousel" type="button">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- CERTIFICATES & RECOGNITIONS -->
+            <section class="certificates-section">
+                <div class="container">
+                    <!-- Section Header -->
+                    <div class="section-header">
+                        <div class="section-eyebrow">
+                            <span class="section-number">
+                                07
+                            </span>
+                            <span class="section-label">
+                                Certificates & Recognitions
+                            </span>
+                        </div>
+                        <h2 class="section-title">
+                            Credentials I've earned
+                        </h2>
+                        <p class="section-description">
+                            A selection of professional certificates and recognitions
+                            I've earned throughout my career.
+                        </p>
+                    </div>
+                    <!-- Certificates Grid -->
+                    <div class="row g-4">
+                        <!-- Certificate 1 — placeholder -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="certificate-card">
+                                <button class="certificate-thumb" type="button" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-image="assets/images/default-course-cover.jpg" data-cert-title="Sample certificate" aria-label="View the sample certificate at full size">
+                                    <img src="assets/images/default-course-cover.jpg" alt="Sample certificate">
+                                    <span class="certificate-thumb-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                        View certificate
+                                    </span>
+                                </button>
+                                <div class="certificate-body">
+                                    <span class="certificate-issuer">
+                                        <i class="bi bi-patch-check"></i>
+                                        Issuing organization
+                                    </span>
+                                    <h3 class="certificate-title">
+                                        Sample certificate or specialization course title
+                                    </h3>
+                                    <div class="certificate-meta">
+                                        <span>
+                                            <i class="bi bi-calendar3"></i>
+                                            Date achieved
+                                        </span>
+                                        <span>
+                                            <i class="bi bi-hash"></i>
+                                            Credential ID
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Certificate 2 — placeholder -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="certificate-card">
+                                <button class="certificate-thumb" type="button" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-image="assets/images/default-course-cover.jpg" data-cert-title="Sample certificate" aria-label="View the sample certificate at full size">
+                                    <img src="assets/images/default-course-cover.jpg" alt="Sample certificate">
+                                    <span class="certificate-thumb-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                        View certificate
+                                    </span>
+                                </button>
+                                <div class="certificate-body">
+                                    <span class="certificate-issuer">
+                                        <i class="bi bi-patch-check"></i>
+                                        Issuing organization
+                                    </span>
+                                    <h3 class="certificate-title">
+                                        Sample certificate or specialization course title
+                                    </h3>
+                                    <div class="certificate-meta">
+                                        <span>
+                                            <i class="bi bi-calendar3"></i>
+                                            Date achieved
+                                        </span>
+                                        <span>
+                                            <i class="bi bi-hash"></i>
+                                            Credential ID
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Certificate 3 — placeholder -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="certificate-card">
+                                <button class="certificate-thumb" type="button" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-image="assets/images/default-course-cover.jpg" data-cert-title="Sample certificate" aria-label="View the sample certificate at full size">
+                                    <img src="assets/images/default-course-cover.jpg" alt="Sample certificate">
+                                    <span class="certificate-thumb-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                        View certificate
+                                    </span>
+                                </button>
+                                <div class="certificate-body">
+                                    <span class="certificate-issuer">
+                                        <i class="bi bi-patch-check"></i>
+                                        Issuing organization
+                                    </span>
+                                    <h3 class="certificate-title">
+                                        Sample certificate or specialization course title
+                                    </h3>
+                                    <div class="certificate-meta">
+                                        <span>
+                                            <i class="bi bi-calendar3"></i>
+                                            Date achieved
+                                        </span>
+                                        <span>
+                                            <i class="bi bi-hash"></i>
+                                            Credential ID
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Certificate 4 — recognition placeholder -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="certificate-card">
+                                <button class="certificate-thumb" type="button" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-image="assets/images/default-course-cover.jpg" data-cert-title="Sample recognition" aria-label="View the sample recognition at full size">
+                                    <img src="assets/images/default-course-cover.jpg" alt="Sample recognition">
+                                    <span class="certificate-thumb-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                        View certificate
+                                    </span>
+                                </button>
+                                <div class="certificate-body">
+                                    <span class="certificate-issuer">
+                                        <i class="bi bi-award"></i>
+                                        Event or company name
+                                    </span>
+                                    <h3 class="certificate-title">
+                                        Sample recognition or appreciation letter title
+                                    </h3>
+                                    <div class="certificate-meta">
+                                        <span>
+                                            <i class="bi bi-calendar3"></i>
+                                            Date received
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Certificate 5 — placeholder -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="certificate-card">
+                                <button class="certificate-thumb" type="button" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-image="assets/images/default-course-cover.jpg" data-cert-title="Sample certificate" aria-label="View the sample certificate at full size">
+                                    <img src="assets/images/default-course-cover.jpg" alt="Sample certificate">
+                                    <span class="certificate-thumb-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                        View certificate
+                                    </span>
+                                </button>
+                                <div class="certificate-body">
+                                    <span class="certificate-issuer">
+                                        <i class="bi bi-patch-check"></i>
+                                        Issuing organization
+                                    </span>
+                                    <h3 class="certificate-title">
+                                        Sample certificate or specialization course title
+                                    </h3>
+                                    <div class="certificate-meta">
+                                        <span>
+                                            <i class="bi bi-calendar3"></i>
+                                            Date achieved
+                                        </span>
+                                        <span>
+                                            <i class="bi bi-hash"></i>
+                                            Credential ID
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Certificate 6 — placeholder -->
+                        <div class="col-lg-4 col-md-6">
+                            <article class="certificate-card">
+                                <button class="certificate-thumb" type="button" data-bs-toggle="modal" data-bs-target="#certificateModal" data-cert-image="assets/images/default-course-cover.jpg" data-cert-title="Sample certificate" aria-label="View the sample certificate at full size">
+                                    <img src="assets/images/default-course-cover.jpg" alt="Sample certificate">
+                                    <span class="certificate-thumb-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                        View certificate
+                                    </span>
+                                </button>
+                                <div class="certificate-body">
+                                    <span class="certificate-issuer">
+                                        <i class="bi bi-patch-check"></i>
+                                        Issuing organization
+                                    </span>
+                                    <h3 class="certificate-title">
+                                        Sample certificate or specialization course title
+                                    </h3>
+                                    <div class="certificate-meta">
+                                        <span>
+                                            <i class="bi bi-calendar3"></i>
+                                            Date achieved
+                                        </span>
+                                        <span>
+                                            <i class="bi bi-hash"></i>
+                                            Credential ID
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificate Lightbox Modal (shared by all certificate cards) -->
+            <div class="modal fade certificate-modal" id="certificateModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <img src="" alt="" id="certificateModalImage">
+                        <p class="certificate-modal-caption" id="certificateModalCaption"></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ARTICLES -->
+            <section class="container">
+                <div class="articles-section">
+                    <div class="section-header section-header--with-action">
+                        <div class="section-header-main">
+                            <div class="section-eyebrow">
+                                <span class="section-number">
+                                    08
+                                </span>
+                                <span class="section-label">
+                                    Articles
+                                </span>
+                            </div>
+                            <h2 class="section-title">
+                                Things I've written
+                            </h2>
+                            <p class="section-description">
+                                Notes and experiences I've written about programming,
+                                software architecture, and backend development.
+                            </p>
+                        </div>
+                        <a class="section-view-all" href="articles-ajax.en.html">
+                            View all articles
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </div>
+                    <!-- Articles Grid -->
+                    <div class="row g-4">
+                        <!-- Article 1 -->
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <article class="article-card">
+                                <!-- Cover -->
+                                <div class="article-cover">
+                                    <img alt="Sample Article Title" src="assets/images/default-course-cover.jpg">
+                                </div>
+                                <!-- Content -->
+                                <div class="article-body">
+                                    <h3 class="article-title">
+                                        Sample Article Title
+                                    </h3>
+                                    <p class="articles-description">
+                                        Notes and experiences I've written about programming, software architecture, and backend development.
+                                    </p>
+                                    <div class="article-reading-time">
+                                        5 min read
+                                    </div>
+                                    <a class="article-link" href="#">
+                                        Read article
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Article 2 -->
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <article class="article-card">
+                                <div class="article-cover">
+                                    <img alt="CQRS in Real-World Projects" src="assets/images/default-course-cover.jpg">
+                                </div>
+                                <div class="article-body">
+                                    <h3 class="article-title">
+                                        CQRS in Real-World Projects
+                                    </h3>
+                                    <p class="articles-description">
+                                        Notes and experiences I've written about programming, software architecture, and backend development.
+                                    </p>
+                                    <div class="article-reading-time">
+                                        7 min read
+                                    </div>
+                                    <a class="article-link" href="#">
+                                        Read article
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Article 3 -->
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <article class="article-card">
+                                <div class="article-cover">
+                                    <img alt="From MVC to Minimal API" src="assets/images/default-course-cover.jpg">
+                                </div>
+                                <div class="article-body">
+                                    <h3 class="article-title">
+                                        From MVC to Minimal API
+                                    </h3>
+                                    <p class="articles-description">
+                                        Notes and experiences I've written about programming, software architecture, and backend development.
+                                    </p>
+                                    <div class="article-reading-time">
+                                        6 min read
+                                    </div>
+                                    <a class="article-link" href="#">
+                                        Read article
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Article 3 -->
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <article class="article-card">
+                                <div class="article-cover">
+                                    <img alt="From MVC to Minimal API" src="assets/images/default-course-cover.jpg">
+                                </div>
+                                <div class="article-body">
+                                    <h3 class="article-title">
+                                        From MVC to Minimal API
+                                    </h3>
+                                    <p class="articles-description">
+                                        Notes and experiences I've written about programming, software architecture, and backend development.
+                                    </p>
+                                    <div class="article-reading-time">
+                                        6 min read
+                                    </div>
+                                    <a class="article-link" href="#">
+                                        Read article
+                                        <i class="bi bi-arrow-left">
+                                        </i>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- CONTACT -->
+            <section class="contact-section">
+                <div class="container">
+                    <div class="row align-items-center g-5">
+                        <!-- CONTACT INFO -->
+                        <div class="col-lg-5 order-1 order-lg-1">
+                            <div class="contact-content">
+                                <div class="contact-eyebrow">
+                                    <span class="contact-number">
+                                        09
+                                    </span>
+                                    <span>
+                                        Contact
+                                    </span>
+                                </div>
+                                <h2 class="contact-title">
+                                    Ways to get in touch and
+                                    <span>
+                                        collaborate
+                                    </span>
+                                </h2>
+                                <p class="contact-description">
+                                    If you have a project, a software development collaboration,
+    a job opportunity, or an idea for improving an existing system, I'd be happy to hear from
+    you. Whether you're looking to kick off a new project, want help building and maintaining
+    a software product, or need a technical, architectural, or performance review of an
+    existing system, you can reach out through the channels below.
+        I'll review your details and request carefully and get back to you as soon as possible.
+                                </p>
+                                <!-- Social Links -->
+                                <div class="contact-socials">
+                                    <a aria-label="LinkedIn" class="contact-social" href="#">
+                                        <i class="bi bi-linkedin">
+                                        </i>
+                                    </a>
+                                    <a aria-label="GitHub" class="contact-social" href="#">
+                                        <i class="bi bi-github">
+                                        </i>
+                                    </a>
+                                    <a aria-label="Telegram" class="contact-social" href="#">
+                                        <i class="bi bi-telegram">
+                                        </i>
+                                    </a>
+                                    <a aria-label="Email" class="contact-social" href="mailto:demo@example.com">
+                                        <i class="bi bi-envelope">
+                                        </i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONTACT FORM -->
+                        <div class="col-lg-7 order-2 order-lg-2">
+                            <div class="contact-form-card">
+                                <form action="#" class="contact-form" method="post">
+                                    <div class="row g-3">
+                                        <!-- First Name -->
+                                        <div class="col-md-6">
+                                            <label class="contact-label" for="firstName">
+                                                First name
+                                            </label>
+                                            <input autocomplete="given-name" class="form-control contact-input" id="firstName" name="firstName" placeholder="Your first name" required="" type="text">
+                                        </div>
+                                        <!-- Last Name -->
+                                        <div class="col-md-6">
+                                            <label class="contact-label" for="lastName">
+                                                Last name
+                                            </label>
+                                            <input autocomplete="family-name" class="form-control contact-input" id="lastName" name="lastName" placeholder="Your last name" type="text">
+                                        </div>
+                                        <!-- Email -->
+                                        <div class="col-12">
+                                            <label class="contact-label" for="email">
+                                                Email
+                                            </label>
+                                            <input autocomplete="email" class="form-control contact-input" id="email" name="email" placeholder="example@email.com" required="" type="email">
+                                        </div>
+                                        <!-- Subject -->
+                                        <div class="col-12">
+                                            <label class="contact-label" for="subject">
+                                                Subject
+                                            </label>
+                                            <input class="form-control contact-input" id="subject" name="subject" placeholder="What's this about?" required="" type="text">
+                                        </div>
+                                        <!-- Message -->
+                                        <div class="col-12">
+                                            <label class="contact-label" for="message">
+                                                Your message
+                                            </label>
+                                            <textarea class="form-control contact-input contact-textarea" id="message" name="message" placeholder="Write your message..." required="" rows="6"></textarea>
+                                        </div>
+                                        <!-- Submit -->
+                                        <div class="col-12">
+                                            <button class="contact-submit" type="submit">
+                                                <span>
+                                                    Send message
+                                                </span>
+                                                <i class="bi bi-send">
+                                                </i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-content">
+                    <div class="footer-copyright">
+                        © 2026 Ehsan Goli — All rights reserved.
+                    </div>
+                    <div class="footer-project">
+                        This project is built with
+                        <strong>
+                            ASP.NET Core .NET
+                        </strong>
+                        and its
+                        <a href="#" rel="noopener noreferrer" target="_blank">
+                            source is published on GitHub
+                        </a>.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+        <script src="assets/js/certificate-modal.js"></script>
+
+        
+        <script src="assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        
+        <script src="assets/js/particles-bg.js"></script>
+    </body>
+</html>

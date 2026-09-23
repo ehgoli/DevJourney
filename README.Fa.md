@@ -37,11 +37,16 @@ DevJourney به‌صورت **Layered Monolithic Architecture** طراحی شده
 - پروفایل شخصی و معرفی حرفه‌ای
 - مهارت‌ها و میزان تسلط
 - Timeline مسیر حرفه‌ای
-- دوره‌های آموزشی
+- دوره‌های آموزشی (با ویدیوی جلسات)
 - نمونه‌کارها و پروژه‌ها
 - لینک پروژه‌های GitHub
+- گواهینامه‌ها و مدارک
 - مقالات فنی
 - نظرات مقالات
+- حساب کاربری با احراز هویت مبتنی بر شماره تلفن (ثبت‌نام، ورود، بازیابی رمز عبور)
+- حالت روشن و تاریک
+- صفحه قوانین و مقررات
+- صفحات خطای اختصاصی ۴۰۴ / ۴۰۳
 - فرم تماس
 - شبکه‌های اجتماعی
 - رابط کاربری Responsive
@@ -423,17 +428,23 @@ DevJourney/
 │   └── DevJourney.Infrastructure/
 │
 ├── frontend/
-│   └── public/
+│   ├── public/
+│   └── admin/
 │
 ├── tests/
 │   ├── DevJourney.Domain.Tests/
 │   ├── DevJourney.Application.Tests/
 │   └── DevJourney.IntegrationTests/
 │
-├── docs/fa/
-│   ├── architecture.md
-│   ├── infrastructure.md
-│   └── localization.md
+├── docs/
+│   ├── en/
+│   │   ├── architecture.md
+│   │   ├── infrastructure.md
+│   │   └── localization.md
+│   └── fa/
+│       ├── architecture.md
+│       ├── infrastructure.md
+│       └── localization.md
 │
 ├── screenshots/
 │
@@ -450,11 +461,12 @@ DevJourney/
 
 # قالب Frontend
 
-در Repository، قالب Frontend نیز به‌صورت مستقل نگهداری می‌شود:
+در Repository، قالب Frontend نیز به‌صورت مستقل نگهداری می‌شود: یک قالب برای وب‌سایت عمومی و یک قالب جدا برای پنل ادمین.
 
 ```text id="q7k4r2"
 frontend/
-└── public/
+├── public/
+└── admin/
 ```
 
 هدف از جدا نگه داشتن Template این است که لایه بصری پروژه بدون وابستگی به معماری Backend قابل بررسی، استفاده و توسعه باشد.

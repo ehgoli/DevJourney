@@ -1,0 +1,167 @@
+/* =========================================================
+   COURSES ARCHIVE PAGE
+   Page-specific styles only. Shared :root variables, base
+   reset, header, and footer live in layout.css; the course
+   card itself (.course-card and everything inside it) is
+   already a shared component in components.css — load both
+   before this file. Only the parts that are unique to this
+   page (intro, filter bar, grid wrapper) live here.
+
+   Deliberately simpler than articles-updated-ajax-v2.css: with
+   only a handful of courses, a client-side level filter is
+   enough — no search, no pagination, no live network request.
+
+   RTL/LTR: uses logical properties throughout.
+========================================================= */
+
+.courses-archive-section {
+    padding: 0 0 80px;
+}
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.courses-archive-intro {
+    max-width: 640px;
+    margin-bottom: 36px;
+}
+
+.courses-archive-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    margin-bottom: 16px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-dark);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.courses-archive-title {
+    margin: 0 0 12px;
+    color: var(--text);
+    font-size: clamp(24px, calc(19px + 1.4vw), 32px);
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.courses-archive-description {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* =========================================================
+   FILTER BAR
+========================================================= */
+
+.courses-archive-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 26px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.courses-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: var(--fs-courses-filter-pill);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.courses-filter-pill:hover {
+    border-color: var(--primary-dark);
+    color: var(--primary-dark);
+}
+
+.courses-filter-pill.is-active {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+}
+
+.courses-filter-count {
+    padding: 1px 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    font-size: 11.5px;
+}
+
+.courses-filter-pill:not(.is-active) .courses-filter-count {
+    background: var(--section-bg);
+    color: var(--secondary);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.courses-archive-grid-item {
+    transition: opacity 0.2s ease;
+}
+
+.courses-archive-grid-item[hidden] {
+    display: none;
+}
+
+.courses-archive-empty {
+    display: none;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 14.5px;
+    text-align: center;
+}
+
+.courses-archive-empty.is-visible {
+    display: block;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767.98px) {
+    .courses-archive-section {
+        padding-bottom: 60px;
+    }
+
+    .courses-archive-filters {
+        gap: 8px;
+        margin-bottom: 26px;
+    }
+
+    .courses-filter-pill {
+        padding: 8px 14px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.courses-filter-pill:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .courses-filter-pill,
+    .courses-archive-grid-item {
+        transition: none;
+    }
+}

@@ -1,0 +1,673 @@
+/* =========================================================
+   PROJECT DETAIL (SINGLE PROJECT) PAGE
+   Page-specific styles only. Shared :root variables, base
+   reset, header, and footer live in layout.css; shared
+   components (card, sidebar widget, breadcrumb) are in
+   components.css. Load this file after both. Class names
+   deliberately mirror article.css so the two detail pages
+   look consistent.
+
+   RTL/LTR: uses logical properties throughout.
+========================================================= */
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.project-page-section {
+    padding: 15px 0 90px;
+}
+
+/* Breadcrumb base styles live in components.css (shared with
+   .post-breadcrumb on the article page). */
+
+/* =========================================================
+   MAIN GRID / STICKY SIDEBAR
+========================================================= */
+
+.project-main-col, .project-sidebar-col {
+    min-width: 0;
+}
+
+@media (min-width: 992px) {
+    .project-sidebar-col {
+        position: sticky;
+        top: 95px;
+        align-self: flex-start;
+    }
+}
+
+/* =========================================================
+   DETAIL CARD (header + gallery + body + stack + actions)
+========================================================= */
+
+.project-detail-card {
+    padding: 40px 44px 44px;
+}
+
+/* Category pill */
+
+.project-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    margin-bottom: 18px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-dark);
+    font-size: var(--fs-detail-page-category);
+    font-weight: 700;
+}
+
+/* Title / excerpt */
+
+.project-detail-title {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: var(--fs-detail-page-title);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.project-detail-excerpt {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: var(--fs-detail-page-excerpt);
+    line-height: 2;
+}
+
+/* =========================================================
+   META ROW
+========================================================= */
+
+.project-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--muted);
+    font-size: var(--fs-detail-page-meta);
+}
+
+.project-detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.project-detail-meta-item i {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+/* =========================================================
+   GALLERY
+   "Previous" sits on the reading-start side, "Next" on the
+   reading-end side (matches the mirrored chevrons in layout.css).
+========================================================= */
+
+.project-gallery {
+    margin-bottom: 36px;
+}
+
+.project-gallery .carousel {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--light-gray);
+}
+
+.project-gallery .carousel-item img {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.gallery-control {
+    width: 42px;
+    height: 42px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    opacity: 1;
+    z-index: 5;
+}
+
+.gallery-control-prev {
+    inset-inline-start: 16px;
+    inset-inline-end: auto;
+}
+
+.gallery-control-next {
+    inset-inline-end: 16px;
+    inset-inline-start: auto;
+}
+
+.gallery-arrow {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    color: var(--primary-dark);
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-arrow:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+.gallery-arrow i {
+    font-size: 14px;
+}
+
+.gallery-indicators {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin: 0;
+    z-index: 4;
+}
+
+.gallery-indicators button[data-bs-target] {
+    width: 7px;
+    height: 7px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+    transition: width 0.2s ease, border-radius 0.2s ease, background 0.2s ease;
+}
+
+.gallery-indicators button[data-bs-target].active {
+    width: 22px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+/* =========================================================
+   BODY TYPOGRAPHY
+========================================================= */
+
+.project-detail-body {
+    color: var(--text);
+    font-size: var(--fs-detail-page-body);
+    line-height: 2.1;
+}
+
+.project-detail-body > p:first-of-type {
+    color: var(--text);
+    font-size: var(--fs-detail-page-lead);
+    font-weight: 500;
+}
+
+.project-detail-body p {
+    margin: 0 0 22px;
+}
+
+.project-detail-body h2 {
+    margin: 40px 0 18px;
+    padding-inline-start: 14px;
+    border-inline-start: 4px solid var(--primary);
+    color: var(--text);
+    font-size: var(--fs-detail-page-h2);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.project-detail-body ul, .project-detail-body ol {
+    margin: 0 0 22px;
+    padding-inline-start: 22px;
+    color: var(--text);
+}
+
+.project-detail-body li {
+    margin-bottom: 10px;
+    line-height: 1.9;
+}
+
+.project-detail-body li strong {
+    color: var(--primary-dark);
+}
+
+/* =========================================================
+   TECH STACK
+========================================================= */
+
+.project-stack {
+    margin-top: 8px;
+    padding-top: 30px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.project-stack-title {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.project-stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.project-stack-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 5px 14px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--primary-dark);
+    font-size: var(--fs-project-stack-item);
+    white-space: nowrap;
+}
+
+/* =========================================================
+   CONTRIBUTORS
+========================================================= */
+
+.project-contributors {
+    margin-top: 8px;
+    padding-top: 30px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.project-contributors-title {
+    margin: 0 0 20px !important;
+}
+
+.contributors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.contributor-card {
+    position: relative;
+    flex: 1 1 150px;
+    max-width: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 22px 14px 20px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-align: center;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.contributor-card:hover {
+    transform: translateY(-3px);
+    border-color: #b9bec4;
+}
+
+.contributor-avatar {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--surface);
+    box-shadow: 0 3px 10px rgba(31, 41, 55, 0.08);
+}
+
+.contributor-name {
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.contributor-role {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.7;
+}
+
+.contributor-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--primary-dark);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.contributor-link:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+}
+
+.contributor-link i {
+    font-size: 14px;
+}
+
+/* =========================================================
+   ACTIONS / GITHUB BUTTON
+========================================================= */
+
+.project-detail-actions {
+    margin-top: 30px;
+}
+
+.project-github-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 10px 24px;
+    background: var(--primary-dark);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.project-github-btn:hover {
+    background: #111827;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.project-github-btn i {
+    font-size: 16px;
+}
+
+.project-github-btn--block {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* =========================================================
+   SIDEBAR WIDGETS
+   Base styles are in components.css. Only this page's real
+   differences remain here: fuller card padding, a smaller
+   widget-title size, and list-item spacing applied to the
+   <li> itself rather than the link inside it.
+========================================================= */
+
+.sidebar-widget {
+    padding: 26px 26px 26px;
+}
+
+.widget-title {
+    font-size: 15px;
+}
+
+/* =========================================================
+   AUTHOR WIDGET (sidebar — fixed identity card)
+========================================================= */
+
+.author-widget {
+    padding: 30px 26px 28px;
+    text-align: center;
+}
+
+.author-widget-avatar {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 16px;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--section-bg);
+}
+
+.author-widget-name {
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.author-widget-role {
+    margin: 0 0 14px;
+    color: var(--secondary);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.author-widget-bio {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.author-widget-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 18px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, gap 0.2s ease;
+}
+
+.author-widget-link:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+    gap: 10px;
+}
+
+.author-widget-link i {
+    font-size: 13px;
+}
+
+/* Quick info list */
+
+.project-info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-info-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.project-info-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.project-info-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.project-info-value {
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Other-projects list — .widget-list base is in components.css;
+   only this page's difference (padding on <li>, tighter link
+   gap) stays here. */
+
+.widget-list-item {
+    padding: 12px 0;
+}
+
+.widget-list-item:last-child {
+    padding-bottom: 0;
+}
+
+.widget-list-item a {
+    gap: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1199.98px) {
+    .project-detail-card {
+        padding: 34px 32px 38px;
+    }
+
+    .project-gallery .carousel-item img {
+        height: 360px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .project-page-section {
+        padding: 0 0 70px;
+    }
+
+    .project-detail-card {
+        padding: 30px 26px 32px;
+    }
+
+    .project-gallery .carousel-item img {
+        height: 300px;
+    }
+
+    .sidebar-widget {
+        padding: 22px 22px 22px;
+    }
+
+    .author-widget {
+        padding: 26px 22px 24px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .project-detail-card {
+        padding: 26px 20px 28px;
+    }
+
+    .contributor-card {
+        flex: 1 1 120px;
+        max-width: 150px;
+        padding: 18px 10px 16px;
+    }
+
+    .contributor-avatar {
+        width: 54px;
+        height: 54px;
+    }
+
+    .project-detail-meta {
+        gap: 14px;
+    }
+
+    .project-gallery .carousel-item img {
+        height: 240px;
+        border-radius: 12px;
+    }
+
+    .project-detail-body h2 {
+        margin: 32px 0 14px;
+    }
+
+    .project-github-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .project-category {
+        padding: 5px 13px;
+    }
+
+    .project-detail-title {
+        line-height: 1.5;
+    }
+
+    .project-gallery .carousel-item img {
+        height: 190px;
+    }
+
+    .gallery-control {
+        width: 36px;
+        height: 36px;
+    }
+
+    .gallery-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .gallery-control-prev {
+        inset-inline-start: 8px;
+    }
+
+    .gallery-control-next {
+        inset-inline-end: 8px;
+    }
+
+    .project-stack-item {
+        min-height: 32px;
+        padding: 4px 11px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.project-github-btn:focus-visible,
+.gallery-arrow:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-github-btn, .gallery-arrow {
+        transition: none;
+    }
+}

@@ -37,11 +37,16 @@ The project is being developed incrementally. Architecture, infrastructure, docu
 - Personal profile and professional introduction
 - Skills and technology proficiency
 - Professional timeline
-- Courses and educational content
+- Courses and educational content (video-based lessons)
 - Portfolio and project showcase
 - GitHub project links
+- Certificates and credentials showcase
 - Technical articles
 - Article comments
+- User accounts with phone-number-based authentication (sign up, sign in, password recovery)
+- Light and dark theme
+- Terms and Conditions page
+- Custom 404 / 403 error pages
 - Contact form
 - Social media links
 - Responsive interface
@@ -414,17 +419,23 @@ DevJourney/
 │   └── DevJourney.Infrastructure/
 │
 ├── frontend/
-│   └── public/
+│   ├── public/
+│   └── admin/
 │
 ├── tests/
 │   ├── DevJourney.Domain.Tests/
 │   ├── DevJourney.Application.Tests/
 │   └── DevJourney.IntegrationTests/
 │
-├── docs/en
-│   ├── architecture.md
-│   ├── infrastructure.md
-│   └── localization.md
+├── docs/
+│   ├── en/
+│   │   ├── architecture.md
+│   │   ├── infrastructure.md
+│   │   └── localization.md
+│   └── fa/
+│       ├── architecture.md
+│       ├── infrastructure.md
+│       └── localization.md
 │
 ├── screenshots/
 │
@@ -441,11 +452,12 @@ DevJourney/
 
 # Frontend Template
 
-The repository also contains the frontend template used as the visual foundation of the project.
+The repository also contains the frontend template used as the visual foundation of the project: a public site template and a separate admin-panel template.
 
 ```text
 frontend/
-└── public
+├── public/
+└── admin/
 ```
 
 The template is maintained separately from the ASP.NET Core implementation so that the visual layer remains easy to inspect, reuse, and understand independently from the backend architecture.

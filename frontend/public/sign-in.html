@@ -1,0 +1,174 @@
+<!--
+    ==============================================================
+    LOGIN — part of the auth page family (Login / Signup /
+    Forgot Password). Shares assets/css/auth.css and the same
+    card layout with the other two so they read as one flow.
+
+    No site header/footer/offcanvas here by design: just the
+    theme toggle button and a centered card on the default page
+    background. See DEVELOPER-GUIDE.md for the shared head
+    pattern this still follows.
+    ==============================================================
+-->
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="ورود به حساب کاربری در سایت شخصی احسان گلی.">
+
+        <title>
+            ورود به حساب کاربری | سایت شخصی احسان گلی
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap RTL (vendor) -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
+
+        <!-- Bootstrap icons (vendor) -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Layout: variables, base reset, container, .card-custom -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: form fields (contact-label / contact-input / contact-submit) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts: switches automatically based on <html lang> -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
+        <link href="assets/css/auth.css" rel="stylesheet">
+
+        <!-- Same tsParticles layer styles used by Resume.html -->
+        <link href="assets/css/particles-bg.css" rel="stylesheet">
+
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="auth-body">
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+        <!--
+            ======================================================
+            AUTH CARD
+            ======================================================
+        -->
+        <main class="auth-page">
+            <div aria-hidden="true" id="particles-bg"></div>
+
+            <div class="auth-card card-custom">
+
+                <!-- Brand — also doubles as the way back to the site -->
+                <div class="auth-brand">
+                    <a class="site-logo" href="Resume.html">
+                        <span class="site-logo-mark">
+                            EG
+                        </span>
+                        <span class="site-logo-text">
+                            احسان گلی
+                        </span>
+                    </a>
+                </div>
+
+                <div class="auth-heading">
+                    <h1 class="auth-title">
+                        ورود به حساب کاربری
+                    </h1>
+                    <p class="auth-subtitle">
+                        خوش برگشتید! برای ادامه، اطلاعات حساب خود را وارد کنید.
+                    </p>
+                </div>
+
+                <!--
+                    Server-side message placeholder — hidden by default.
+                    Remove d-none once the backend can render a real
+                    error here (e.g. invalid credentials).
+                -->
+                <div class="auth-alert d-none" id="loginAlert" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <span>
+                        شماره تماس یا رمز عبور اشتباه است.
+                    </span>
+                </div>
+
+                <form action="#" class="auth-form" id="loginForm" method="post">
+
+                    <!-- Phone — kept LTR like any digit string (see .github-stars in components.css for the same convention) -->
+                    <div class="mb-3">
+                        <label class="contact-label" for="loginPhone">
+                            شماره تماس
+                        </label>
+                        <input autocomplete="tel" class="form-control contact-input" dir="ltr" id="loginPhone" inputmode="tel" name="phone" placeholder="09123456789" required="" type="tel">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="contact-label" for="loginPassword">
+                            رمز عبور
+                        </label>
+                        <div class="auth-password-field">
+                            <input autocomplete="current-password" class="form-control contact-input" id="loginPassword" name="password" placeholder="رمز عبور" required="" type="password">
+                            <button aria-label="نمایش رمز عبور" aria-pressed="false" class="auth-password-toggle" data-hide-label="پنهان کردن رمز عبور" data-show-label="نمایش رمز عبور" data-target="loginPassword" type="button">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember me + Forgot password -->
+                    <div class="auth-form-row">
+                        <div class="auth-check">
+                            <input class="form-check-input" id="rememberMe" name="rememberMe" type="checkbox">
+                            <label for="rememberMe">
+                                مرا به خاطر بسپار
+                            </label>
+                        </div>
+                        <a class="auth-link" href="ForgotPassword.html">
+                            رمز عبور را فراموش کرده‌اید؟
+                        </a>
+                    </div>
+
+                    <!-- Submit -->
+                    <button class="contact-submit" type="submit">
+                        <span>
+                            ورود
+                        </span>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </button>
+
+                </form>
+
+                <div class="auth-switch">
+                    حساب کاربری ندارید؟
+                    <a class="auth-link" href="Signup.html">
+                        ثبت‌نام کنید
+                    </a>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+
+        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+        <script src="assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        <script src="assets/js/particles-bg.js"></script>
+
+        <script src="assets/js/auth-password-toggle.js"></script>
+    </body>
+</html>

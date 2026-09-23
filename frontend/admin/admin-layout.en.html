@@ -1,0 +1,291 @@
+<!--
+    ==============================================================
+    ADMIN LAYOUT (EN / LTR reference)
+    ==============================================================
+    English/LTR counterpart of AdminLayout.html — identical
+    structure; only the differences below change. See
+    layout.en.html for the same pattern on the public side.
+
+    Differences from AdminLayout.html:
+      1. <html lang="en" dir="ltr">
+      2. Bootstrap <link>: bootstrap.css instead of bootstrap.rtl.css
+      3. Text inside tags is English — HTML structure/classes stay
+         identical.
+    ==============================================================
+-->
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="Content management panel for Ehsan Goli's personal site.">
+
+        <title>
+            Dashboard | Admin Panel
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="../public/assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap (standard build — this page is dir="ltr") -->
+        <link href="../public/assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="../public/assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Layout: variables, base reset, card-custom -->
+        <link href="../public/assets/css/layout.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="../public/assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Admin layout: sidebar, header, footer -->
+        <link href="../public/assets/css/admin-layout.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="../public/assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="admin-body">
+
+        <div class="admin-shell" id="adminShell">
+
+            <!-- ================= DESKTOP SIDEBAR ================= -->
+            <aside class="admin-sidebar d-none d-lg-flex">
+                <div class="admin-sidebar-header">
+                    <a class="admin-sidebar-brand" href="AdminLayout.en.html">
+                        <span class="admin-sidebar-brand-mark">
+                            EG
+                        </span>
+                        <span class="admin-sidebar-brand-text">
+                            <span class="admin-sidebar-brand-title">
+                                Admin Panel
+                            </span>
+                            <span class="admin-sidebar-brand-subtitle">
+                                Ehsan Goli
+                            </span>
+                        </span>
+                    </a>
+                    <button aria-expanded="true" aria-label="Collapse/expand sidebar" class="admin-sidebar-collapse-btn" id="adminSidebarCollapseBtn" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+                <nav aria-label="Admin navigation" class="admin-nav">
+                    <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.en.html" title="Dashboard">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="Projects">
+                        <i class="bi bi-kanban"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="Articles">
+                        <i class="bi bi-journal-text"></i>
+                        <span>Articles</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="Courses">
+                        <i class="bi bi-mortarboard"></i>
+                        <span>Courses</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="Certificates">
+                        <i class="bi bi-award"></i>
+                        <span>Certificates</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="Messages">
+                        <i class="bi bi-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                    <a class="admin-nav-link" href="#" title="Settings">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+
+                <div class="admin-sidebar-footer">
+                    <a class="admin-sidebar-back" href="Resume.en.html" title="Back to site">
+                        <i class="bi bi-house-door"></i>
+                        <span>Back to site</span>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- ================= MOBILE OFFCANVAS SIDEBAR ================= -->
+            <div aria-labelledby="adminOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas admin-offcanvas" id="adminOffcanvas" tabindex="-1">
+                <div class="offcanvas-header">
+                    <a class="admin-sidebar-brand" href="AdminLayout.en.html">
+                        <span class="admin-sidebar-brand-mark">
+                            EG
+                        </span>
+                        <span class="admin-sidebar-brand-text">
+                            <span class="admin-sidebar-brand-title" id="adminOffcanvasLabel">
+                                Admin Panel
+                            </span>
+                            <span class="admin-sidebar-brand-subtitle">
+                                Ehsan Goli
+                            </span>
+                        </span>
+                    </a>
+                    <button aria-label="Close menu" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <nav aria-label="Admin navigation (mobile)" class="admin-nav">
+                        <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.en.html">
+                            <i class="bi bi-grid-1x2-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-kanban"></i>
+                            <span>Projects</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-journal-text"></i>
+                            <span>Articles</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-mortarboard"></i>
+                            <span>Courses</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-award"></i>
+                            <span>Certificates</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-envelope"></i>
+                            <span>Messages</span>
+                        </a>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-gear"></i>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                    <div class="admin-sidebar-footer">
+                        <a class="admin-sidebar-back" href="Resume.en.html">
+                            <i class="bi bi-house-door"></i>
+                            <span>Back to site</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= MAIN COLUMN ================= -->
+            <div class="admin-main">
+
+                <!-- HEADER -->
+                <header class="admin-header">
+                    <button aria-controls="adminOffcanvas" aria-label="Open menu" class="admin-header-menu-btn" data-bs-target="#adminOffcanvas" data-bs-toggle="offcanvas" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+
+                    <div class="admin-header-titles">
+                        <div class="admin-header-eyebrow">
+                            Admin Panel
+                        </div>
+                        <h1 class="admin-header-title">
+                            Dashboard
+                        </h1>
+                    </div>
+
+                    <div class="admin-header-actions">
+                        <button aria-label="Toggle dark/light mode" aria-pressed="false" class="admin-header-theme-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+                            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+                            <i class="bi bi-sun theme-toggle-icon-light"></i>
+                        </button>
+
+                        <div class="dropdown">
+                            <button aria-expanded="false" class="admin-user" data-bs-toggle="dropdown" type="button">
+                                <img alt="Ehsan Goli" class="admin-user-avatar" src="../public/assets/images/avatar.jpg">
+                                <span class="admin-user-name">
+                                    Ehsan Goli
+                                </span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end admin-user-menu">
+                                <div class="admin-user-menu-header">
+                                    <img alt="Ehsan Goli" class="admin-user-menu-avatar" src="../public/assets/images/avatar.jpg">
+                                    <div class="admin-user-menu-identity">
+                                        <span class="admin-user-menu-name">
+                                            Ehsan Goli
+                                        </span>
+                                        <span class="admin-user-menu-email">
+                                            demo@example.com
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="admin-user-menu-group">
+                                    <a class="admin-user-menu-item" href="Resume.en.html">
+                                        <i class="bi bi-house"></i>
+                                        View homepage
+                                    </a>
+                                    <a class="admin-user-menu-item" href="#">
+                                        <i class="bi bi-person"></i>
+                                        My profile
+                                    </a>
+                                    <a class="admin-user-menu-item" href="#">
+                                        <i class="bi bi-gear"></i>
+                                        Site settings
+                                    </a>
+                                    <a class="admin-user-menu-item" href="DEVELOPER-GUIDE.md">
+                                        <i class="bi bi-question-circle"></i>
+                                        Developer guide
+                                    </a>
+                                </div>
+                                <div class="admin-user-menu-divider"></div>
+                                <div class="admin-user-menu-group">
+                                    <a class="admin-user-menu-item admin-user-menu-item--danger" href="#">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        Log out
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- PAGE CONTENT — replace with the real page content -->
+                <main class="admin-content">
+                    <div class="admin-page-intro">
+                        <p>
+                            This is a sample page to demonstrate the admin panel layout (sidebar, header, and footer).
+                        </p>
+                        <p>
+                            To add a real page, copy this file as a starting point and replace the
+                            <code>admin-content</code>
+                            section with your content — full details in the
+                            <a href="DEVELOPER-GUIDE.md">developer guide</a>
+                            .
+                        </p>
+                    </div>
+
+                    <div class="card-custom admin-sample-card">
+                        <h2>
+                            Sample content card
+                        </h2>
+                        <p>
+                            This card uses the same shared
+                            <code>card-custom</code>
+                            class as the profile card and sidebar widgets on the other pages — anything
+                            you built for the public site works here too, with no extra changes.
+                        </p>
+                    </div>
+                </main>
+
+                <!-- FOOTER -->
+                <footer class="admin-footer">
+                    <a href="DEVELOPER-GUIDE.md">
+                        Documentation
+                    </a>
+                    <div class="admin-footer-credit">
+                        <strong>Admin Panel</strong>
+                        — © 2026 Ehsan Goli
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="../public/assets/js/theme-toggle.js"></script>
+        <script src="../public/assets/js/admin-sidebar.js"></script>
+    </body>
+</html>

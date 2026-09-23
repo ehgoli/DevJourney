@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="Ehsan Goli's full article archive — notes and experience on software architecture, ASP.NET Core, databases, and microservices, with search.">
+
+        <title>
+            Articles | Ehsan Goli — Personal Website
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+
+        <!-- Bootstrap (standard build — this page is dir="ltr") -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Styles CSS -->
+        <!-- Layout: variables, base reset, container, shared header & footer -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: reusable cards & elements (including the base article-card shell) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Articles archive page styles (extends layout.css / components.css) -->
+        <link href="assets/css/articles.css" rel="stylesheet">
+
+        <!-- Same tsParticles layer styles used by Resume.html -->
+        <link href="assets/css/particles-bg.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body class="articles-page-body">
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="Toggle dark/light mode" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+
+        <!--
+            ======================================================
+            SITE HEADER (Partial)
+            This block is identical across all pages (home, article, project
+            details, article archive). Nav links point to section ids on the
+            homepage (Resume.en.html#id).
+            ======================================================
+        -->
+        <header class="site-header">
+            <div class="container site-header-inner">
+
+                <a class="site-logo" href="Resume.en.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text">
+                        Ehsan Goli
+                    </span>
+                </a>
+
+                <!-- DESKTOP NAV -->
+                <nav aria-label="Main navigation" class="site-nav d-none d-lg-flex">
+                    <a class="site-nav-link" href="Resume.en.html#about">
+                        About
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#skills">
+                        Skills
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#projects">
+                        Portfolio
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#articles">
+                        Articles
+                    </a>
+                    <a class="site-nav-link" href="Resume.en.html#contact">
+                        Contact
+                    </a>
+                </nav>
+
+                <div class="site-header-actions">
+                    <a class="site-header-cta d-none d-lg-inline-flex" href="Resume.en.html#contact">
+                        Work with me
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <button aria-controls="siteOffcanvas" aria-label="Open menu" class="site-header-toggle d-lg-none" data-bs-target="#siteOffcanvas" data-bs-toggle="offcanvas" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- MOBILE OFFCANVAS MENU -->
+        <div aria-labelledby="siteOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas" id="siteOffcanvas" tabindex="-1">
+            <div class="offcanvas-header">
+                <a class="site-logo" href="Resume.en.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text" id="siteOffcanvasLabel">
+                        Ehsan Goli
+                    </span>
+                </a>
+                <button aria-label="Close menu" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav aria-label="Mobile navigation" class="site-offcanvas-nav">
+                    <a href="Resume.en.html#about">
+                        <i class="bi bi-person"></i>
+                        About
+                    </a>
+                    <a href="Resume.en.html#skills">
+                        <i class="bi bi-stars"></i>
+                        Skills
+                    </a>
+                    <a href="Resume.en.html#projects">
+                        <i class="bi bi-kanban"></i>
+                        Portfolio
+                    </a>
+                    <a href="Resume.en.html#articles">
+                        <i class="bi bi-journal-text"></i>
+                        Articles
+                    </a>
+                    <a href="Resume.en.html#contact">
+                        <i class="bi bi-envelope"></i>
+                        Contact
+                    </a>
+                </nav>
+
+                <div class="site-offcanvas-footer">
+                    <a class="site-offcanvas-cta" href="Resume.en.html#contact">
+                        Work with me
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <div class="site-offcanvas-socials">
+                        <a aria-label="GitHub" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a aria-label="Email" href="mailto:demo@example.com">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a aria-label="LinkedIn" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- HERO / SEARCH -->
+            <section class="articles-hero">
+                <div aria-hidden="true" id="particles-bg"></div>
+                <div class="container">
+                    <div class="articles-hero-content">
+                        <h1 class="articles-page-title">Things I've written.</h1>
+                        <p class="articles-page-subtitle">
+                            Experiences, notes, and things I've learned along the way in software development, backend architecture, and problem solving.
+                        </p>
+                    </div>
+
+                    <form action="articles-ajax.en.html" class="articles-search" id="articlesSearchForm" method="get" role="search" autocomplete="off">
+                        <div class="articles-search-main">
+                            <button class="articles-search-submit" id="articlesSearchSubmit" type="submit">
+                                <span>Search</span>
+                                <i aria-hidden="true" class="bi bi-arrow-left"></i>
+                            </button>
+                            <div class="articles-search-field">
+                                <label class="visually-hidden" for="articlesSearchInput">Search articles</label>
+                                <i aria-hidden="true" class="bi bi-search articles-search-icon"></i>
+                                <input aria-controls="articlesSearchResults" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" class="articles-search-input" id="articlesSearchInput" name="q" placeholder="e.g. CQRS, Clean Architecture, or ASP.NET Core..." type="search">
+                                <button aria-label="Clear search" class="articles-search-clear" id="articlesSearchClear" type="button" hidden>
+                                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                                </button>
+                                <span aria-hidden="true" class="articles-search-loader" id="articlesSearchLoader"></span>
+                            </div>
+                        </div>
+                        <div class="articles-search-helper">
+                            <span><i class="bi bi-lightning-charge-fill"></i> Live search across title, summary, and tags</span>
+                            <kbd>Enter</kbd>
+                        </div>
+                        <div aria-live="polite" class="articles-search-status" id="articlesSearchStatus"></div>
+                        <div aria-label="Search results" class="articles-search-results" id="articlesSearchResults" role="listbox" hidden></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- FILTER & SORT -->
+            <section class="articles-filter-section">
+                <div class="container">
+                    <form action="articles-ajax.en.html" class="articles-filter-card" method="get">
+                        <div class="articles-filter-head">
+                            <div class="articles-filter-heading">
+                                <span class="articles-filter-icon" aria-hidden="true">
+                                    <i class="bi bi-sliders2"></i>
+                                </span>
+                                <div>
+                                    <h2>Filter &amp; sort</h2>
+                                    <p>Find what you're looking for, faster.</p>
+                                </div>
+                            </div>
+                            <a class="articles-filter-clear" href="articles-ajax.en.html">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                Clear filters
+                            </a>
+                        </div>
+
+                        <div class="articles-filter-body">
+                            <fieldset class="articles-filter-group articles-filter-topics">
+                                <legend class="visually-hidden">Topic</legend>
+                                <div class="articles-filter-legend" aria-hidden="true">Topic</div>
+                                <p class="articles-filter-description">Choose a category</p>
+                                <div class="articles-topic-list">
+                                    <label class="articles-topic-pill is-active">
+                                        <input type="radio" name="category" value="all" checked>
+                                        <span>All articles</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="software-architecture">
+                                        <span>Software Architecture</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="backend">
+                                        <span>Backend</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="aspnet-core">
+                                        <span>ASP.NET Core</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="clean-code">
+                                        <span>Clean Code</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="database">
+                                        <span>Database</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="testing">
+                                        <span>Testing</span>
+                                    </label>
+                                    <label class="articles-topic-pill">
+                                        <input type="radio" name="category" value="design-pattern">
+                                        <span>Design Pattern</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="articles-filter-group articles-filter-sort">
+                                <legend class="visually-hidden">Sort</legend>
+                                <div class="articles-filter-legend" aria-hidden="true">Sort</div>
+                                <p class="articles-filter-description">Show results by</p>
+                                <div class="articles-sort-grid">
+                                    <label class="articles-sort-option is-active">
+                                        <input type="radio" name="sort" value="newest" checked>
+                                        <span class="articles-sort-copy">
+                                            <strong>Newest</strong>
+                                            <small>Most recent posts first</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-stars"></i>
+                                    </label>
+                                    <label class="articles-sort-option">
+                                        <input type="radio" name="sort" value="popular">
+                                        <span class="articles-sort-copy">
+                                            <strong>Most Popular</strong>
+                                            <small>By views and engagement</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-fire"></i>
+                                    </label>
+                                    <label class="articles-sort-option">
+                                        <input type="radio" name="sort" value="oldest">
+                                        <span class="articles-sort-copy">
+                                            <strong>Oldest</strong>
+                                            <small>Starting from the first posts</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-hourglass-split"></i>
+                                    </label>
+                                    <label class="articles-sort-option">
+                                        <input type="radio" name="sort" value="shortest">
+                                        <span class="articles-sort-copy">
+                                            <strong>Shortest Read</strong>
+                                            <small>Quickest posts to get through</small>
+                                        </span>
+                                        <i aria-hidden="true" class="bi bi-stopwatch"></i>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="articles-filter-footer">
+                            <button class="articles-filter-apply" type="submit">
+                                Apply filters
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <div class="articles-filter-meta">
+                                <span><i class="bi bi-circle-fill"></i> Showing <strong>24 articles</strong></span>
+                                <span>Page <strong>1</strong> of <strong>1</strong></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="articles-listing">
+                <div class="container">
+                    <div class="articles-listing-head">
+                        <div>
+                            <span class="articles-listing-eyebrow">LATEST NOTES</span>
+                            <h2 class="articles-listing-title">The writing lives here.</h2>
+                        </div>
+                        <span class="articles-listing-count"><strong>24</strong> articles</span>
+                    </div>
+
+                    <!-- ARTICLES GRID (sample output for page 1) -->
+                    <div class="articles-grid">
+
+                        <a class="card-custom article-card" href="article.en.html">
+                            <div class="article-card-cover">
+                                <img alt="Sample Article Title" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">Software Architecture</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">Sample Article Title</h2>
+                                <p class="article-card-excerpt">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>Aug 1, 2026</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>5 min read</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.en.html">
+                            <div class="article-card-cover">
+                                <img alt="CQRS in Real-World Projects" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">Software Architecture</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">CQRS in Real-World Projects</h2>
+                                <p class="article-card-excerpt">
+                                    Separating read and write paths with CQRS and MediatR — when it genuinely
+                                    helps, and when it's just added complexity.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>Aug 7, 2026</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>6 min read</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.en.html">
+                            <div class="article-card-cover">
+                                <img alt="From MVC to Minimal API" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">ASP.NET Core</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">From MVC to Minimal API</h2>
+                                <p class="article-card-excerpt">
+                                    The reasons I started reaching for Minimal API on new projects, and how
+                                    that migration actually went in practice.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>Jul 27, 2026</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>4 min read</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.en.html">
+                            <div class="article-card-cover">
+                                <img alt="Dependency Injection Principles in ASP.NET Core" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">ASP.NET Core</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">Dependency Injection Principles in ASP.NET Core</h2>
+                                <p class="article-card-excerpt">
+                                    A look at service lifetimes (Singleton, Scoped, Transient) and a few common
+                                    mistakes when wiring up dependency injection.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>Jul 19, 2026</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>6 min read</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.en.html">
+                            <div class="article-card-cover">
+                                <img alt="My Experience Migrating to .NET 8" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">ASP.NET Core</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">My Experience Migrating to .NET 8</h2>
+                                <p class="article-card-excerpt">
+                                    The challenges and benefits of upgrading a large project from .NET 6 to
+                                    .NET 8, plus a few practical tips.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>Jul 11, 2026</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>5 min read</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="card-custom article-card" href="article.en.html">
+                            <div class="article-card-cover">
+                                <img alt="Monolith vs. Microservices" loading="lazy" src="assets/images/default-course-cover.jpg">
+                                <span class="article-card-category">Software Architecture</span>
+                            </div>
+                            <div class="article-card-body">
+                                <h2 class="article-card-title">Monolith vs. Microservices</h2>
+                                <p class="article-card-excerpt">
+                                    Things to weigh before migrating to microservices — from operational
+                                    complexity to team development speed.
+                                </p>
+                                <div class="article-card-footer">
+                                    <div class="article-card-meta">
+                                        <span class="article-card-meta-item"><i class="bi bi-calendar3"></i>Jul 1, 2026</span>
+                                        <span class="article-card-meta-item"><i class="bi bi-clock"></i>7 min read</span>
+                                    </div>
+                                    <span aria-hidden="true" class="article-card-readmore"><i class="bi bi-arrow-left"></i></span>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!--
+                        EMPTY STATE
+                        When the search has no results, the backend renders this
+                        block (without the hidden attribute) instead of the grid above.
+                    -->
+                    <div class="articles-empty" hidden>
+                        <span class="articles-empty-icon">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <h2 class="articles-empty-title">
+                            No articles found
+                        </h2>
+                        <p class="articles-empty-text">
+                            Sorry, no articles matched this search. Try changing your search terms or
+                            try again.
+                        </p>
+                        <a class="articles-empty-reset" href="articles-ajax.en.html">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            Clear search
+                        </a>
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <nav aria-label="Articles pagination" class="articles-pagination-nav">
+                        <ul class="pagination articles-pagination">
+                            <li class="page-item disabled">
+                                <span class="page-link" aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                            </li>
+                            <li aria-current="page" class="page-item active">
+                                <a class="page-link" href="articles-ajax.en.html?page=1">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="articles-ajax.en.html?page=2">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="articles-ajax.en.html?page=3">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a aria-label="Next page" class="page-link" href="articles-ajax.en.html?page=2"><i class="bi bi-chevron-left"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-content">
+                    <div class="footer-copyright">
+                        © 2026 Ehsan Goli — All rights reserved.
+                    </div>
+                    <div class="footer-project">
+                        This project is built with
+                        <strong>
+                            ASP.NET Core .NET
+                        </strong>
+                        and its
+                        <a href="#" rel="noopener noreferrer" target="_blank">
+                            source is published on GitHub
+                        </a>.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+
+        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+        <script src="assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        <script src="assets/js/particles-bg.js"></script>
+
+        <script src="assets/js/articles-search.js"></script>
+    </body>
+</html>

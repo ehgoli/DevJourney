@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="لورم ایپسوم متن ساختگی است — این یک توضیح نمونه برای معرفی مقاله است.">
+
+        <title>
+            عنوان نمونه مقاله | سایت شخصی احسان گلی
+        </title>
+
+        <!-- Set theme (light/dark) early, right before the first stylesheet -->
+        <script src="assets/js/theme-init.js"></script>
+        
+        <!-- Bootstrap RTL -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
+
+        <!-- Bootstrap icons -->
+        <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Styles CSS -->
+        <!-- Layout: variables, base reset, container, shared header & footer -->
+        <link href="assets/css/layout.css" rel="stylesheet">
+
+        <!-- Components: reusable cards & elements (sidebar widget, comment form fields, breadcrumb, etc.) -->
+        <link href="assets/css/components.css" rel="stylesheet">
+
+        <!-- Import Fonts -->
+        <link href="assets/fonts/style.css" rel="stylesheet">
+
+        <!-- Article page styles (extends layout.css / components.css) -->
+        <link href="assets/css/article.css" rel="stylesheet">
+        <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
+        <link href="assets/css/dark-mode.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+
+        <!--
+            ======================================================
+            SITE HEADER (Partial)
+            Identical across all pages (home, article, project
+            details). Nav links point to section ids on the
+            homepage (Resume.html#id).
+            ======================================================
+        -->
+        <header class="site-header">
+            <div class="container site-header-inner">
+
+                <a class="site-logo" href="Resume.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text">
+                        احسان گلی
+                    </span>
+                </a>
+
+                <!-- DESKTOP NAV -->
+                <nav aria-label="ناوبری اصلی" class="site-nav d-none d-lg-flex">
+                    <a class="site-nav-link" href="Resume.html#about">
+                        درباره من
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#skills">
+                        مهارت‌ها
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#projects">
+                        نمونه‌کارها
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#articles">
+                        مقالات
+                    </a>
+                    <a class="site-nav-link" href="Resume.html#contact">
+                        تماس با من
+                    </a>
+                </nav>
+
+                <div class="site-header-actions">
+                    <a class="site-header-cta d-none d-lg-inline-flex" href="Resume.html#contact">
+                        همکاری با من
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <button aria-controls="siteOffcanvas" aria-label="باز کردن منو" class="site-header-toggle d-lg-none" data-bs-target="#siteOffcanvas" data-bs-toggle="offcanvas" type="button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- MOBILE OFFCANVAS MENU -->
+        <div aria-labelledby="siteOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas" id="siteOffcanvas" tabindex="-1">
+            <div class="offcanvas-header">
+                <a class="site-logo" href="Resume.html">
+                    <span class="site-logo-mark">
+                        EG
+                    </span>
+                    <span class="site-logo-text" id="siteOffcanvasLabel">
+                        احسان گلی
+                    </span>
+                </a>
+                <button aria-label="بستن منو" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav aria-label="ناوبری موبایل" class="site-offcanvas-nav">
+                    <a href="Resume.html#about">
+                        <i class="bi bi-person"></i>
+                        درباره من
+                    </a>
+                    <a href="Resume.html#skills">
+                        <i class="bi bi-stars"></i>
+                        مهارت‌ها
+                    </a>
+                    <a href="Resume.html#projects">
+                        <i class="bi bi-kanban"></i>
+                        نمونه‌کارها
+                    </a>
+                    <a href="Resume.html#articles">
+                        <i class="bi bi-journal-text"></i>
+                        مقالات
+                    </a>
+                    <a href="Resume.html#contact">
+                        <i class="bi bi-envelope"></i>
+                        تماس با من
+                    </a>
+                </nav>
+
+                <div class="site-offcanvas-footer">
+                    <a class="site-offcanvas-cta" href="Resume.html#contact">
+                        همکاری با من
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <div class="site-offcanvas-socials">
+                        <a aria-label="گیت‌هاب" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a aria-label="ایمیل" href="mailto:demo@example.com">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a aria-label="لینکدین" href="#" rel="noopener noreferrer" target="_blank">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <section class="post-page-section">
+                <div class="container">
+
+                    <!-- BREADCRUMB -->
+                    <nav aria-label="breadcrumb" class="post-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="Resume.html">خانه</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="Resume.html#articles">مقالات</a>
+                            </li>
+                            <li aria-current="page" class="breadcrumb-item active">
+                                عنوان نمونه مقاله
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <div class="row g-4">
+
+                        <!-- ================= MAIN COLUMN ================= -->
+                        <div class="col-lg-8 order-1 post-main-col">
+
+                            <!-- POST -->
+                            <article class="card-custom post-card">
+
+                                <span class="post-category">
+                                    معماری نرم‌افزار
+                                </span>
+
+                                <h1 class="post-title">
+                                    عنوان نمونه مقاله
+                                </h1>
+
+                                <p class="post-excerpt">
+                                    لورم ایپسوم متن ساختگی است. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+
+                                <!-- META -->
+                                <div class="post-meta">
+                                    <a class="post-meta-author" href="#author">
+                                        <img alt="احسان گلی" class="post-meta-avatar" src="assets/images/avatar.jpg">
+                                        <strong>
+                                            احسان گلی
+                                        </strong>
+                                    </a>
+                                    <span class="post-meta-item">
+                                        <i class="bi bi-calendar3"></i>
+                                        ۱۰ مرداد ۱۴۰۵
+                                    </span>
+                                    <span class="post-meta-item">
+                                        <i class="bi bi-clock"></i>
+                                        ۵ دقیقه مطالعه
+                                    </span>
+                                </div>
+
+                                <!-- COVER -->
+                                <div class="post-cover">
+                                    <img alt="عنوان نمونه مقاله" src="assets/images/default-course-cover.jpg">
+                                </div>
+
+                                <!-- BODY -->
+                                <div class="post-body">
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    </p>
+
+                                    <h2>
+                                        عنوان بخش نمونه یک
+                                    </h2>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                                    </p>
+
+                                    <h2>
+                                        عنوان بخش نمونه دو
+                                    </h2>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Sed <code>Dependency Rule</code> quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                                    </p>
+
+                                    <blockquote>
+                                        <p>
+                                            لورم ایپسوم متن ساختگی است. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.
+                                        </p>
+                                    </blockquote>
+
+                                    <h3>
+                                        زیربخش نمونه
+                                    </h3>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis:
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <strong>نمونه یک:</strong>
+                                            لورم ایپسوم دولور سیت آمت، کانسکتتور آدیپیسینگ الیت، سد دو ایوسمود.
+                                        </li>
+                                        <li>
+                                            <strong>نمونه دو:</strong>
+                                            لورم ایپسوم دولور سیت آمت، کانسکتتور آدیپیسینگ الیت، سد دو ایوسمود.
+                                        </li>
+                                        <li>
+                                            <strong>نمونه سه:</strong>
+                                            لورم ایپسوم دولور سیت آمت، کانسکتتور آدیپیسینگ الیت، سد دو ایوسمود.
+                                        </li>
+                                        <li>
+                                            <strong>نمونه چهار:</strong>
+                                            لورم ایپسوم دولور سیت آمت، کانسکتتور آدیپیسینگ الیت، سد دو ایوسمود.
+                                        </li>
+                                    </ul>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+                                    </p>
+
+                                    <h2>
+                                        عنوان بخش نمونه سه
+                                    </h2>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti، به این دلیل که
+                                        <a href="#">لینک نمونه است</a>.
+                                    </p>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است، برای نمایش یک بلوک کد نمونه:
+                                    </p>
+                                    <pre><code>// Domain Layer — بدون وابستگی به لایه‌های بیرونی
+public interface IOrderRepository
+{
+    Task&lt;Order&gt; GetByIdAsync(Guid id);
+    Task AddAsync(Order order);
+    Task SaveChangesAsync();
+}</code></pre>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+                                    </p>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی است. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+                                    </p>
+                                </div>
+
+                                <!-- TAGS -->
+                                <div class="post-tags">
+                                    <span class="post-tags-label">
+                                        برچسب‌ها:
+                                    </span>
+                                    <a class="post-tag" href="#">
+                                        <i class="bi bi-hash"></i>
+                                        Clean Architecture
+                                    </a>
+                                    <a class="post-tag" href="#">
+                                        <i class="bi bi-hash"></i>
+                                        ASP.NET Core
+                                    </a>
+                                    <a class="post-tag" href="#">
+                                        <i class="bi bi-hash"></i>
+                                        CQRS
+                                    </a>
+                                    <a class="post-tag" href="#">
+                                        <i class="bi bi-hash"></i>
+                                        معماری نرم‌افزار
+                                    </a>
+                                    <a class="post-tag" href="#">
+                                        <i class="bi bi-hash"></i>
+                                        Backend
+                                    </a>
+                                </div>
+
+                                <!-- AUTHOR CARD -->
+                                <div class="author-card" id="author">
+                                    <img alt="احسان گلی" class="author-avatar" src="assets/images/avatar.jpg">
+                                    <div class="author-info">
+                                        <span class="author-eyebrow">
+                                            درباره نویسنده
+                                        </span>
+                                        <h3 class="author-name">
+                                            احسان گلی
+                                        </h3>
+                                        <p class="author-role">
+                                            برنامه‌نویس، مدرس، دانشجو
+                                        </p>
+                                        <p class="author-bio">
+                                            لورم ایپسوم متن ساختگی است. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+                                        </p>
+                                        <a class="author-link" href="Resume.html#articles">
+                                            مشاهده تمام مقالات نویسنده
+                                            <i class="bi bi-arrow-left"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </article>
+
+                            <!-- COMMENTS -->
+                            <section aria-labelledby="comments-heading" class="card-custom comments-card" id="comments">
+                                <h2 class="comments-heading" id="comments-heading">
+                                    <i class="bi bi-chat-square-text"></i>
+                                    نظرات
+                                    <span>
+                                        (۶ نظر)
+                                    </span>
+                                </h2>
+
+                                <ul class="comment-thread">
+
+                                    <!-- Comment 1 -->
+                                    <li class="comment-item">
+                                        <div class="comment-row">
+                                            <img alt="رضا محمدی" class="comment-avatar" src="https://www.gravatar.com/avatar/4d9f3c85f332263e2d454a54d003dcff?s=100&amp;d=identicon&amp;r=pg">
+                                            <div class="comment-content">
+                                                <div class="comment-header">
+                                                    <span class="comment-name">
+                                                        رضا محمدی
+                                                    </span>
+                                                    <span class="comment-date">
+                                                        ۲ روز پیش
+                                                    </span>
+                                                </div>
+                                                <p class="comment-text">
+                                                    مقاله خیلی خوبی بود، ممنون! ما تو پروژه فعلی‌مون از Clean Architecture
+                                                    استفاده می‌کنیم ولی برای تیم‌های کوچیک واقعاً یه‌کم overhead داره.
+                                                    نظرتون درباره استفاده از این معماری تو پروژه‌های کوچیک‌تر چیه؟
+                                                </p>
+                                                <div class="comment-actions">
+                                                    <button aria-controls="reply-form-1" aria-expanded="false" class="reply-btn" data-bs-target="#reply-form-1" data-bs-toggle="collapse" type="button">
+                                                        <i class="bi bi-reply"></i>
+                                                        پاسخ
+                                                    </button>
+                                                </div>
+                                                <div class="collapse reply-form-wrap" id="reply-form-1">
+                                                    <form class="reply-form">
+                                                        <textarea class="form-control contact-input contact-textarea" placeholder="پاسخ خود را بنویسید..."></textarea>
+                                                        <div class="reply-form-actions">
+                                                            <button class="contact-submit reply-submit" type="submit">
+                                                                ارسال پاسخ
+                                                            </button>
+                                                            <button class="btn btn-outline-secondary" data-bs-target="#reply-form-1" data-bs-toggle="collapse" type="button">
+                                                                انصراف
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <!-- Nested reply (from author) -->
+                                                <ul class="comment-replies">
+                                                    <li class="comment-item">
+                                                        <div class="comment-row">
+                                                            <img alt="احسان گلی" class="comment-avatar" src="assets/images/avatar.jpg">
+                                                            <div class="comment-content">
+                                                                <div class="comment-header">
+                                                                    <span class="comment-name">
+                                                                        احسان گلی
+                                                                    </span>
+                                                                    <span class="comment-badge">
+                                                                        نویسنده
+                                                                    </span>
+                                                                    <span class="comment-date">
+                                                                        ۱ روز پیش
+                                                                    </span>
+                                                                </div>
+                                                                <p class="comment-text">
+                                                                    ممنون رضا جان. کاملاً موافقم؛ برای پروژه‌های کوچیک یا
+                                                                    MVP معمولاً یه نسخه ساده‌تر با همون اصل جدایی دغدغه‌ها
+                                                                    پیشنهاد می‌دم، بدون این‌که همه لایه‌ها رو کامل پیاده کنم.
+                                                                </p>
+                                                                <div class="comment-actions">
+                                                                    <button aria-controls="reply-form-1-1" aria-expanded="false" class="reply-btn" data-bs-target="#reply-form-1-1" data-bs-toggle="collapse" type="button">
+                                                                        <i class="bi bi-reply"></i>
+                                                                        پاسخ
+                                                                    </button>
+                                                                </div>
+                                                                <div class="collapse reply-form-wrap" id="reply-form-1-1">
+                                                                    <form class="reply-form">
+                                                                        <textarea class="form-control contact-input contact-textarea" placeholder="پاسخ خود را بنویسید..."></textarea>
+                                                                        <div class="reply-form-actions">
+                                                                            <button class="contact-submit reply-submit" type="submit">
+                                                                                ارسال پاسخ
+                                                                            </button>
+                                                                            <button class="btn btn-outline-secondary" data-bs-target="#reply-form-1-1" data-bs-toggle="collapse" type="button">
+                                                                                انصراف
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Comment 2 -->
+                                    <li class="comment-item">
+                                        <div class="comment-row">
+                                            <img alt="سارا احمدی" class="comment-avatar" src="https://www.gravatar.com/avatar/bfba2ac973bbc5965fee4f9f9e019348?s=100&amp;d=identicon&amp;r=pg">
+                                            <div class="comment-content">
+                                                <div class="comment-header">
+                                                    <span class="comment-name">
+                                                        سارا احمدی
+                                                    </span>
+                                                    <span class="comment-date">
+                                                        ۵ ساعت پیش
+                                                    </span>
+                                                </div>
+                                                <p class="comment-text">
+                                                    بخش مربوط به Dependency Rule خیلی روشنگر بود. یه سوال داشتم: تو
+                                                    پروژه‌هایی که از CQRS هم استفاده می‌کنن، Handlerها رو کجای این
+                                                    چهار لایه قرار می‌دید؟
+                                                </p>
+                                                <div class="comment-actions">
+                                                    <button aria-controls="reply-form-2" aria-expanded="false" class="reply-btn" data-bs-target="#reply-form-2" data-bs-toggle="collapse" type="button">
+                                                        <i class="bi bi-reply"></i>
+                                                        پاسخ
+                                                    </button>
+                                                </div>
+                                                <div class="collapse reply-form-wrap" id="reply-form-2">
+                                                    <form class="reply-form">
+                                                        <textarea class="form-control contact-input contact-textarea" placeholder="پاسخ خود را بنویسید..."></textarea>
+                                                        <div class="reply-form-actions">
+                                                            <button class="contact-submit reply-submit" type="submit">
+                                                                ارسال پاسخ
+                                                            </button>
+                                                            <button class="btn btn-outline-secondary" data-bs-target="#reply-form-2" data-bs-toggle="collapse" type="button">
+                                                                انصراف
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Comment 3 -->
+                                    <li class="comment-item">
+                                        <div class="comment-row">
+                                            <img alt="علی کریمی" class="comment-avatar" src="https://www.gravatar.com/avatar/b24ac0e55b8389910c2cf53476f7af01?s=100&amp;d=identicon&amp;r=pg">
+                                            <div class="comment-content">
+                                                <div class="comment-header">
+                                                    <span class="comment-name">
+                                                        علی کریمی
+                                                    </span>
+                                                    <span class="comment-date">
+                                                        ۱ هفته پیش
+                                                    </span>
+                                                </div>
+                                                <p class="comment-text">
+                                                    من قبلاً با Onion Architecture کار کرده بودم؛ شباهت زیادی دارن، ولی
+                                                    توضیح شما درباره لایه Application کمک کرد تفاوت‌ها رو بهتر بفهمم.
+                                                    ممنون بابت مقاله.
+                                                </p>
+                                                <div class="comment-actions">
+                                                    <button aria-controls="reply-form-3" aria-expanded="false" class="reply-btn" data-bs-target="#reply-form-3" data-bs-toggle="collapse" type="button">
+                                                        <i class="bi bi-reply"></i>
+                                                        پاسخ
+                                                    </button>
+                                                </div>
+                                                <div class="collapse reply-form-wrap" id="reply-form-3">
+                                                    <form class="reply-form">
+                                                        <textarea class="form-control contact-input contact-textarea" placeholder="پاسخ خود را بنویسید..."></textarea>
+                                                        <div class="reply-form-actions">
+                                                            <button class="contact-submit reply-submit" type="submit">
+                                                                ارسال پاسخ
+                                                            </button>
+                                                            <button class="btn btn-outline-secondary" data-bs-target="#reply-form-3" data-bs-toggle="collapse" type="button">
+                                                                انصراف
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <!-- Nested reply -->
+                                                <ul class="comment-replies">
+                                                    <li class="comment-item">
+                                                        <div class="comment-row">
+                                                            <img alt="مهسا رضایی" class="comment-avatar" src="https://www.gravatar.com/avatar/055a8449db47a45bf8eb3353428a422e?s=100&amp;d=identicon&amp;r=pg">
+                                                            <div class="comment-content">
+                                                                <div class="comment-header">
+                                                                    <span class="comment-name">
+                                                                        مهسا رضایی
+                                                                    </span>
+                                                                    <span class="comment-date">
+                                                                        ۶ روز پیش
+                                                                    </span>
+                                                                </div>
+                                                                <p class="comment-text">
+                                                                    دقیقاً، منم همین تجربه رو داشتم. Onion و Clean خیلی
+                                                                    به هم نزدیکن، فقط اسم لایه‌ها فرق می‌کنه.
+                                                                </p>
+                                                                <div class="comment-actions">
+                                                                    <button aria-controls="reply-form-3-1" aria-expanded="false" class="reply-btn" data-bs-target="#reply-form-3-1" data-bs-toggle="collapse" type="button">
+                                                                        <i class="bi bi-reply"></i>
+                                                                        پاسخ
+                                                                    </button>
+                                                                </div>
+                                                                <div class="collapse reply-form-wrap" id="reply-form-3-1">
+                                                                    <form class="reply-form">
+                                                                        <textarea class="form-control contact-input contact-textarea" placeholder="پاسخ خود را بنویسید..."></textarea>
+                                                                        <div class="reply-form-actions">
+                                                                            <button class="contact-submit reply-submit" type="submit">
+                                                                                ارسال پاسخ
+                                                                            </button>
+                                                                            <button class="btn btn-outline-secondary" data-bs-target="#reply-form-3-1" data-bs-toggle="collapse" type="button">
+                                                                                انصراف
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Comment 4 -->
+                                    <li class="comment-item">
+                                        <div class="comment-row">
+                                            <img alt="حامد نوری" class="comment-avatar" src="https://www.gravatar.com/avatar/43a437a7d63aba3878e701aa2cab1c72?s=100&amp;d=identicon&amp;r=pg">
+                                            <div class="comment-content">
+                                                <div class="comment-header">
+                                                    <span class="comment-name">
+                                                        حامد نوری
+                                                    </span>
+                                                    <span class="comment-date">
+                                                        ۲ هفته پیش
+                                                    </span>
+                                                </div>
+                                                <p class="comment-text">
+                                                    اگه یه بار بعدی از ساختار پوشه‌های پروژه واقعی هم اسکرین‌شات
+                                                    بذارید عالی می‌شه. در کل مقاله مفیدی بود.
+                                                </p>
+                                                <div class="comment-actions">
+                                                    <button aria-controls="reply-form-4" aria-expanded="false" class="reply-btn" data-bs-target="#reply-form-4" data-bs-toggle="collapse" type="button">
+                                                        <i class="bi bi-reply"></i>
+                                                        پاسخ
+                                                    </button>
+                                                </div>
+                                                <div class="collapse reply-form-wrap" id="reply-form-4">
+                                                    <form class="reply-form">
+                                                        <textarea class="form-control contact-input contact-textarea" placeholder="پاسخ خود را بنویسید..."></textarea>
+                                                        <div class="reply-form-actions">
+                                                            <button class="contact-submit reply-submit" type="submit">
+                                                                ارسال پاسخ
+                                                            </button>
+                                                            <button class="btn btn-outline-secondary" data-bs-target="#reply-form-4" data-bs-toggle="collapse" type="button">
+                                                                انصراف
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                                <!-- NEW COMMENT FORM -->
+                                <div class="comment-form-wrap">
+                                    <h3 class="comment-form-title">
+                                        نظر خود را بنویسید
+                                    </h3>
+                                    <p class="comment-form-hint">
+                                        برای نمایش آواتار از سرویس Gravatar استفاده می‌شود؛ ایمیل شما منتشر نخواهد شد.
+                                    </p>
+                                    <form class="contact-form">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="contact-label" for="commentName">
+                                                    نام
+                                                </label>
+                                                <input class="form-control contact-input" id="commentName" name="commentName" placeholder="نام شما" required="" type="text">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="contact-label" for="commentEmail">
+                                                    ایمیل
+                                                </label>
+                                                <input class="form-control contact-input" id="commentEmail" name="commentEmail" placeholder="example@email.com" required="" type="email">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="contact-label" for="commentText">
+                                                    متن نظر
+                                                </label>
+                                                <textarea class="form-control contact-input contact-textarea" id="commentText" name="commentText" placeholder="نظر خود را بنویسید..." required="" rows="5"></textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="contact-submit" type="submit">
+                                                    <span>
+                                                        ثبت نظر
+                                                    </span>
+                                                    <i class="bi bi-send"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <!-- ================= SIDEBAR ================= -->
+                        <aside class="col-lg-4 order-2 post-sidebar-col">
+
+                            <!-- LATEST ARTICLES -->
+                            <div class="card-custom sidebar-widget">
+                                <h3 class="widget-title">
+                                    آخرین مقالات
+                                </h3>
+                                <ul class="widget-list">
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                CQRS در پروژه‌های واقعی
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                ۱۶ مرداد
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                از MVC تا Minimal API
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                ۵ مرداد
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                اصول Dependency Injection در ASP.NET Core
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                ۲۸ تیر
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                تجربه من از مهاجرت به .NET 8
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                ۲۰ تیر
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                مقایسه Monolith و Microservices
+                                            </span>
+                                            <span class="widget-list-meta">
+                                                ۱۰ تیر
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- CATEGORIES -->
+                            <div class="card-custom sidebar-widget">
+                                <h3 class="widget-title">
+                                    دسته‌بندی مقالات
+                                </h3>
+                                <ul class="widget-list">
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                معماری نرم‌افزار
+                                            </span>
+                                            <span class="widget-count">
+                                                ۱۲
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                ASP.NET Core
+                                            </span>
+                                            <span class="widget-count">
+                                                ۹
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                پایگاه داده
+                                            </span>
+                                            <span class="widget-count">
+                                                ۶
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                میکروسرویس‌ها
+                                            </span>
+                                            <span class="widget-count">
+                                                ۵
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="widget-list-item">
+                                        <a href="#">
+                                            <span>
+                                                تجربیات شخصی
+                                            </span>
+                                            <span class="widget-count">
+                                                ۴
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </aside>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-content">
+                    <div class="footer-copyright">
+                        © ۱۴۰۵ احسان گلی — تمامی حقوق مادی و معنوی این وب‌سایت محفوظ است.
+                    </div>
+                    <div class="footer-project">
+                        این پروژه با
+                        <strong>
+                            ASP.NET Core .NET
+                        </strong>
+                        توسعه داده شده و
+                        <a href="#" rel="noopener noreferrer" target="_blank">
+                            سورس آن در GitHub
+                        </a>
+                        منتشر شده است.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/theme-toggle.js"></script>
+    </body>
+</html>
