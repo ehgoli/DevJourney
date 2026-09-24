@@ -1,0 +1,455 @@
+/* =========================================================
+   DARK MODE
+   -----------------------------------------------------------
+   Adds dark mode for the whole template. Must be the last CSS
+   file linked in <head> on every page (after layout.css,
+   components.css, and the page's own CSS) so its overrides win.
+
+   Toggled via data-bs-theme="dark" on <html> (Bootstrap 5.3's
+   own attribute, so Bootstrap's built-in components — like the
+   offcanvas close button — go dark automatically too). Set,
+   cleared, and persisted to localStorage by
+   assets/js/theme-toggle.js.
+
+   Structure:
+     1) Shared color variables (same :root names as layout.css)
+        redefined for dark mode — most components already use
+        var(--...), so this section alone covers them.
+     2) Targeted overrides for hardcoded (non-variable) colors,
+        one source file at a time.
+     3) Theme toggle button.
+     4) Smooth transition on theme switch.
+========================================================= */
+
+/* =========================================================
+   1) COLOR VARIABLES — dark mode
+========================================================= */
+
+:root[data-bs-theme="dark"] {
+    --primary: #8ba1bd;
+    --primary-dark: #5b7290;
+    --secondary: #9aa8bd;
+    --silver: #768390;
+    --border: #3a414c;
+    --light-gray: #2d333b;
+    --background: #171b21;
+    --section-bg: #1c2129;
+    --surface: #222831;
+    --text: #e6edf3;
+    --muted: #a7afba;
+
+    /* Slightly lighter red for contrast against dark surfaces; the soft
+       background switches from a light pink tint to a dark red tint. */
+    --danger: #f87171;
+    --danger-soft-bg: rgba(248, 113, 113, 0.12);
+}
+
+/* =========================================================
+   2) HARDCODED COLOR OVERRIDES
+========================================================= */
+
+/* ---------- layout.css ---------- */
+
+:root[data-bs-theme="dark"] .card-custom {
+    background: var(--surface);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-bs-theme="dark"] .site-header {
+    background: rgba(23, 27, 33, 0.86);
+    border-bottom-color: var(--light-gray);
+}
+
+:root[data-bs-theme="dark"] .site-header-cta:hover,
+:root[data-bs-theme="dark"] .site-offcanvas-cta:hover {
+    background: #7c93ac;
+    color: #fff;
+}
+
+/* ---------- components.css ---------- */
+
+:root[data-bs-theme="dark"] .article-card:hover,
+:root[data-bs-theme="dark"] .project-card:hover {
+    border-color: #465061;
+    box-shadow: 0 9px 24px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-bs-theme="dark"] .article-link:hover,
+:root[data-bs-theme="dark"] .project-link:hover,
+:root[data-bs-theme="dark"] .course-link:hover,
+:root[data-bs-theme="dark"] .github-project-link:hover {
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .course-card {
+    border-color: #2a323c;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-bs-theme="dark"] .course-card:hover {
+    border-color: #465061;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+:root[data-bs-theme="dark"] .course-cover {
+    background: var(--light-gray);
+}
+
+:root[data-bs-theme="dark"] .course-level {
+    background: rgba(34, 40, 49, 0.92);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .github-project-card {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+:root[data-bs-theme="dark"] .github-project-card:hover {
+    border-color: #465061;
+}
+
+:root[data-bs-theme="dark"] .github-project-name {
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .github-project-description,
+:root[data-bs-theme="dark"] .github-project-meta,
+:root[data-bs-theme="dark"] .github-stars i {
+    color: var(--muted);
+}
+
+:root[data-bs-theme="dark"] .language-dot {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-bs-theme="dark"] .contact-input {
+    background: var(--section-bg);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .contact-input::placeholder {
+    color: var(--muted);
+}
+
+:root[data-bs-theme="dark"] .contact-input:focus {
+    background: var(--surface);
+}
+
+:root[data-bs-theme="dark"] .contact-submit:hover {
+    background: #7c93ac;
+    border-color: #7c93ac;
+}
+
+:root[data-bs-theme="dark"] .resume-download-btn:hover,
+:root[data-bs-theme="dark"] .resume-download-btn:focus-visible {
+    background: #7c93ac;
+    border-color: #7c93ac;
+}
+
+/* ---------- resume.css ---------- */
+
+:root[data-bs-theme="dark"] .section-header::before {
+    background: var(--border);
+}
+
+:root[data-bs-theme="dark"] .section-view-all:hover {
+    background: var(--surface);
+}
+
+:root[data-bs-theme="dark"] .certificate-thumb {
+    background: var(--light-gray);
+    border-bottom-color: var(--border);
+}
+
+:root[data-bs-theme="dark"] .certificate-modal-caption {
+    background: var(--surface);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .profile-card-badge {
+    background: rgba(34, 40, 49, 0.94);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .profile-avatar {
+    border-color: var(--surface);
+}
+
+:root[data-bs-theme="dark"] .section-title {
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .skill-name {
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .progress {
+    background: var(--light-gray);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+:root[data-bs-theme="dark"] .cert-item,
+:root[data-bs-theme="dark"] .list-box {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+:root[data-bs-theme="dark"] .icon-btn {
+    background: var(--section-bg);
+    border-color: var(--border);
+}
+
+:root[data-bs-theme="dark"] .dot-list li {
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .courses-section {
+    background: var(--section-bg);
+}
+
+/* ---------- article.css ---------- */
+
+:root[data-bs-theme="dark"] .post-body a:hover,
+:root[data-bs-theme="dark"] .author-link:hover {
+    color: var(--text);
+}
+
+/* Code blocks stay dark in both themes — intentionally untouched. */
+
+/* ---------- project-details.css ---------- */
+
+:root[data-bs-theme="dark"] .gallery-arrow {
+    background: rgba(34, 40, 49, 0.85);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .gallery-arrow:hover {
+    background: var(--surface);
+}
+
+:root[data-bs-theme="dark"] .gallery-indicators button[data-bs-target] {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+:root[data-bs-theme="dark"] .gallery-indicators button[data-bs-target].active {
+    background: #fff;
+}
+
+:root[data-bs-theme="dark"] .contributor-card:hover {
+    border-color: #465061;
+}
+
+:root[data-bs-theme="dark"] .project-github-btn:hover {
+    background: #7c93ac;
+}
+
+/* ---------- course-details.css ---------- */
+
+:root[data-bs-theme="dark"] .course-enroll-btn:hover {
+    background: #7c93ac;
+}
+
+/* ---------- articles-updated-ajax-v2.css ---------- */
+/* The articles-archive hero (dark gradient + light search bar
+   floating on it) is already designed for a dark background
+   and is theme-independent — left untouched on purpose. */
+
+:root[data-bs-theme="dark"] .articles-topic-pill span {
+    background: var(--surface);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .articles-topic-pill input:checked + span {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+}
+
+:root[data-bs-theme="dark"] .articles-topic-pill:hover span {
+    border-color: #465061;
+}
+
+:root[data-bs-theme="dark"] .articles-sort-option {
+    background: var(--surface);
+}
+
+:root[data-bs-theme="dark"] .articles-sort-option::before {
+    background: var(--surface);
+    border-color: var(--border);
+    box-shadow: inset 0 0 0 3px var(--surface);
+}
+
+:root[data-bs-theme="dark"] .articles-sort-option:has(input:checked) {
+    border-color: var(--primary);
+}
+
+:root[data-bs-theme="dark"] .articles-sort-option:has(input:checked)::before {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: inset 0 0 0 3px var(--surface);
+}
+
+:root[data-bs-theme="dark"] .articles-search-clear {
+    background: var(--light-gray);
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+:root[data-bs-theme="dark"] .articles-search-clear:hover {
+    background: var(--section-bg);
+}
+
+:root[data-bs-theme="dark"] .articles-search-results {
+    background: rgba(34, 40, 49, 0.98);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-bs-theme="dark"] .articles-search-result:hover,
+:root[data-bs-theme="dark"] .articles-search-result.is-active {
+    background: var(--section-bg);
+}
+
+:root[data-bs-theme="dark"] .articles-search-result-avatar {
+    background: var(--light-gray);
+    border-color: var(--border);
+}
+
+:root[data-bs-theme="dark"] .articles-search-result-copy strong mark {
+    background: rgba(139, 161, 189, 0.35);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .articles-search-result-meta,
+:root[data-bs-theme="dark"] .articles-search-result-arrow {
+    color: var(--muted);
+}
+
+:root[data-bs-theme="dark"] .articles-search-submit:hover,
+:root[data-bs-theme="dark"] .articles-filter-apply:hover,
+:root[data-bs-theme="dark"] .articles-empty-reset:hover {
+    background: #7c93ac;
+}
+
+:root[data-bs-theme="dark"] .articles-pagination .page-link:hover {
+    border-color: #465061;
+}
+
+/* ---------- auth.css ---------- */
+
+:root[data-bs-theme="dark"] .auth-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+}
+
+:root[data-bs-theme="dark"] .auth-link:hover {
+    color: var(--text);
+}
+
+/* =========================================================
+   3) THEME TOGGLE BUTTON
+   Fixed floating button, identical on every page; follows the
+   template's RTL/LTR logic via inset-inline-end.
+========================================================= */
+
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 22px;
+    inset-inline-end: 22px;
+    z-index: 1040;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--primary-dark);
+    font-size: var(--fs-theme-toggle-btn);
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(10, 20, 40, 0.14);
+    transition: background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-2px);
+    color: var(--text);
+}
+
+:root[data-bs-theme="dark"] .theme-toggle-btn {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.theme-toggle-btn .theme-toggle-icon-dark,
+.theme-toggle-btn .theme-toggle-icon-light,
+.admin-header-theme-btn .theme-toggle-icon-dark,
+.admin-header-theme-btn .theme-toggle-icon-light {
+    display: none;
+}
+
+/* Light mode: moon icon means "switch to dark". */
+
+.theme-toggle-btn .theme-toggle-icon-dark,
+.admin-header-theme-btn .theme-toggle-icon-dark {
+    display: inline-block;
+}
+
+/* Dark mode: sun icon means "switch to light". */
+
+:root[data-bs-theme="dark"] .theme-toggle-btn .theme-toggle-icon-dark,
+:root[data-bs-theme="dark"] .admin-header-theme-btn .theme-toggle-icon-dark {
+    display: none;
+}
+
+:root[data-bs-theme="dark"] .theme-toggle-btn .theme-toggle-icon-light,
+:root[data-bs-theme="dark"] .admin-header-theme-btn .theme-toggle-icon-light {
+    display: inline-block;
+}
+
+@media (max-width: 575.98px) {
+    .theme-toggle-btn {
+        width: 44px;
+        height: 44px;
+        bottom: 16px;
+        inset-inline-end: 16px;
+    }
+}
+
+/* =========================================================
+   4) SMOOTH TRANSITION ON THEME SWITCH
+========================================================= */
+
+body,
+.card-custom,
+.site-header,
+.article-card,
+.project-card,
+.course-card,
+.github-project-card,
+.contact-input {
+    transition: background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    .card-custom,
+    .site-header,
+    .article-card,
+    .project-card,
+    .course-card,
+    .github-project-card,
+    .contact-input,
+    .theme-toggle-btn {
+        transition: none;
+    }
+}

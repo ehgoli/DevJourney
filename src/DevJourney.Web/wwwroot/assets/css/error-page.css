@@ -1,0 +1,189 @@
+/* =========================================================
+   ERROR PAGES (404, 403, and any others that follow)
+   Shared by every error page — one visual language (terminal
+   illustration + eyebrow + title + description + actions) so
+   they read as a family. Page-specific illustration content
+   (the SVG) lives inline in each page's own HTML, not here.
+
+   Shared :root variables, base reset, header, and footer live
+   in layout.css. Load this file after it (components.css
+   isn't needed — no card/widget component is used here).
+
+   RTL/LTR: uses logical properties throughout, except the
+   terminal illustration, which stays LTR and dark in both
+   themes — same rule as code blocks on the article page
+   ("code always reads left-to-right", and "code blocks stay
+   dark in both themes — intentionally untouched").
+========================================================= */
+
+.error-page-section {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 78px - 64px);
+    padding: 60px 0 70px;
+}
+
+.error-page-content {
+    max-width: 560px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+/* =========================================================
+   TERMINAL ILLUSTRATION
+========================================================= */
+
+.error-illustration {
+    direction: ltr;
+    margin: 0 0 36px;
+}
+
+.error-illustration svg {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    filter: drop-shadow(0 16px 30px rgba(10, 20, 40, 0.16));
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.error-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    margin-bottom: 18px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-dark);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.error-title {
+    margin: 0 0 14px;
+    color: var(--text);
+    font-size: clamp(22px, calc(18px + 1.2vw), 28px);
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+/* For error types with a "blocked" feel (403) rather than a neutral one
+   (404) — reuses the same --danger token as the admin panel's "Log out",
+   not a new color. */
+.error-title--danger {
+    color: var(--danger);
+}
+
+.error-description {
+    margin: 0 0 30px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.error-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 28px;
+    background: var(--primary-dark);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.error-primary-btn:hover {
+    background: #111827;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.error-primary-btn i {
+    font-size: 16px;
+}
+
+.error-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 14px;
+    padding-top: 22px;
+    border-top: 1px solid var(--light-gray);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.error-links a {
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.error-links a:hover {
+    border-bottom-color: var(--primary-dark);
+}
+
+.error-links-sep {
+    color: var(--border);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767.98px) {
+    .error-page-section {
+        padding: 40px 0 50px;
+    }
+
+    .error-illustration {
+        margin-bottom: 28px;
+    }
+
+    .error-illustration svg {
+        max-width: 320px;
+    }
+
+    .error-description {
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 420px) {
+    .error-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .error-links-sep {
+        display: none;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .error-primary-btn {
+        transition: none;
+    }
+}

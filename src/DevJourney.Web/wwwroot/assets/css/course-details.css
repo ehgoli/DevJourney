@@ -1,0 +1,627 @@
+/* =========================================================
+   COURSE DETAIL (SINGLE COURSE) PAGE
+   Page-specific styles only. Shared :root variables, base
+   reset, header, and footer live in layout.css; shared
+   components (card, sidebar widget, breadcrumb) are in
+   components.css. Load this file after both. Class names
+   deliberately mirror project-details.css / article.css so
+   all three detail pages look consistent, and this page
+   reuses the same --fs-detail-page-* typography variables.
+
+   RTL/LTR: uses logical properties throughout.
+========================================================= */
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.course-page-section {
+    padding: 15px 0 90px;
+}
+
+/* Breadcrumb base styles live in components.css (shared with
+   .post-breadcrumb / .project-breadcrumb). */
+
+/* =========================================================
+   MAIN GRID / STICKY SIDEBAR
+========================================================= */
+
+.course-main-col, .course-sidebar-col {
+    min-width: 0;
+}
+
+@media (min-width: 992px) {
+    .course-sidebar-col {
+        position: sticky;
+        top: 95px;
+        align-self: flex-start;
+    }
+}
+
+/* =========================================================
+   DETAIL CARD (header + cover + highlights + body + curriculum)
+========================================================= */
+
+.course-detail-card {
+    padding: 40px 44px 44px;
+}
+
+/* Category pill */
+
+.course-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    margin-bottom: 18px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-dark);
+    font-size: var(--fs-detail-page-category);
+    font-weight: 700;
+}
+
+/* Title / excerpt */
+
+.course-detail-title {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: var(--fs-detail-page-title);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.course-detail-excerpt {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: var(--fs-detail-page-excerpt);
+    line-height: 2;
+}
+
+/* =========================================================
+   META ROW
+========================================================= */
+
+.course-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--muted);
+    font-size: var(--fs-detail-page-meta);
+}
+
+.course-detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.course-detail-meta-item i {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+/* =========================================================
+   WHAT YOU'LL LEARN
+========================================================= */
+
+.course-highlights {
+    margin-bottom: 8px;
+}
+
+.course-highlights-title {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.course-highlights-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.course-highlights-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text);
+    font-size: var(--fs-detail-page-body);
+    line-height: 1.8;
+}
+
+.course-highlights-list i {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--primary-dark);
+    font-size: 16px;
+}
+
+/* =========================================================
+   BODY TYPOGRAPHY
+========================================================= */
+
+.course-detail-body {
+    color: var(--text);
+    font-size: var(--fs-detail-page-body);
+    line-height: 2.1;
+}
+
+.course-detail-body > p:first-of-type {
+    color: var(--text);
+    font-size: var(--fs-detail-page-lead);
+    font-weight: 500;
+}
+
+.course-detail-body p {
+    margin: 0 0 22px;
+}
+
+.course-detail-body h2 {
+    margin: 40px 0 18px;
+    padding-inline-start: 14px;
+    border-inline-start: 4px solid var(--primary);
+    color: var(--text);
+    font-size: var(--fs-detail-page-h2);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.course-detail-body ul {
+    margin: 0 0 22px;
+    padding-inline-start: 22px;
+    color: var(--text);
+}
+
+.course-detail-body li {
+    margin-bottom: 10px;
+    line-height: 1.9;
+}
+
+.course-detail-body li strong {
+    color: var(--primary-dark);
+}
+
+/* =========================================================
+   CURRICULUM (accordion)
+   Re-skins Bootstrap's accordion via its own CSS variables
+   instead of overriding each rule individually. The
+   expand/collapse chevron mirrors automatically with the
+   bootstrap.rtl.css / bootstrap.css swap, same as the gallery
+   arrows on the project detail page — no extra rule needed.
+========================================================= */
+
+.course-curriculum {
+    margin-top: 8px;
+    padding-top: 30px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.course-curriculum-title {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.course-curriculum .accordion {
+    --bs-accordion-border-color: var(--border);
+    --bs-accordion-border-radius: 12px;
+    --bs-accordion-inner-border-radius: 11px;
+    --bs-accordion-btn-bg: var(--surface);
+    --bs-accordion-btn-color: var(--text);
+    --bs-accordion-active-bg: var(--section-bg);
+    --bs-accordion-active-color: var(--primary-dark);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.15);
+    --bs-accordion-body-bg: transparent;
+}
+
+/* Bootstrap's default accordion strips the top border off every item
+   after the first, for a seamless stacked look. This template wants
+   separated cards instead, so both the border and the gap between
+   items are forced explicitly (!important beats the border-top: 0
+   from :not(:first-of-type) at equal specificity). */
+.course-curriculum .accordion-item {
+    margin-bottom: 12px !important;
+    border: 1px solid var(--bs-accordion-border-color) !important;
+    border-radius: var(--bs-accordion-border-radius) !important;
+    overflow: hidden;
+}
+
+.course-curriculum .accordion-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+.course-curriculum .accordion-button {
+    gap: 10px;
+    font-size: var(--fs-detail-page-body);
+    font-weight: 700;
+}
+
+/* Title flexes to fill the remaining space so the meta column
+   next to it always lands at the same width, regardless of how
+   long each module's title is — that's what keeps it aligned
+   from row to row. */
+.course-module-title {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.course-module-meta {
+    flex: 0 0 auto;
+    width: 132px;
+    color: var(--muted);
+    font-size: 12.5px;
+    font-weight: 400;
+    text-align: end;
+    white-space: nowrap;
+}
+
+.course-lesson-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.course-lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--text);
+    font-size: 13.5px;
+    transition: background 0.15s ease;
+}
+
+.course-lesson-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.course-lesson-item:first-child {
+    padding-top: 0;
+}
+
+.course-lesson-item.is-playing {
+    background: var(--section-bg);
+    border-radius: 8px;
+    padding-inline-start: 8px;
+    padding-inline-end: 8px;
+}
+
+.course-lesson-play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--secondary);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.course-lesson-play:hover,
+.course-lesson-play:focus-visible {
+    background: var(--section-bg);
+    color: var(--primary-dark);
+}
+
+.course-lesson-item.is-playing .course-lesson-play {
+    color: var(--primary-dark);
+}
+
+.course-lesson-title {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.course-lesson-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 2px;
+}
+
+.course-lesson-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: var(--secondary);
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.course-lesson-action:hover,
+.course-lesson-action:focus-visible {
+    background: var(--section-bg);
+    color: var(--primary-dark);
+}
+
+/* =========================================================
+   SIDEBAR WIDGETS
+   Base styles are in components.css. Only this page's real
+   differences remain here: fuller card padding and a smaller
+   widget-title size, matching the other two detail pages.
+========================================================= */
+
+.sidebar-widget {
+    padding: 26px 26px 26px;
+}
+
+.widget-title {
+    font-size: 15px;
+}
+
+/* =========================================================
+   INSTRUCTOR WIDGET (sidebar — fixed identity card)
+   Same fixed-card pattern as .author-widget on the other two
+   detail pages, defined here rather than shared, since this
+   page doesn't load project-details.css.
+========================================================= */
+
+.author-widget {
+    padding: 30px 26px 28px;
+    text-align: center;
+}
+
+.author-widget-avatar {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--section-bg);
+}
+
+.author-widget-name {
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.author-widget-role {
+    margin: 0 0 14px;
+    color: var(--secondary);
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.author-widget-bio {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.author-widget-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 18px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, gap 0.2s ease;
+}
+
+.author-widget-link:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+    gap: 10px;
+}
+
+.author-widget-link i {
+    font-size: 13px;
+}
+
+/* Quick info list */
+
+.course-info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.course-info-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.course-info-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.course-info-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.course-info-value {
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.course-enroll-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 10px 24px;
+    background: var(--primary-dark);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.course-enroll-btn:hover {
+    background: #111827;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.course-enroll-btn i {
+    font-size: 16px;
+}
+
+.course-enroll-btn--block {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Prerequisites */
+
+.course-prereq-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.course-prereq-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 5px 14px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--primary-dark);
+    font-size: var(--fs-project-stack-item);
+    white-space: nowrap;
+}
+
+/* Other-courses list — .widget-list base is in components.css;
+   only this page's difference (padding on <li>, tighter link
+   gap) stays here. */
+
+.widget-list-item {
+    padding: 12px 0;
+}
+
+.widget-list-item:last-child {
+    padding-bottom: 0;
+}
+
+.widget-list-item a {
+    gap: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1199.98px) {
+    .course-detail-card {
+        padding: 34px 32px 38px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .course-page-section {
+        padding: 0 0 70px;
+    }
+
+    .course-detail-card {
+        padding: 30px 26px 32px;
+    }
+
+    .sidebar-widget {
+        padding: 22px 22px 22px;
+    }
+
+    .author-widget {
+        padding: 26px 22px 24px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .course-detail-card {
+        padding: 26px 20px 28px;
+    }
+
+    .course-detail-meta {
+        gap: 14px;
+    }
+
+    .course-highlights-list {
+        grid-template-columns: 1fr;
+    }
+
+    .course-detail-body h2 {
+        margin: 32px 0 14px;
+    }
+
+    .course-module-meta {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .course-category {
+        padding: 5px 13px;
+    }
+
+    .course-detail-title {
+        line-height: 1.5;
+    }
+
+    .course-prereq-item {
+        min-height: 32px;
+        padding: 4px 11px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.course-enroll-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .course-enroll-btn {
+        transition: none;
+    }
+}

@@ -1,0 +1,784 @@
+/* =========================================================
+   ARTICLE (BLOG SINGLE POST) PAGE
+   Page-specific styles only. Shared :root variables, base
+   reset, header, and footer live in layout.css; shared
+   components (card, sidebar widget, form fields, breadcrumb)
+   are in components.css. Load this file after both.
+
+   RTL/LTR: uses logical properties throughout, except
+   `.post-body pre` and `.post-body p code`, which stay LTR
+   on purpose (code always reads left-to-right).
+========================================================= */
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.post-page-section {
+    padding: 15px 0 90px;
+}
+
+/* Breadcrumb base styles live in components.css (shared with
+   .project-breadcrumb on the project detail page). */
+
+/* =========================================================
+   MAIN GRID / STICKY SIDEBAR
+========================================================= */
+
+.post-main-col, .post-sidebar-col {
+    min-width: 0;
+}
+
+@media (min-width: 992px) {
+    .post-sidebar-col {
+        position: sticky;
+        top: 95px;
+        align-self: flex-start;
+    }
+}
+
+/* =========================================================
+   POST CARD (header + cover + body)
+========================================================= */
+
+.post-card {
+    padding: 40px 44px 44px;
+}
+
+/* Category pill */
+
+.post-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    margin-bottom: 18px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-dark);
+    font-size: var(--fs-detail-page-category);
+    font-weight: 700;
+}
+
+/* Title / excerpt */
+
+.post-title {
+    margin: 0 0 16px;
+    color: var(--text);
+    font-size: var(--fs-detail-page-title);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.post-excerpt {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: var(--fs-detail-page-excerpt);
+    line-height: 2;
+}
+
+/* =========================================================
+   META ROW
+========================================================= */
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--muted);
+    font-size: var(--fs-detail-page-meta);
+}
+
+.post-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.post-meta-item i {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+.post-meta-author {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.post-meta-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+}
+
+.post-meta-author strong {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* =========================================================
+   COVER IMAGE
+========================================================= */
+
+.post-cover {
+    width: 100%;
+    height: 420px;
+    margin-bottom: 36px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--light-gray);
+}
+
+.post-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================================================
+   BODY TYPOGRAPHY
+========================================================= */
+
+.post-body {
+    color: var(--text);
+    font-size: var(--fs-detail-page-body);
+    line-height: 2.1;
+}
+
+.post-body > p:first-of-type {
+    color: var(--text);
+    font-size: var(--fs-detail-page-lead);
+    font-weight: 500;
+}
+
+.post-body p {
+    margin: 0 0 22px;
+}
+
+.post-body h2 {
+    margin: 40px 0 18px;
+    padding-inline-start: 14px;
+    border-inline-start: 4px solid var(--primary);
+    color: var(--text);
+    font-size: var(--fs-detail-page-h2);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.post-body h3 {
+    margin: 30px 0 14px;
+    color: var(--primary-dark);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.post-body ul, .post-body ol {
+    margin: 0 0 22px;
+    padding-inline-start: 22px;
+    color: var(--text);
+}
+
+.post-body li {
+    margin-bottom: 10px;
+    line-height: 1.9;
+}
+
+.post-body li strong, .post-body p strong {
+    color: var(--primary-dark);
+}
+
+.post-body a {
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.post-body a:hover {
+    color: #111827;
+    text-decoration-color: currentColor;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Accent bar on the reading-start side; the corners next to
+   it are more rounded than the far corners — logical corner
+   properties keep this correct in both directions. */
+
+.post-body blockquote {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: var(--section-bg);
+    border-inline-start: 4px solid var(--primary);
+    border-start-start-radius: 12px;
+    border-start-end-radius: 4px;
+    border-end-start-radius: 12px;
+    border-end-end-radius: 4px;
+    color: var(--primary-dark);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.9;
+}
+
+.post-body blockquote p {
+    margin: 0;
+}
+
+/* Code blocks always stay LTR, regardless of page language. */
+
+.post-body pre {
+    margin: 8px 0 26px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    background: #2f3439;
+    border-radius: 10px;
+    direction: ltr;
+    text-align: left;
+}
+
+.post-body pre code {
+    display: block;
+    background: none;
+    padding: 0;
+    color: #e5e7eb;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.post-body p code {
+    padding: 2px 7px;
+    background: var(--section-bg);
+    border-radius: 4px;
+    color: var(--primary-dark);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 13px;
+    direction: ltr;
+    unicode-bidi: embed;
+}
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.post-tags-label {
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.post-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--primary-dark);
+    font-size: 12px;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.post-tag:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+}
+
+.post-tag i {
+    font-size: 11px;
+    opacity: 0.75;
+}
+
+/* =========================================================
+   AUTHOR CARD
+========================================================= */
+
+.author-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 36px;
+    padding: 26px 28px;
+    background: var(--section-bg);
+    border-radius: 16px;
+}
+
+.author-avatar {
+    flex: 0 0 92px;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface);
+    box-shadow: 0 4px 14px rgba(31, 41, 55, 0.1);
+}
+
+.author-info {
+    min-width: 0;
+}
+
+.author-eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--secondary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.author-name {
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.author-role {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.author-bio {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.9;
+}
+
+.author-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.author-link:hover {
+    color: #111827;
+    gap: 10px;
+}
+
+.author-link i {
+    font-size: 12px;
+}
+
+/* =========================================================
+   SIDEBAR WIDGETS
+   Base styles (.sidebar-widget / .widget-title / .widget-list*)
+   are in components.css. Only this page's real differences
+   remain here: shorter card padding, tighter link gap, padding
+   on the link itself instead of the <li>, and the widget-title
+   accent bar used on this page.
+========================================================= */
+
+.sidebar-widget {
+    padding: 26px 26px 10px;
+}
+
+.widget-title {
+    padding-inline-start: 10px;
+    border-inline-start: 3px solid var(--primary);
+    font-size: 16px;
+}
+
+.widget-list-item a {
+    gap: 12px;
+    padding: 13px 0;
+}
+
+.widget-count {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 22px;
+    padding: 0 6px;
+    background: var(--section-bg);
+    border-radius: 999px;
+    color: var(--secondary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   COMMENTS
+========================================================= */
+
+.comments-card {
+    padding: 36px 40px 40px;
+    margin-top: 28px;
+}
+
+.comments-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 28px;
+    color: var(--text);
+    font-size: var(--fs-comments-heading);
+    font-weight: 800;
+}
+
+.comments-heading span {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.comment-thread, .comment-replies {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.comment-thread > .comment-item:first-child {
+    padding-top: 0;
+}
+
+.comment-thread > .comment-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.comment-row {
+    display: flex;
+    gap: 14px;
+}
+
+.comment-avatar {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: var(--light-gray);
+}
+
+.comment-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.comment-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 6px;
+}
+
+.comment-name {
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.comment-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    background: var(--primary-dark);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.comment-date {
+    color: var(--silver);
+    font-size: 12px;
+}
+
+.comment-text {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.reply-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.reply-btn:hover, .reply-btn[aria-expanded="true"] {
+    color: var(--primary-dark);
+}
+
+.reply-btn i {
+    font-size: 13px;
+}
+
+/* Nested reply indent, reading-start side */
+
+.comment-replies {
+    margin-top: 18px;
+    padding-inline-start: 30px;
+    border-inline-start: 2px solid var(--light-gray);
+}
+
+.comment-replies .comment-item {
+    padding: 18px 0 0;
+    border-bottom: none;
+}
+
+.comment-replies .comment-item:first-child {
+    padding-top: 0;
+}
+
+.comment-replies .comment-avatar {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+}
+
+/* Reply form (Bootstrap collapse target) */
+
+.reply-form-wrap {
+    margin-top: 14px;
+}
+
+.reply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+    background: var(--background);
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+}
+
+.reply-form .contact-textarea {
+    min-height: 70px;
+}
+
+.reply-form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.reply-submit {
+    min-height: 38px;
+    padding: 6px 20px;
+    font-size: 12.5px;
+}
+
+/* =========================================================
+   NEW COMMENT FORM
+========================================================= */
+
+.comment-form-wrap {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.comment-form-title {
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.comment-form-hint {
+    margin: 0 0 20px;
+    color: var(--silver);
+    font-size: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1199.98px) {
+    .post-card {
+        padding: 34px 32px 38px;
+    }
+
+    .post-cover {
+        height: 340px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .post-page-section {
+        padding: 0 0 70px;
+    }
+
+    .post-card {
+        padding: 30px 26px 32px;
+    }
+
+    .post-cover {
+        height: 280px;
+        margin-bottom: 28px;
+    }
+
+    .comments-card {
+        padding: 30px 26px 32px;
+    }
+
+    .sidebar-widget {
+        padding: 22px 22px 8px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .post-card {
+        padding: 26px 20px 28px;
+    }
+
+    .post-meta {
+        gap: 14px;
+    }
+
+    .post-cover {
+        height: 220px;
+        border-radius: 12px;
+        margin-bottom: 26px;
+    }
+
+    .post-body h2 {
+        margin: 32px 0 14px;
+    }
+
+    .author-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+    }
+
+    .author-link {
+        justify-content: center;
+    }
+
+    .comments-card {
+        padding: 26px 20px 28px;
+    }
+
+    .comment-replies {
+        padding-inline-start: 18px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .post-category {
+        padding: 5px 13px;
+    }
+
+    .post-title {
+        line-height: 1.5;
+    }
+
+    .post-cover {
+        height: 190px;
+    }
+
+    .post-tags-label {
+        width: 100%;
+    }
+
+    .comment-row {
+        gap: 10px;
+    }
+
+    .comment-avatar {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .comment-replies .comment-avatar {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .comment-replies {
+        padding-inline-start: 14px;
+    }
+
+    .reply-form-actions {
+        flex-direction: column;
+    }
+
+    .reply-form-actions .reply-submit,
+    .reply-form-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .comment-form-wrap .contact-submit {
+        width: 100%;
+    }
+}
+
+/* Focus-visible / reduced-motion rules for shared elements live in components.css. */
+
+.reply-btn:focus-visible,
+.author-link:focus-visible,
+.post-tag:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .post-tag, .author-link, .reply-btn {
+        transition: none;
+    }
+}

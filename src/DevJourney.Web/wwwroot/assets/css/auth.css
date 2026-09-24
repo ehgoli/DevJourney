@@ -1,0 +1,370 @@
+/* =========================================================
+   AUTH PAGES — Login, Signup, Forgot Password
+   -----------------------------------------------------------
+   Shared by all three account pages so they read as one
+   family: same centered card, same brand row, same form
+   rhythm. Reuses .card-custom (layout.css) for the card
+   surface/shadow/dark-mode, and .contact-label / .contact-input
+   / .contact-submit (components.css) for the form fields — only
+   the parts unique to an auth screen are defined here.
+
+   No header/footer/offcanvas on these pages by design: just the
+   theme toggle button and a centered card on the template's
+   default background (var(--background), same as every page).
+   Same #particles-bg component used on Resume.html's hero.
+
+   Structure:
+     1) Page shell (full-height centering, no fixed-header offset)
+     2) Card
+     3) Brand row (reuses .site-logo as the "back to site" link)
+     4) Heading
+     5) Alert placeholder (for a future server-side message)
+     6) Form fields (password toggle, remember-me/forgot row)
+     7) Switch-page footer ("don't have an account?" etc.)
+     8) Responsive
+     9) Accessibility
+     10) Multi-step flow (Forgot Password)
+========================================================= */
+
+/* =========================================================
+   1) PAGE SHELL
+========================================================= */
+
+.auth-body {
+    /* layout.css sets padding-top: 100px on <body> to clear the
+       public site's fixed header — these pages have no header,
+       same reset admin-layout.css applies for the same reason. */
+    padding-top: 0;
+}
+
+.auth-page {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 48px 20px;
+}
+
+/* =========================================================
+   2) CARD
+   Extends .card-custom (background, overflow, dark-mode
+   already handled there) — only size/radius/shadow differ.
+   position/z-index lift it above the particles layer.
+========================================================= */
+
+.auth-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(31, 41, 55, 0.08);
+}
+
+/* =========================================================
+   3) BRAND ROW
+   Reuses .site-logo / .site-logo-mark / .site-logo-text as-is
+   (layout.css) so the mark is identical everywhere it appears.
+========================================================= */
+
+.auth-brand {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* =========================================================
+   4) HEADING
+========================================================= */
+
+.auth-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.auth-title {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: var(--fs-auth-title);
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.auth-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.9;
+}
+
+/* =========================================================
+   5) ALERT PLACEHOLDER
+   Hidden (d-none) by default — meant to be shown by the
+   backend later (e.g. "invalid credentials"). Reuses the
+   --danger tokens already defined for destructive actions,
+   so no new color enters the palette.
+========================================================= */
+
+.auth-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding: 12px 14px;
+    background: var(--danger-soft-bg);
+    border: 1px solid var(--danger);
+    border-radius: 10px;
+    color: var(--danger);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.auth-alert i {
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 15px;
+}
+
+/* =========================================================
+   6) FORM FIELDS
+   Labels/inputs/submit reuse .contact-label / .contact-input /
+   .contact-submit (components.css). Only the password toggle
+   and the remember-me/forgot-password row are new.
+========================================================= */
+
+.auth-password-field {
+    position: relative;
+}
+
+.auth-password-field .contact-input {
+    padding-inline-end: 44px;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    top: 50%;
+    inset-inline-end: 6px;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--secondary);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.auth-password-toggle:hover {
+    background: var(--section-bg);
+    color: var(--primary-dark);
+}
+
+.auth-form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 4px 0 22px;
+}
+
+.auth-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.auth-check .form-check-input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--primary-dark);
+    cursor: pointer;
+}
+
+.auth-check label {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-link {
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.auth-link:hover {
+    color: #111827;
+}
+
+.auth-card .contact-submit {
+    /* Covers the Done panel's <a>, which has no .auth-form parent
+       since it's a link, not something that submits anything. */
+    width: 100%;
+}
+
+/* =========================================================
+   7) SWITCH-PAGE FOOTER
+========================================================= */
+
+.auth-switch {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+    color: var(--muted);
+    font-size: 13.5px;
+}
+
+/* =========================================================
+   8) RESPONSIVE
+========================================================= */
+
+@media (max-width: 575.98px) {
+    .auth-page {
+        padding: 32px 16px;
+    }
+
+    .auth-card {
+        padding: 26px 22px;
+        border-radius: 14px;
+    }
+
+    .auth-brand {
+        margin-bottom: 24px;
+    }
+
+    .auth-heading {
+        margin-bottom: 24px;
+    }
+}
+
+/* =========================================================
+   10) MULTI-STEP FLOW (Forgot Password)
+   Phone -> code -> new password -> done, all inside one card.
+   Panels are toggled with .d-none by
+   assets/js/auth-forgot-password.js; this only styles what's
+   unique to that flow — everything else (fields, submit,
+   switch footer) still comes from the sections above.
+========================================================= */
+
+.auth-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 26px;
+}
+
+.auth-step {
+    width: 28px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 999px;
+    transition: background 0.25s ease;
+}
+
+.auth-step.is-active {
+    background: var(--primary-dark);
+}
+
+.auth-otp-input {
+    text-align: center;
+    letter-spacing: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.auth-resend {
+    margin: 4px 0 22px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Resets a <button> back to plain text so it can carry
+   .auth-link's styling instead of native button chrome. */
+.auth-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+.auth-link-btn:disabled {
+    color: var(--muted);
+    cursor: not-allowed;
+}
+
+.auth-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 16px;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.auth-back-link:hover {
+    color: var(--primary-dark);
+}
+
+/* layout.css mirrors bi-arrow-left for "forward" meaning in LTR.
+   This icon means "back" instead (the opposite), so it uses
+   bi-arrow-right in RTL and needs the reverse treatment in LTR:
+   bi-arrow-left, kept UNmirrored so it still points left. */
+[dir="ltr"] .auth-back-link .bi-arrow-left {
+    transform: none;
+}
+
+.auth-success-icon {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 46px;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.auth-link:focus-visible,
+.auth-password-toggle:focus-visible,
+.auth-check .form-check-input:focus-visible,
+.auth-back-link:focus-visible,
+.auth-link-btn:focus-visible,
+.auth-brand .site-logo:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-link,
+    .auth-password-toggle,
+    .auth-back-link,
+    .auth-step {
+        transition: none;
+    }
+}

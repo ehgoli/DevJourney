@@ -1,0 +1,853 @@
+/* =========================================================
+   COMPONENTS — reusable cards & elements
+   -----------------------------------------------------------
+   Shared building blocks used on more than one page: article
+   card, project card, course card, GitHub project card,
+   sidebar widget, form fields, breadcrumb.
+
+   Load after layout.css and before each page's own CSS. Where
+   a component differs slightly per page (e.g. font-size or
+   padding), the shared part stays here and the small,
+   page-specific override lives in that page's own CSS file.
+
+   RTL/LTR: physical values converted to logical properties.
+========================================================= */
+
+/* =========================================================
+   ARTICLE CARD
+   Used for article previews on the homepage; the archive page
+   reuses this base class and extends it in
+   articles-updated-ajax-v2.css.
+========================================================= */
+
+.article-card {
+    height: 100%;
+    min-height: 235px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: none;
+    transition: transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-3px);
+    border-color: #b8bec5;
+    box-shadow: 0 9px 24px rgba(31, 41, 55, 0.07);
+}
+
+/* =========================================================
+   COVER
+========================================================= */
+
+.article-cover {
+    position: relative;
+    width: 100%;
+    height: 175px;
+    overflow: hidden;
+    background: var(--light-gray);
+}
+
+.article-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.article-card:hover .article-cover img {
+    transform: scale(1.04);
+}
+
+/* Subtle cover overlay — vertical gradient, direction-independent. */
+
+.article-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            180deg,
+            rgba(31, 41, 55, 0.02),
+            rgba(31, 41, 55, 0.12)
+        );
+    pointer-events: none;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.article-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 18px 17px;
+    text-align: start;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.article-title {
+    margin: 0;
+    color: var(--text);
+    font-size: var(--fs-article-title);
+    font-weight: 700;
+    line-height: 1.8;
+    min-height: 54px;
+}
+
+.articles-description {
+    max-width: 680px;
+    margin-block: 10px 0;
+    margin-inline: 0 auto;
+    color: var(--muted);
+    font-size: var(--fs-articles-description);
+    line-height: 2;
+    text-align: start;
+}
+
+/* =========================================================
+   READING TIME
+========================================================= */
+
+.article-reading-time {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   LINK
+========================================================= */
+
+.article-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 16px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease,
+        gap 0.2s ease;
+}
+
+.article-link:hover {
+    color: #111827;
+    gap: 10px;
+}
+
+.article-link i {
+    font-size: 13px;
+}
+
+@media (max-width: 1199.98px) {
+    .article-cover {
+        height: 88px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .article-cover {
+        height: 125px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .articles-description {
+        max-width: 100%;
+        margin-top: 8px;
+    }
+
+    .article-cover {
+        height: 160px;
+    }
+
+    .article-body {
+        padding: 18px 20px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .article-cover {
+        height: 180px;
+    }
+}
+
+
+/* =========================================================
+   PROJECT / PORTFOLIO CARD
+   Displays portfolio pieces in the homepage "Projects" section.
+========================================================= */
+
+.project-card {
+    height: 100%;
+    min-height: 290px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: none;
+    transition: transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    border-color: #b8bec5;
+    box-shadow: 0 9px 24px rgba(31, 41, 55, 0.07);
+}
+
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
+.project-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 30px 25px;
+    text-align: start;
+}
+
+.project-title {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: var(--fs-project-title);
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.project-description {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2.15;
+}
+
+/* =========================================================
+   TECHNOLOGIES
+========================================================= */
+
+.project-technologies {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.project-tech {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 5px 14px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--primary-dark);
+    font-size: var(--fs-project-tech);
+    white-space: nowrap;
+}
+
+/* =========================================================
+   PROJECT LINK
+========================================================= */
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 24px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease,
+        gap 0.2s ease;
+}
+
+.project-link:hover {
+    color: #111827;
+    gap: 10px;
+}
+
+.project-link i {
+    font-size: 13px;
+}
+
+@media (max-width: 991.98px) {
+    .project-card {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    /* Mobile: one card per carousel slide. */
+
+    .project-card {
+        min-height: 255px;
+    }
+
+    .project-content {
+        padding: 24px 22px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .project-card {
+        min-height: 245px;
+    }
+
+    .project-technologies {
+        gap: 6px;
+    }
+
+    .project-tech {
+        min-height: 34px;
+        padding: 4px 11px;
+    }
+}
+
+
+/* =========================================================
+   COURSE CARD
+========================================================= */
+
+.course-card {
+    height: 100%;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid #d5d9dd;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(31, 41, 55, 0.05);
+    transition: transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    border-color: #b9bec4;
+    box-shadow: 0 10px 28px rgba(31, 41, 55, 0.10);
+}
+
+/* ==================================================
+   COVER IMAGE
+================================================== */
+
+.course-cover {
+    position: relative;
+    width: 100%;
+    height: 185px;
+    overflow: hidden;
+    background: #d9dde1;
+}
+
+.course-cover img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.course-card:hover .course-cover img {
+    transform: scale(1.04);
+}
+
+/* Dark overlay — vertical gradient, direction-independent. */
+
+.course-cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            180deg,
+            rgba(17, 24, 39, 0.05) 0%,
+            rgba(17, 24, 39, 0.40) 100%
+        );
+}
+
+/* ==================================================
+   COURSE LEVEL
+   Badge sits in the top corner, reading-start side (right in
+   RTL, left in LTR) — the common corner-badge convention.
+================================================== */
+
+.course-level {
+    position: absolute;
+    top: 15px;
+    inset-inline-start: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+}
+
+/* ==================================================
+   COURSE BODY
+================================================== */
+
+.course-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 235px;
+    padding: 22px 24px 20px;
+    text-align: start;
+}
+
+.course-title {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: var(--fs-course-title);
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.course-description {
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--fs-course-description);
+    line-height: 2;
+    flex-grow: 1;
+}
+
+/* ==================================================
+   COURSE LINK
+================================================== */
+
+.course-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 7px;
+    margin-top: 18px;
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    transition: color 0.2s ease,
+        gap 0.2s ease;
+}
+
+.course-link i {
+    font-size: 14px;
+}
+
+.course-link:hover {
+    color: #111827;
+    gap: 10px;
+}
+
+@media (max-width: 991.98px) {
+    .course-cover {
+        height: 175px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .course-cover {
+        height: 200px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .course-body {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   GITHUB PROJECT CARD
+========================================================= */
+
+.github-project-card {
+    height: 100%;
+    min-height: 216px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 26px 22px;
+    background: #ffffff;
+    border: 1px solid #d8d5cb;
+    border-radius: 14px;
+    box-shadow: none;
+    transition: transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.github-project-card:hover {
+    transform: translateY(-3px);
+    border-color: #b9b8b3;
+    box-shadow: 0 9px 24px rgba(31, 41, 55, 0.06);
+}
+
+/* =========================================================
+   NAME
+========================================================= */
+
+.github-project-name {
+    margin: 0 0 9px;
+    color: #111827;
+    font-size: var(--fs-github-project-name);
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: start;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.github-project-description {
+    min-height: 54px;
+    margin: 0;
+    color: #696b6e;
+    font-size: 13px;
+    line-height: 2.05;
+    text-align: start;
+}
+
+/* =========================================================
+   PROJECT META
+========================================================= */
+
+.github-project-meta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 0 2px;
+
+    color: #666b70;
+    font-size: 13px;
+}
+
+/* =========================================================
+   LANGUAGE
+   Dot + language name follow the page direction naturally; no
+   forced direction needed.
+========================================================= */
+
+.github-language {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.language-dot {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 1px solid #6f747a;
+}
+
+/* =========================================================
+   STARS
+   Star count always stays LTR (digit-display convention,
+   independent of page language).
+========================================================= */
+
+.github-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    direction: ltr;
+}
+
+.github-stars i {
+    color: #70757a;
+    font-size: 11px;
+}
+
+/* =========================================================
+   GITHUB LINK
+========================================================= */
+
+.github-project-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 7px;
+    margin-top: 18px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease,
+        gap 0.2s ease;
+}
+
+.github-project-link:hover {
+    color: #111827;
+    gap: 10px;
+}
+
+.github-project-link i {
+    font-size: 13px;
+}
+
+@media (max-width: 767.98px) {
+    .github-project-card {
+        min-height: 205px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .github-project-card {
+        padding: 21px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   SIDEBAR WIDGET
+   Shared box-with-title-and-list pattern, used on the article
+   page (author / related articles / tags) and the project
+   detail page (info / related projects). Padding, gap, and
+   title size vary slightly per page, so those stay as small
+   overrides in each page's own CSS file.
+========================================================= */
+
+.sidebar-widget {
+    margin-bottom: 24px;
+}
+
+.sidebar-widget:last-child {
+    margin-bottom: 0;
+}
+
+.widget-title {
+    display: inline-block;
+    margin: 0 0 18px;
+    color: var(--text);
+    font-weight: 800;
+}
+
+.widget-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.widget-list-item {
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.widget-list-item:last-child {
+    border-bottom: none;
+}
+
+.widget-list-item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.widget-list-item a:hover {
+    color: var(--primary-dark);
+}
+
+.widget-list-meta {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-size: 11.5px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.widget-list-item a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .widget-list-item a {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   FORM FIELDS (contact-input / contact-label / contact-textarea / contact-submit)
+   Base field styles shared by the homepage contact form and
+   the article page's comment/reply form.
+========================================================= */
+
+.contact-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: start;
+}
+
+.contact-input {
+    min-height: 45px;
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border: 1px solid #dce0e4;
+    border-radius: 9px;
+    color: var(--text);
+    font-size: 13px;
+    text-align: start;
+    box-shadow: none;
+}
+
+.contact-input::placeholder {
+    color: #9aa0a6;
+}
+
+.contact-input:focus {
+    background: #ffffff;
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: none;
+}
+
+.contact-textarea {
+    min-height: 145px;
+    resize: vertical;
+}
+
+.contact-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 45px;
+    padding: 9px 20px;
+    margin-top: 3px;
+    background: var(--primary-dark);
+    border: 1px solid var(--primary-dark);
+    border-radius: 9px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-submit:hover {
+    background: #20262d;
+    border-color: #20262d;
+    transform: translateY(-2px);
+}
+
+.contact-submit i {
+    font-size: 12px;
+}
+
+@media (max-width: 575.98px) {
+    .contact-submit {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   One shared design for .post-breadcrumb (article page),
+   .project-breadcrumb (project detail page), and
+   .courses-archive-breadcrumb (courses archive page) — three
+   names for what's an identical component. Bootstrap's default
+   "/" separator is symmetric in RTL and LTR, so no direction
+   override is needed here.
+========================================================= */
+
+.post-breadcrumb,
+.project-breadcrumb,
+.courses-archive-breadcrumb {
+    margin-bottom: 26px;
+}
+
+.post-breadcrumb .breadcrumb,
+.project-breadcrumb .breadcrumb,
+.courses-archive-breadcrumb .breadcrumb {
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    font-size: var(--fs-breadcrumb);
+}
+
+.post-breadcrumb .breadcrumb-item a,
+.project-breadcrumb .breadcrumb-item a,
+.courses-archive-breadcrumb .breadcrumb-item a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-breadcrumb .breadcrumb-item a:hover,
+.project-breadcrumb .breadcrumb-item a:hover,
+.courses-archive-breadcrumb .breadcrumb-item a:hover {
+    color: var(--primary-dark);
+}
+
+.post-breadcrumb .breadcrumb-item.active,
+.project-breadcrumb .breadcrumb-item.active,
+.courses-archive-breadcrumb .breadcrumb-item.active {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.post-breadcrumb .breadcrumb-item + .breadcrumb-item::before,
+.project-breadcrumb .breadcrumb-item + .breadcrumb-item::before,
+.courses-archive-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    color: var(--silver);
+}
+
+.post-breadcrumb a:focus-visible,
+.project-breadcrumb a:focus-visible,
+.courses-archive-breadcrumb a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .post-breadcrumb a,
+    .project-breadcrumb a,
+    .courses-archive-breadcrumb a {
+        transition: none;
+    }
+}

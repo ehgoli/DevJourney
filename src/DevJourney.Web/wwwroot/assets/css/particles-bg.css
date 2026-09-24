@@ -1,0 +1,29 @@
+/* =========================================================
+   PARTICLES BACKGROUND — standalone component
+   -----------------------------------------------------------
+   Not tied to any specific section. To use it elsewhere:
+     1) Load this file + assets/js/particles-bg.js.
+     2) Add a `position: relative` container with an element
+        id="particles-bg" inside it.
+     3) Give that section's real content `position: relative`
+        and a z-index above 0 so it renders above the particle
+        layer.
+
+   See resume.css (.hero-section) and
+   articles-updated-ajax-v2.css (.articles-hero) for examples.
+========================================================= */
+
+#particles-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.9;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#particles-bg canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}

@@ -1,0 +1,1222 @@
+/* =========================================================
+   RESUME (Homepage) — page-specific styles
+   Hero/profile, skills, career timeline, courses, GitHub
+   projects, portfolio, articles, and the contact form. Shared
+   rules (reset, container, card-custom, footer) are in
+   layout.css; reusable cards (article, project, course,
+   GitHub) are in components.css. This page doesn't load the
+   shared header styles, since its hero section is its own
+   header.
+
+   RTL/LTR: uses logical properties throughout. Two physical
+   exceptions (no logical equivalent) are controlled by the
+   --flip variable from layout.css: the progress-bar gradient
+   angle, and the round read-more button's hover shift.
+========================================================= */
+
+/* =========================================================
+   SHARED SECTION HEADER
+========================================================= */
+
+.section-header {
+    position: relative;
+    margin-bottom: 42px;
+    text-align: start;
+}
+
+.section-header::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    inset-inline-end: 0;
+    width: 73%;
+    height: 1px;
+    background: #d9dde2;
+}
+
+/* =========================================================
+   SECTION HEADER + "View all" — extended header variant for
+   sections (courses, GitHub projects, portfolio, articles)
+   that need a "view all" link. It sits inline with the
+   section-header row, not next to the title text or repeated
+   under each item; flexbox plus direction logic sends it to
+   the end of that row automatically in either language.
+========================================================= */
+
+.section-header--with-action {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.section-header--with-action .section-header-main {
+    min-width: 0;
+}
+
+.section-view-all {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 7px;
+    margin-top: 25px;
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+}
+
+.section-view-all:hover {
+    background: var(--section-bg);
+    border-color: var(--primary-dark);
+    gap: 10px;
+}
+
+.section-view-all i {
+    font-size: 12px;
+}
+
+@media (max-width: 575.98px) {
+    .section-header--with-action {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .section-view-all {
+        align-self: flex-start;
+        margin-top: 3px;
+    }
+}
+
+.section-eyebrow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+    font-size: var(--fs-section-eyebrow);
+    font-weight: 700;
+}
+
+.section-number {
+    color: var(--secondary);
+    font-size: 13px;
+}
+
+.section-label {
+    color: var(--primary-dark);
+}
+
+.section-title {
+    margin: 0;
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.section-description {
+    max-width: 680px;
+    margin-block: 10px 0;
+    margin-inline: 0 auto;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+    text-align: start;
+}
+
+/* ===== HERO ===== */
+
+.hero-section {
+    position: relative;
+    padding-top: 24px;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+/* Hero content must sit above the particle background layer
+   (#particles-bg, defined in particles-bg.css). */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-profile-col {
+    position: relative;
+    z-index: 3;
+}
+
+/* decorative left/right (positioned relative to container).
+   Note: unused in any HTML (dead CSS) — kept as physical
+   properties intentionally rather than risk an unnecessary
+   change; if used later, revisit and convert alongside the
+   real HTML. */
+
+.decor-left, .decor-right {
+    position: absolute;
+    bottom: 20px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.decor-left {
+    left: -20px;
+    transform: translateX(0);
+}
+
+.decor-right {
+    right: -20px;
+    transform: translateX(0);
+}
+
+.decor-left, .decor-right {
+    width: 260px;
+    height: auto;
+}
+
+/* profile card top uses the exact background image (cropped inside the small card top) */
+
+.profile-card .profile-top {
+    background-image: none;
+}
+
+/* Profile card — intentionally calc(100% + 30px), bleeding
+   30px toward the about column. Since the columns use `order`,
+   this flips naturally in LTR (see .about-card below). */
+
+.profile-card {
+    position: relative;
+    z-index: 10;
+    width: calc(100% + 30px) !important;
+    margin-inline-end: -30px;
+    margin-inline-start: 0;
+    border-end-end-radius: 4px;
+}
+
+/* Profile card details */
+
+.profile-card-info .profile-fullname {
+    font-weight: 800;
+}
+
+/* Profile card specifics (match screenshot) — both top
+   corners are equally rounded, so no logical-property swap is
+   needed here. */
+
+.profile-card .profile-top, .profile-card .profile-top::before {
+    height: 160px;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* profile-avatar: half inside blue top, half on white */
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    position: relative;
+    margin-top: -75px;
+    /* half of avatar height -> overlaps top area */
+    display:block;
+    margin-inline: auto;
+    z-index: 5;
+}
+
+/* smaller avatar on narrower screens */
+
+@media (max-width:991.98px) {
+    .profile-avatar {
+        width: 140px;
+        height: 140px;
+        margin-top: -70px;
+        border-width: 5px;
+    }
+
+    .decor-left, .decor-right {
+        width: 200px;
+    }
+}
+
+/* hide decorative images on very small screens */
+
+@media (max-width:575.98px) {
+    .decor-left, .decor-right {
+        display: none;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        margin-top: -60px;
+    }
+}
+
+/* wave bottom (white cut) */
+
+.wave-bottom {
+    position: relative;
+    margin-top: -2px;
+    /* pull up to touch the hero */
+      z-index:2
+}
+
+.wave-bottom img {
+    width: 100%;
+    display: block;
+}
+
+/* Extra padding added on the reading-start side, the same
+   side the profile card bleeds into. */
+
+.about-card {
+    padding: 28px;
+    position: relative;
+    z-index: 1;
+    min-height: 200px;
+    padding-inline-start: 48px;
+}
+
+.about-card p {
+    line-height: 37px;
+    font-size: 0.9rem;
+}
+
+.hero-about-col {
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 992px) {
+    .hero-profile-col {
+        transform: translateY(-29px);
+    }
+
+    .hero-about-col {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 991.98px) {
+    .profile-card {
+        width: 100% !important;
+        margin-inline: 0;
+        transform: none;
+    }
+
+    .about-card {
+        padding: 20px;
+    }
+}
+
+/* =========================================================
+   RESUME DOWNLOAD BUTTON
+   Uses the template's own brand color (--primary-dark, also
+   used elsewhere like the contact submit button) instead of
+   Bootstrap's neutral btn-dark, which nearly disappeared
+   against the dark profile card in dark mode. This variable
+   automatically lightens in dark mode, keeping enough contrast
+   against the card.
+========================================================= */
+
+.resume-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--primary-dark);
+    border: 1px solid var(--primary-dark);
+    border-radius: 9px;
+    color: #fff;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.resume-download-btn:hover,
+.resume-download-btn:focus-visible {
+    background: #20262d;
+    border-color: #20262d;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   OPEN TO WORK BADGE
+   Sits on the top corner of the profile card, reading-start
+   side.
+========================================================= */
+
+.profile-card-badge {
+    position: absolute;
+    top: 18px;
+    inset-inline-start: 18px;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 11px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #d9dee3;
+    border-radius: 999px;
+    color: #374151;
+    font-size: var(--fs-profile-card-badge);
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(31, 41, 55, 0.08);
+    backdrop-filter: blur(5px);
+    white-space: nowrap;
+}
+
+.profile-status-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #238d4a;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.16);
+    animation: profile-status-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes profile-status-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.82);
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .profile-card-badge {
+        top: 14px;
+        inset-inline-start: 14px;
+        padding: 6px 9px;
+    }
+
+    .profile-status-dot {
+        width: 7px;
+        height: 7px;
+        flex-basis: 7px;
+    }
+}
+
+/* section title like screenshot: accent stripe at the start side */
+
+.section-title {
+    display: inline-block;
+    border-inline-start: 4px solid var(--primary);
+    padding-inline-start: 10px;
+    margin-bottom: 14px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* ========== SKILLS styling ========== */
+
+.skill-row {
+    margin-bottom: 40px;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.skill-percent {
+    color: var(--muted);
+    font-size: .95rem;
+}
+
+/* custom progress bar with diagonal stripes */
+
+.progress {
+    height: 18px;
+    background: #eef6ff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.progress {
+    height: 18px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Gradient angle is a physical value (no logical equivalent);
+   controlled by --flip so the "dark base / light tip"
+   relationship — built by Bootstrap RTL filling the bar from
+   the start side — stays consistent in both directions. */
+
+.progress .progress-bar {
+    height: 100%;
+    background-image: repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.14) 0 8px,
+            rgba(0, 0, 0, 0) 2px 23px
+        ),
+        linear-gradient(
+            calc(90deg * var(--flip)),
+            #6b7280,
+            #374151
+        );
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+/* ========== CERTIFICATES / CLIENTS ========== */
+
+.cert-item, .list-box {
+    background: #fff;
+    border: 1px solid #eef4fb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid #e6eefb;
+    background: #fbfdff;
+    color: var(--primary);
+}
+
+/* ========== Activities / Dot list ========== */
+
+.dot-list li {
+    list-style: none;
+    padding-inline-start: 12px;
+    position: relative;
+    padding-inline-end: 14px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.dot-list li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: -13.5px;
+    top: 7.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--primary);
+    z-index: 2;
+}
+
+/* small helpers */
+
+.muted {
+    color: var(--muted);
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+/* ================================
+   TIMELINE
+================================ */
+
+.timeline-section {
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.timeline {
+    position: relative;
+    padding-inline-start: 38px;
+}
+
+/* Vertical line */
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: 2px;
+    background: var(--silver);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 42px;
+}
+
+/* Dot */
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: -18px;
+    top: 5.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--primary);
+    z-index: 2;
+}
+
+/* Date / Meta */
+
+.timeline-meta {
+    margin-bottom: 12px;
+    color: var(--secondary);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: start;
+}
+
+/* Content */
+
+.timeline-content {
+    text-align: start;
+}
+
+.timeline-content h4 {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.timeline-content p {
+    margin: 0;
+    max-width: 850px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 2;
+    text-align: start;
+}
+
+/* Last item */
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+/* ==================================================
+   COURSES SECTION
+================================================== */
+
+.courses-section {
+    margin-top: 70px;
+    padding: 70px 0 80px;
+    background: #eceff1;
+}
+
+.section-eyebrow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+    font-size: var(--fs-section-eyebrow);
+    font-weight: 700;
+}
+
+.section-number {
+    color: var(--secondary);
+    font-size: 13px;
+}
+
+@media (max-width: 991.98px) {
+    .courses-section {
+        padding: 60px 0 70px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .courses-section {
+        margin-top: 50px;
+        padding: 50px 0 60px;
+    }
+}
+
+/* =========================================================
+   GITHUB PROJECTS
+========================================================= */
+
+.github-projects-section {
+    width: 100%;
+    padding: 72px 0 102px;
+    background: var(--background);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+    .github-projects-section {
+        padding: 60px 0 75px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .github-projects-section {
+        padding: 52px 0 65px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .github-projects-section {
+        padding: 45px 0 55px;
+    }
+}
+
+/* =========================================================
+   ARTICLES
+========================================================= */
+
+.articles-section {
+    width: 100%;
+    padding: 72px 0 80px;
+    background: var(--background);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+    .articles-section {
+        padding: 60px 0 70px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .articles-section {
+        padding: 52px 0 62px;
+    }
+}
+
+/* =========================================================
+   INTERNAL PROJECTS
+========================================================= */
+
+.projects-section {
+    width: 100%;
+    padding: 72px 0 82px;
+    background: var(--section-bg);
+}
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+
+.projects-carousel {
+    position: relative;
+    padding: 0 0 50px;
+}
+
+.projects-carousel .carousel-inner {
+    overflow: hidden;
+}
+
+/* =========================================================
+   CONTROLS
+   "Previous" sits on the reading-start side, "Next" on the
+   reading-end side (matches the mirrored chevrons in layout.css).
+========================================================= */
+
+.projects-control {
+    width: 42px;
+    height: 42px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    opacity: 1;
+    background: transparent;
+    z-index: 5;
+}
+
+.projects-control-prev {
+    inset-inline-start: -58px;
+    inset-inline-end: auto;
+}
+
+.projects-control-next {
+    inset-inline-end: -58px;
+    inset-inline-start: auto;
+}
+
+.projects-arrow {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--primary-dark);
+    transition: background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.projects-arrow:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #ffffff;
+    transform: scale(1.04);
+}
+
+.projects-arrow i {
+    font-size: 14px;
+}
+
+/* =========================================================
+   INDICATORS
+========================================================= */
+
+.projects-indicators {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 4px;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin: 0;
+    z-index: 4;
+}
+
+.projects-indicators button[data-bs-target] {
+    width: 7px;
+    height: 7px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--silver);
+    opacity: 1;
+    transition: width 0.2s ease,
+        border-radius 0.2s ease,
+        background 0.2s ease;
+}
+
+.projects-indicators button[data-bs-target].active {
+    width: 22px;
+    border-radius: 10px;
+    background: var(--primary-dark);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+    .projects-control-prev {
+        inset-inline-start: -20px;
+    }
+
+    .projects-control-next {
+        inset-inline-end: -20px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .projects-section {
+        padding: 60px 0 70px;
+    }
+
+    .projects-control-prev {
+        inset-inline-start: 5px;
+    }
+
+    .projects-control-next {
+        inset-inline-end: 5px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .projects-section {
+        padding: 52px 0 65px;
+    }
+
+    .projects-control {
+        width: 36px;
+        height: 36px;
+    }
+
+    .projects-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .projects-control-prev {
+        inset-inline-start: 2px;
+    }
+
+    .projects-control-next {
+        inset-inline-end: 2px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .projects-carousel {
+        padding-bottom: 45px;
+    }
+
+    .projects-control-prev {
+        display: none;
+    }
+
+    .projects-control-next {
+        display: none;
+    }
+}
+
+/* =========================================================
+   CERTIFICATES & RECOGNITIONS
+   Grid of certificate cards; clicking a thumbnail opens it in
+   a Bootstrap modal lightbox (behavior in
+   assets/js/certificate-modal.js).
+========================================================= */
+
+.certificates-section {
+    width: 100%;
+    padding: 72px 0 80px;
+    background: var(--section-bg);
+}
+
+.certificate-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.certificate-card:hover {
+    border-color: var(--primary-dark);
+    box-shadow: 0 14px 32px rgba(31, 41, 55, 0.08);
+    transform: translateY(-3px);
+}
+
+.certificate-thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    background: #eef1f4;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.certificate-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.certificate-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(23, 28, 36, 0.55);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.certificate-thumb:hover .certificate-thumb-overlay,
+.certificate-thumb:focus-visible .certificate-thumb-overlay {
+    opacity: 1;
+}
+
+.certificate-thumb-overlay i {
+    font-size: 16px;
+}
+
+.certificate-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 22px 22px;
+}
+
+.certificate-issuer {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.certificate-title {
+    margin: 0 0 auto;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.certificate-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.certificate-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Lightbox: a simple, image-focused modal with no default Bootstrap header/footer. */
+.certificate-modal .modal-content {
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+}
+
+.certificate-modal .btn-close {
+    position: absolute;
+    top: 14px;
+    inset-inline-end: 14px;
+    z-index: 2;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.certificate-modal img {
+    display: block;
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    background: #0b0d10;
+    border-radius: 12px 12px 0 0;
+}
+
+.certificate-modal-caption {
+    margin: 0;
+    padding: 14px 20px;
+    background: #fff;
+    border-radius: 0 0 12px 12px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
+@media (max-width: 767.98px) {
+    .certificates-section {
+        padding: 52px 0 60px;
+    }
+
+    .certificate-body {
+        padding: 18px 18px 20px;
+    }
+}
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+.contact-section {
+    width: 100%;
+    padding: 85px 0 90px;
+    background: var(--section-bg);
+}
+
+/* =========================================================
+   CONTACT CONTENT
+========================================================= */
+
+.contact-content {
+    max-width: 470px;
+    text-align: start;
+}
+
+.contact-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 16px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.contact-number {
+    color: var(--secondary);
+    font-size: 13px;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.contact-title {
+    margin: 0 0 20px;
+    color: var(--text);
+    font-size: var(--fs-contact-title);
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.contact-title span {
+    display: block;
+    color: var(--primary-dark);
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.contact-description {
+    max-width: 450px;
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--fs-contact-description);
+    line-height: 2.15;
+    text-align: justify;
+}
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+.contact-socials {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 28px;
+}
+
+.contact-social {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--primary-dark);
+    font-size: 15px;
+    transition: background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-social:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.contact-form-card {
+    width: 100%;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(31, 41, 55, 0.05);
+}
+
+/* Form field styles (label / input / textarea / submit) live
+   in components.css, since the article page's comment/reply
+   form uses them too. */
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+    .contact-section {
+        padding: 70px 0 75px;
+    }
+
+    .contact-content {
+        max-width: 100%;
+    }
+
+    .contact-form-card {
+        padding: 28px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .contact-section {
+        padding: 55px 0 60px;
+    }
+
+    .contact-socials {
+        margin-bottom: 5px;
+    }
+
+    .contact-form-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .contact-form-card {
+        padding: 18px;
+    }
+}

@@ -1,0 +1,650 @@
+/* =========================================================
+   LAYOUT — shared base rules, header & footer
+   -----------------------------------------------------------
+   This file covers:
+     1) Color variables (:root), direction-aware variables, and
+        the base browser reset
+     2) body / font / background
+     3) Container width and grid (row)
+     4) Base card (.card-custom) — shared visual surface under
+        widgets, the profile card, and content cards
+     5) Site header, with desktop nav and the mobile offcanvas
+        menu — used on every page except the homepage (which
+        has its own hero/header)
+     6) Site footer — identical on every page
+
+   Load before each page's own CSS and before components.css.
+
+   RTL/LTR: the template was originally RTL-only. Physical
+   values (left/right, margin-left, ...) were converted to
+   logical properties (inline-start/inline-end) so switching
+   dir="rtl|ltr" on <html> works with no separate CSS.
+========================================================= */
+
+/* ========== Reset & base ========== */
+
+:root {
+    --primary: #4b5563;
+    --primary-dark: #374151;
+    --secondary: #6b7280;
+    --silver: #9ca3af;
+    --border: #d1d5db;
+    --light-gray: #e5e7eb;
+    --background: #f5f6f7;
+    --section-bg: #eceff1;
+    --surface: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+
+    /* Destructive actions (e.g. log out) and blocked/forbidden states
+       (e.g. the 403 page title) only — the one deliberate departure
+       from the neutral palette, kept as muted as red can be. */
+    --danger: #dc2626;
+    --danger-soft-bg: #fef2f2;
+
+    /* Direction-aware multiplier. The template is RTL-native, so
+   RTL = 1 (unchanged) and LTR = -1 (mirrored). Only use this
+   for values with no logical equivalent (transform/translateX,
+   gradient angle) — for margin/padding/border/text-align, use
+   logical properties directly instead. */
+    --flip: 1;
+
+    /* =====================================================
+       TYPOGRAPHY — central responsive font-size scale
+       -----------------------------------------------------
+       These variables replace dozens of separate per-file
+       @media font-size rules. Most use clamp(): min/max come
+       from that class's smallest/largest real size in the
+       previous breakpoint-based version, with the middle
+       (calc) term fit to approximate the old step behavior as
+       a smooth, continuous curve instead of sudden jumps.
+
+       A few values aren't monotonic (they briefly grow again
+       at a middle breakpoint) and can't be reproduced with a
+       single clamp(), so they're kept as discrete steps instead
+       (base value + @media override further down).
+
+       Some variables are shared across pages that intentionally
+       use identical typography (e.g. article page and project
+       detail page) — rather than duplicate the value per file,
+       they all reference one variable here.
+    ===================================================== */
+
+    /* Header / Footer (layout.css) */
+    --fs-site-logo-mark: clamp(12.5px, calc(8px + 0.7812vw), 14px);
+    --fs-site-logo-text: clamp(13.5px, calc(11.423px + 0.3606vw), 15.5px);
+    --fs-header-toggle: clamp(17px, calc(11px + 1.0417vw), 19px);
+    --fs-theme-toggle-btn: clamp(17px, calc(11px + 1.0417vw), 19px);
+
+    /* Shared components (components.css) */
+    --fs-articles-description: clamp(13px, calc(9.571px + 0.4464vw), 14px);
+    --fs-project-title: clamp(19px, calc(15.571px + 0.4464vw), 20px);
+    --fs-project-tech: clamp(11px, calc(8px + 0.5208vw), 12px);
+    --fs-course-title: clamp(18px, calc(12px + 1.0417vw), 20px);
+    --fs-course-description: clamp(13px, calc(10px + 0.5208vw), 14px);
+    --fs-github-project-name: clamp(18px, calc(15px + 0.5208vw), 19px);
+    --fs-breadcrumb: clamp(11.5px, calc(7px + 0.7812vw), 13px);
+
+    /* Article, Project-detail, and Course-detail pages (article.css /
+       project-details.css / course-details.css) — share one
+       typography pattern by design, so the variable is shared too. */
+    --fs-detail-page-title: clamp(21px, calc(11.446px + 1.5577vw), 32px);
+    --fs-detail-page-excerpt: clamp(14.5px, calc(11.071px + 0.4464vw), 16px);
+    --fs-detail-page-meta: clamp(12.5px, calc(10.786px + 0.2232vw), 13px);
+    --fs-detail-page-body: clamp(15px, calc(13.286px + 0.2232vw), 15.5px);
+    --fs-detail-page-lead: clamp(16px, calc(12.571px + 0.4464vw), 17px);
+    --fs-detail-page-h2: clamp(19px, calc(8.714px + 1.3393vw), 22px);
+    --fs-detail-page-category: clamp(11px, calc(8px + 0.5208vw), 12px);
+    --fs-comments-heading: clamp(18px, calc(11.143px + 0.8929vw), 20px);
+    --fs-project-stack-item: clamp(11.5px, calc(8.5px + 0.5208vw), 12.5px);
+
+    /* Article listing / archive page (articles-updated-ajax-v2.css) */
+    --fs-articles-page-title: clamp(30px, calc(13px + 2.913vw), 50px);
+    --fs-articles-page-subtitle: clamp(12.5px, calc(9.784px + 0.4767vw), 15px);
+    --fs-articles-search-icon: clamp(16px, calc(9.143px + 0.8929vw), 18px);
+    --fs-articles-search-input: clamp(12px, calc(7.5px + 0.7812vw), 14px);
+    --fs-articles-search-submit: clamp(12px, calc(6.857px + 0.6696vw), 13.5px);
+    --fs-articles-search-submit-icon: clamp(14px, calc(18px + -0.5208vw), 15px);
+    --fs-articles-search-helper: clamp(8.5px, calc(4px + 0.7812vw), 10px);
+    --fs-articles-filter-heading: clamp(14px, calc(10.571px + 0.4464vw), 15px);
+    --fs-articles-filter-heading-p: clamp(9.5px, calc(6.071px + 0.4464vw), 10.5px);
+    --fs-articles-filter-clear: clamp(9px, calc(4.5px + 0.7812vw), 11px);
+    --fs-articles-filter-legend: clamp(13px, calc(10px + 0.5208vw), 14px);
+    --fs-articles-filter-description: clamp(9px, calc(4.5px + 0.7812vw), 10.5px);
+    --fs-articles-topic-pill: clamp(9.5px, calc(6.5px + 0.5208vw), 11px);
+    --fs-articles-sort-strong: clamp(10.5px, calc(9px + 0.2604vw), 11px);
+    --fs-articles-sort-small: clamp(8px, calc(6.5px + 0.2604vw), 8.5px);
+    --fs-articles-filter-meta: clamp(9.5px, calc(7.786px + 0.2232vw), 10px);
+    --fs-articles-search-status: clamp(8.5px, calc(5.071px + 0.4464vw), 9.5px);
+    --fs-articles-search-result-strong: clamp(11px, calc(5.857px + 0.6696vw), 12.5px);
+    --fs-articles-search-result-small: clamp(8.5px, calc(5.071px + 0.4464vw), 9.5px);
+    --fs-articles-listing-title: clamp(23px, calc(13.309px + 1.6155vw), 31px);
+    --fs-articles-listing-count: clamp(10.5px, calc(6px + 0.7812vw), 12px);
+    --fs-articles-pagination-link: clamp(12px, calc(9px + 0.5208vw), 13px);
+
+    /* Resume / home page (resume.css) */
+    --fs-section-eyebrow: clamp(13px, calc(10px + 0.5208vw), 14px);
+    --fs-contact-description: clamp(13px, calc(9.571px + 0.4464vw), 14px);
+    --fs-profile-card-badge: clamp(10px, calc(7px + 0.5208vw), 11px);
+
+    /* Admin panel (admin-layout.css) */
+    --fs-admin-header-title: clamp(16px, calc(15.091px + 0.2424vw), 18px);
+    --fs-admin-header-eyebrow: clamp(11px, calc(10.545px + 0.1212vw), 12px);
+
+    /* Courses archive page (courses-archive.css) */
+    --fs-courses-filter-pill: clamp(13px, calc(12.773px + 0.0606vw), 13.5px);
+
+    /* Auth pages (auth.css) — Login, Signup, and Forgot Password
+       share this one card-heading size on purpose. */
+    --fs-auth-title: clamp(22px, calc(8.286px + 1.7857vw), 26px);
+
+    /* Non-monotonic values — can't be reproduced with one clamp(), so kept as discrete breakpoint values instead. */
+    --fs-article-title: 15px;
+    --fs-contact-title: 28px;
+}
+
+[dir="ltr"] {
+    --flip: -1;
+}
+
+/* Re-defines the two non-monotonic typography variables at
+   their real breakpoints — the only two that don't use clamp(). */
+@media (max-width: 1199.98px) {
+    :root {
+        --fs-article-title: 14px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    :root {
+        --fs-contact-title: 36px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    :root {
+        --fs-contact-title: 31px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    :root {
+        --fs-article-title: 15px;
+        --fs-contact-title: 27px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 100px;
+    background: var(--background);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* container width */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+}
+
+@media (max-width: 575.98px) {
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+
+    .row {
+        margin-inline: 0;
+    }
+
+}
+
+/* ===== Card base ===== */
+
+.card-custom {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(10,20,40,0.06);
+    overflow: hidden;
+}
+
+/* =========================================================
+   DIRECTION-AWARE ICONS
+   -----------------------------------------------------------
+   These 4 Bootstrap Icons classes are used only for directional
+   meaning across the project (verified against every HTML
+   file): the forward arrow/CTA, the external-link arrow, and
+   the carousel/pagination prev-next chevrons. Since the HTML
+   was authored for RTL, they need mirroring in LTR so both
+   their position (already handled by inset-inline-*) and the
+   arrow direction stay consistent. The class in HTML never
+   changes — only its appearance is mirrored in LTR.
+========================================================= */
+
+[dir="ltr"] .bi-arrow-left,
+[dir="ltr"] .bi-arrow-up-left,
+[dir="ltr"] .bi-box-arrow-up-left,
+[dir="ltr"] .bi-chevron-left,
+[dir="ltr"] .bi-chevron-right {
+    display: inline-block;
+    transform: scaleX(-1);
+}
+
+/* =========================================================
+   SITE HEADER (shared across Index / Article / ProjectDetails)
+   Uses the color variables defined above so the header stays
+   visually consistent with the rest of the template.
+========================================================= */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    inset-inline: 0;
+    z-index: 1030;
+    height: 78px;
+    background: rgba(255, 255, 255, 0.86);
+    border-bottom: 1px solid var(--light-gray);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.site-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.site-logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    background: var(--primary-dark);
+    border-radius: 10px;
+    color: #fff;
+    font-size: var(--fs-site-logo-mark);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.site-logo-text {
+    font-size: var(--fs-site-logo-text);
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   DESKTOP NAV
+========================================================= */
+
+.site-nav {
+    align-items: center;
+    gap: 30px;
+}
+
+.site-nav-link {
+    position: relative;
+    padding: 6px 0;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-nav-link::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-dark);
+    transition: width 0.2s ease;
+}
+
+.site-nav-link:hover {
+    color: var(--text);
+}
+
+.site-nav-link:hover::after {
+    width: 100%;
+}
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.site-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.site-header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--primary-dark);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, gap 0.2s ease;
+}
+
+.site-header-cta:hover {
+    background: #111827;
+    color: #fff;
+    gap: 11px;
+}
+
+.site-header-cta i {
+    font-size: 13px;
+}
+
+.site-header-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: var(--fs-header-toggle);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.site-header-toggle:hover {
+    background: var(--section-bg);
+}
+
+/* =========================================================
+   MOBILE OFFCANVAS MENU
+   Note: Bootstrap's class here is offcanvas-start (not -end)
+   — that's Bootstrap's own logical naming (start = right in
+   RTL, left in LTR), and it already flips correctly via the
+   bootstrap.rtl.css / bootstrap.css swap. No override needed.
+========================================================= */
+
+.site-offcanvas {
+    width: min(320px, 84vw);
+    background: var(--surface);
+}
+
+.site-offcanvas .offcanvas-header {
+    align-items: center;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.site-offcanvas .btn-close {
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+.site-offcanvas .offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+}
+
+.site-offcanvas-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.site-offcanvas-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.site-offcanvas-nav a:hover {
+    background: var(--section-bg);
+    color: var(--primary-dark);
+}
+
+.site-offcanvas-nav a i {
+    width: 20px;
+    color: var(--secondary);
+    font-size: 16px;
+    text-align: center;
+}
+
+.site-offcanvas-footer {
+    margin-top: auto;
+    padding-top: 22px;
+}
+
+.site-offcanvas-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    background: var(--primary-dark);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.site-offcanvas-cta:hover {
+    background: #111827;
+    color: #fff;
+}
+
+.site-offcanvas-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.site-offcanvas-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--primary-dark);
+    font-size: 16px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.site-offcanvas-socials a:hover {
+    background: var(--primary-dark);
+    color: #fff;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+    .site-header {
+        height: 70px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .site-header {
+        height: 64px;
+    }
+
+    .site-logo-mark {
+        width: 34px;
+        height: 34px;
+    }
+
+    .site-header-toggle {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.site-nav-link:focus-visible,
+.site-header-cta:focus-visible,
+.site-header-toggle:focus-visible,
+.site-offcanvas-nav a:focus-visible,
+.site-offcanvas-cta:focus-visible,
+.site-offcanvas-socials a:focus-visible,
+.site-logo:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-nav-link, .site-nav-link::after, .site-header-cta,
+    .site-header-toggle, .site-offcanvas-nav a, .site-offcanvas-cta,
+    .site-offcanvas-socials a {
+        transition: none;
+    }
+
+    [dir="ltr"] .bi-arrow-left,
+    [dir="ltr"] .bi-arrow-up-left,
+    [dir="ltr"] .bi-box-arrow-up-left,
+    [dir="ltr"] .bi-chevron-left,
+    [dir="ltr"] .bi-chevron-right {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   SITE FOOTER
+   Identical on every page (home, article, archive, project
+   detail).
+========================================================= */
+
+.site-footer {
+    width: 100%;
+    padding: 32px 0;
+    background: #2f3439;
+    color: #d1d5db;
+    border-top: 1px solid #454b52;
+}
+
+/* Content */
+
+.site-footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* Copyright — first item in the HTML, so it sits on the
+   reading-start side in both directions via flexbox; only
+   text-align needs to stay logical. */
+
+.footer-copyright {
+    color: #d1d5db;
+    text-align: start;
+}
+
+/* Project info — second item, reading-end side. */
+
+.footer-project {
+    color: #9ca3af;
+    text-align: end;
+}
+
+.footer-project strong {
+    color: #e5e7eb;
+    font-weight: 700;
+}
+
+/* GitHub link */
+
+.footer-project a {
+    color: #e5e7eb;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-project a:hover {
+    color: #ffffff;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767.98px) {
+    .site-footer {
+        padding: 26px 0;
+    }
+
+    .site-footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .footer-copyright, .footer-project {
+        text-align: center;
+    }
+}
