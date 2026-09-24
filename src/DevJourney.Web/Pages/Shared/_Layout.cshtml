@@ -1,5 +1,11 @@
-﻿<!DOCTYPE html>
-<html dir="ltr" lang="en">
+﻿@using System.Globalization
+@{
+    bool isRtl = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+}
+
+<!DOCTYPE html>
+<html html lang="@CultureInfo.CurrentUICulture.Name"
+      dir="@(isRtl ? "rtl" : "ltr")">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -9,29 +15,10 @@
         @ViewData["Title"] | Ehsan Goli
     </title>
 
-    <!-- Set theme (light/dark) early, right before the first stylesheet -->
-    <script src="assets/js/theme-init.js"></script>
+    <partial name="_Stylesheets" />
 
-    <!-- Bootstrap — standard build -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    @await RenderSectionAsync("_Stylesheets", required: false)
 
-    <!-- Bootstrap icons -->
-    <link href="assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Styles CSS -->
-    <!-- Layout: variables, base reset, container, shared header & footer -->
-    <link href="assets/css/layout.css" rel="stylesheet">
-
-    <!-- Components: reusable cards & elements (article/project/course/GitHub card, sidebar widget, breadcrumb, form fields) -->
-    <link href="assets/css/components.css" rel="stylesheet">
-
-    <!-- Import Fonts: switches automatically based on <html lang> -->
-    <link href="assets/fonts/style.css" rel="stylesheet">
-
-    @await RenderSectionAsync("_Stylesheets",required: false)
-
-    <!-- Dark Mode: color variable overrides for dark theme (data-bs-theme="dark") — must always be the last CSS file loaded -->
-    <link href="assets/css/dark-mode.css" rel="stylesheet">
 </head>
 <body>
     
@@ -53,8 +40,6 @@
 
     <partial name="_Footer" />
 
-    <!-- Scripts -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="assets/js/theme-toggle.js"></script>
+    <partial name="_Scripts" />
 </body>
 </html>
