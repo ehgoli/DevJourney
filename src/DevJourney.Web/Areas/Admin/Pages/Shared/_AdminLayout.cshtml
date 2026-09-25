@@ -1,0 +1,44 @@
+﻿@{
+    bool isRtl = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+}
+
+<!DOCTYPE html>
+<html html lang="@CultureInfo.CurrentUICulture.Name"
+      dir="@(isRtl ? "rtl" : "ltr")">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="description" content="Write this page's description here.">
+
+    <title>
+        @ViewData["Title"] | Ehsan Goli
+    </title>
+
+    <partial name="_Stylesheets" />
+
+    @await RenderSectionAsync("_Stylesheets", required: false)
+
+</head>
+<body>
+    
+    <button aria-label="Toggle dark/light mode" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle dark/light mode" type="button">
+        <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+        <i class="bi bi-sun theme-toggle-icon-light"></i>
+    </button>
+
+
+    <partial name="_Header" />
+
+    <main>
+        <section class="my-new-page-section">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </section>
+    </main>
+
+    <partial name="_Footer" />
+
+    <partial name="_Scripts" />
+</body>
+</html>
