@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>درباره من</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>مقالات</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>تماس با من</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>تمامی حقوق محفوظ است.</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>صفحه اصلی</value>
+  </data>
+  <data name="Portfolio" xml:space="preserve">
+    <value>نمونه‌کار ها</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>مهارت ها</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>خوش‌آمدید</value>
+  </data>
+  <data name="WorkWithMe" xml:space="preserve">
+    <value>همکاری با من</value>
+  </data>
+  <data name="Footer.BuiltWith" xml:space="preserve">
+    <value>توسعه داده شده با</value>
+  </data>
+  <data name="Footer.SourcePublishedOn" xml:space="preserve">
+    <value>مشاهده در</value>
+  </data>
+  <data name="Github" xml:space="preserve">
+    <value>گیت‌هاب</value>
   </data>
 </root>

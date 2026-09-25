@@ -2,17 +2,19 @@
     <div class="container">
         <div class="site-footer-content">
             <div class="footer-copyright">
-                © 2026 Ehsan Goli — All rights reserved.
+                © 2025 - @DateTime.UtcNow.Year Ehsan Goli — @Localizer["Copyright"]
             </div>
             <div class="footer-project">
-                This project is built with
+                @Localizer["Footer.BuiltWith"]
                 <strong>
-                    ASP.NET Core .NET
+                    .NET
                 </strong>
-                and its
+
+                @Localizer["Footer.SourcePublishedOn"]
+
                 <a href="#" rel="noopener noreferrer" target="_blank">
-                    source is published on GitHub
-                </a>.
+                    @Localizer["Github"]
+                </a>
             </div>
         </div>
     </div>

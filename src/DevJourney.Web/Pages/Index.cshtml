@@ -1,13 +1,8 @@
 ﻿@page
 
-@using Microsoft.Extensions.Localization
-@using DevJourney.Web
-
-@inject IStringLocalizer<SharedResource> Localizer
-
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = @Localizer["Home"];
 }
 
 

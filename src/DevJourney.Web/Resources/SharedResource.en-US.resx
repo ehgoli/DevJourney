@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>All rights reserved.</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Portfolio" xml:space="preserve">
+    <value>Portfolio</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Skills</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Welcome</value>
+  </data>
+  <data name="WorkWithMe" xml:space="preserve">
+    <value>Work with me</value>
+  </data>
+  <data name="Footer.BuiltWith" xml:space="preserve">
+    <value>This project is built with</value>
+  </data>
+  <data name="Footer.SourcePublishedOn" xml:space="preserve">
+    <value>and its source is published on</value>
+  </data>
+  <data name="Github" xml:space="preserve">
+    <value>Github</value>
   </data>
 </root>
