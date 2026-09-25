@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Caching\" />
+    <Folder Include="AI\" />
+    <Folder Include="BackgroundJobs\" />
+    <Folder Include="ExternalServices\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Logging\" />
+    <Folder Include="Security\" />
+    <Folder Include="Storage\" />
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+
 </Project>
