@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DevJourney.Domain.Entities.Common;
 
-namespace DevJourney.Domain.Entities.Portfolio
+namespace DevJourney.Domain.Entities.Portfolio;
+
+public sealed partial class AchievementTranslation : BaseEntity
 {
-    internal class AchievementTranslation
-    {
-    }
+    public Guid AchievementId { get; private set; }
+
+    public string Language { get; private set; } = null!;
+
+    public string Title { get; private set; } = null!;
+
+    public string? Description { get; private set; }
 }
