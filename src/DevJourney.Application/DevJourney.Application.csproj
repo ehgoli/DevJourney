@@ -12,7 +12,6 @@
     <Folder Include="Common\Helpers\" />
     <Folder Include="Common\Models\" />
     <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\Infrastructure\" />
     <Folder Include="Interfaces\Services\" />
     <Folder Include="Mappers\" />
     <Folder Include="Exceptions\" />
