@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
+using DevJourney.Application.Interfaces.Infrastructure.Caching;
 using DevJourney.Infrastructure.BackgroundJobs;
+using DevJourney.Infrastructure.Caching;
 using Hangfire;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +42,17 @@ public static class DependencyInjection
 
         // Registers StartupTask to run automatically when the application starts.
         services.AddHostedService<HangfireStartupTask>();
+
+        #endregion
+
+        #region Caching Service
+
+        services.AddMemoryCache();
+
+        services.Configure<CacheOptions>(
+            configuration.GetSection(CacheOptions.SectionName));
+
+        services.AddScoped<ICacheService, MemoryCacheService>();
 
         #endregion
     }
