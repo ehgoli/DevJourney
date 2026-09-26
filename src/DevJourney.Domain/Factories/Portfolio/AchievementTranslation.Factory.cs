@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Portfolio;
@@ -47,11 +48,11 @@ public partial class AchievementTranslation
     private static void Validate(Guid achievementId, string title)
     {
         if (achievementId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Achievement ID cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Achievement title cannot be empty.");
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 
 
 using DevJourney.Domain.Entities.Common;
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 
@@ -62,15 +63,15 @@ public partial class TimelineTranslation
         string description)
     {
         if (timelineId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Timeline ID cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Title cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(description))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Description cannot be empty.");
     }
 }

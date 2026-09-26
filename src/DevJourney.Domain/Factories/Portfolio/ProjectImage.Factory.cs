@@ -1,3 +1,5 @@
+using DevJourney.Domain.Exceptions;
+
 namespace DevJourney.Domain.Entities.Portfolio;
 
 public partial class ProjectImage
@@ -46,15 +48,15 @@ public partial class ProjectImage
         int displayOrder)
     {
         if (projectId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Project ID cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(fileName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "File name cannot be empty.");
 
         if (displayOrder < 0)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Display order cannot be negative.");
     }
 }

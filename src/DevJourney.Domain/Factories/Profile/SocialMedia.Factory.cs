@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DevJourney.Domain.Exceptions;
 
 
 namespace DevJourney.Domain.Entities.Profile;
@@ -59,27 +60,27 @@ public partial class SocialMedia
         int displayOrder)
     {
         if (string.IsNullOrWhiteSpace(title))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Social media title cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(url))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Social media URL cannot be empty.");
 
         if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
             (uri.Scheme != Uri.UriSchemeHttp &&
              uri.Scheme != Uri.UriSchemeHttps))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Social media URL must be a valid HTTP or HTTPS URL.");
         }
 
         if (string.IsNullOrWhiteSpace(icon))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Social media icon cannot be empty.");
 
         if (displayOrder < 0)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Display order cannot be negative.");
     }
 }

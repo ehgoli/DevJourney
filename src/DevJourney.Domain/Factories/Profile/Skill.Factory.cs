@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DevJourney.Domain.Exceptions;
 
 
 namespace DevJourney.Domain.Entities.Profile;
@@ -26,7 +27,7 @@ public partial class Skill
         Validate(name, level, yearsOfExperience);
         
         if (level > 100)
-            throw new InvalidOperationException("Level must be between 0 and 100.");
+            throw new DomainException("Level must be between 0 and 100.");
         
         return new Skill(
             name: name,
@@ -40,7 +41,7 @@ public partial class Skill
         Validate(name, level, yearsOfExperience);
         
         if (level > 100)
-            throw new InvalidOperationException("Level must be between 0 and 100.");
+            throw new DomainException("Level must be between 0 and 100.");
         
         this.Name = name;
         this.Level = level;
@@ -54,15 +55,15 @@ public partial class Skill
         int? yearsOfExperience)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Skill name cannot be empty.");
 
         if (level is < 0 or > 100)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Skill level must be between 0 and 100.");
 
         if (yearsOfExperience.HasValue && yearsOfExperience < 0)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Years of experience cannot be negative.");
     }
 }

@@ -1,3 +1,5 @@
+using DevJourney.Domain.Exceptions;
+
 namespace DevJourney.Domain.Entities.Identity;
 
 public partial class Role
@@ -12,7 +14,7 @@ public partial class Role
         string? description)
     {
         if (string.IsNullOrWhiteSpace(displayName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Role display name cannot be empty.");
 
         Name = name.Trim();
@@ -37,7 +39,7 @@ public partial class Role
         string? description)
     {
         if (string.IsNullOrWhiteSpace(displayName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Role display name cannot be empty.");
         
         DisplayName = displayName.Trim();

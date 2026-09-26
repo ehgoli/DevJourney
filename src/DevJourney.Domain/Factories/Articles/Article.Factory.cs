@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Articles;
@@ -88,7 +89,7 @@ public partial class Article
     {
         if (_translations.Any(x => x.Language == language))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 $"A translation for '{language}' already exists.");
         }
 
@@ -106,13 +107,13 @@ public partial class Article
     {
         if (Status != ArticleStatus.Draft)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only draft articles can be marked as ready to publish.");
         }
 
         if (_translations.Count == 0)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article must have at least one translation.");
         }
 
@@ -124,13 +125,13 @@ public partial class Article
     {
         if (Status != ArticleStatus.ReadyToPublish)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only articles ready to publish can be scheduled.");
         }
 
         if (scheduledAt <= DateTimeOffset.UtcNow)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Scheduled time must be in the future.");
         }
 
@@ -142,7 +143,7 @@ public partial class Article
     {
         if (Status != ArticleStatus.Scheduled)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only scheduled articles can cancel their schedule.");
         }
 
@@ -155,7 +156,7 @@ public partial class Article
         if (Status != ArticleStatus.ReadyToPublish &&
             Status != ArticleStatus.Scheduled)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article cannot be published from its current state.");
         }
 
@@ -163,7 +164,7 @@ public partial class Article
             (!ScheduledAt.HasValue ||
              ScheduledAt.Value > DateTimeOffset.UtcNow))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Scheduled article cannot be published before its scheduled time.");
         }
 
@@ -178,13 +179,13 @@ public partial class Article
     {
         if (readingTime <= 0)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Reading time must be greater than zero.");
         }
 
         if (categoryId == Guid.Empty)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Category ID cannot be empty.");
         }
     }

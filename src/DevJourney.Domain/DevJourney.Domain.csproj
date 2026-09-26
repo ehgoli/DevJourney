@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Factories\Profile\Profile.Factory.cs" />
   </ItemGroup>
 

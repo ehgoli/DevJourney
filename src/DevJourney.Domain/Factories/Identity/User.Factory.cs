@@ -1,3 +1,5 @@
+using DevJourney.Domain.Exceptions;
+
 namespace DevJourney.Domain.Entities.Identity;
 
 public partial class User
@@ -70,7 +72,7 @@ public partial class User
     public void ChangePassword(string passwordHash)
     {
         if (string.IsNullOrWhiteSpace(passwordHash))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Password hash cannot be empty.");
 
         PasswordHash = passwordHash;
@@ -79,7 +81,7 @@ public partial class User
     public void SetActivationCode(string activationCode)
     {
         if (string.IsNullOrWhiteSpace(activationCode))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Activation code cannot be empty.");
 
         ActivationCode = activationCode.Trim();
@@ -93,7 +95,7 @@ public partial class User
     public void Activate()
     {
         if (Status == UserStatus.Banned)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "A banned user cannot be activated.");
 
         if (Status == UserStatus.Active)
@@ -105,7 +107,7 @@ public partial class User
     public void Suspend()
     {
         if (Status == UserStatus.Banned)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "A banned user cannot be suspended.");
 
         if (Status == UserStatus.Suspended)
@@ -125,11 +127,11 @@ public partial class User
     public void AddRole(Guid roleId)
     {
         if (roleId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Role ID cannot be empty.");
 
         if (_roles.Any(x => x.RoleId == roleId))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User already has this role.");
 
         _roles.Add(
@@ -144,7 +146,7 @@ public partial class User
             x => x.RoleId == roleId);
 
         if (userRole is null)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User does not have this role.");
 
         _roles.Remove(userRole);
@@ -159,27 +161,27 @@ public partial class User
         string? activationCode)
     {
         if (string.IsNullOrWhiteSpace(fullName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User full name cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(email))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User email cannot be empty.");
 
         ValidateEmail(email);
 
         if (string.IsNullOrWhiteSpace(phone))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User phone cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(passwordHash))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User password hash cannot be empty.");
 
         if (activationCode is not null &&
             string.IsNullOrWhiteSpace(activationCode))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Activation code cannot be empty.");
         }
     }
@@ -195,13 +197,13 @@ public partial class User
                     email.Trim(),
                     StringComparison.Ordinal))
             {
-                throw new InvalidOperationException(
+                throw new DomainException(
                     "User email is invalid.");
             }
         }
         catch (FormatException)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User email is invalid.");
         }
     }

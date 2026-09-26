@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Portfolio;
@@ -15,15 +16,15 @@ public partial class Achievement
         string? certificateNumber = null)
     {
         if (string.IsNullOrWhiteSpace(issuerName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Issuer name cannot be empty.");
 
         if (receivedDate > DateOnly.FromDateTime(DateTime.UtcNow))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Received date cannot be in the future.");
 
         if (string.IsNullOrWhiteSpace(imageFileName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Image file name cannot be empty.");
 
         this.IssuerName = issuerName.Trim();
@@ -52,15 +53,15 @@ public partial class Achievement
         string? certificateNumber = null)
     {
         if (string.IsNullOrWhiteSpace(issuerName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Issuer name cannot be empty.");
 
         if (receivedDate > DateOnly.FromDateTime(DateTime.UtcNow))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Received date cannot be in the future.");
 
         if (string.IsNullOrWhiteSpace(imageFileName))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Image file name cannot be empty.");
         
         this.IssuerName = issuerName.Trim();
@@ -76,7 +77,7 @@ public partial class Achievement
     {
         if (_translations.Any(x => x.Language == language))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 $"A translation for '{language}' already exists.");
         }
 

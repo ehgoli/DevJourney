@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Portfolio;
@@ -68,19 +69,19 @@ public partial class ProjectTranslation
         string description)
     {
         if (projectId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Project ID cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Title cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(shortDescription))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Short description cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(description))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Description cannot be empty.");
     }
 }

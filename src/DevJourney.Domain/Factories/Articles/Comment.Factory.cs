@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Articles;
@@ -109,24 +110,24 @@ public partial class Comment
         string content)
     {
         if (articleId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article ID cannot be empty.");
 
         if (userId.HasValue && userId.Value == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "User ID cannot be empty.");
 
         if (parentCommentId.HasValue &&
             parentCommentId.Value == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Parent comment ID cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(name))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Comment name cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(content))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Comment content cannot be empty.");
         
         ValidateEmail(email);
@@ -135,7 +136,7 @@ public partial class Comment
     private static void ValidateEmail(string email)
     {
         if (string.IsNullOrWhiteSpace(email))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Comment email cannot be empty.");
 
         try
@@ -143,12 +144,12 @@ public partial class Comment
             var address = new System.Net.Mail.MailAddress(email);
 
             if (address.Address != email.Trim())
-                throw new InvalidOperationException(
+                throw new DomainException(
                     "Comment email is invalid.");
         }
         catch (FormatException)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Comment email is invalid.");
         }
     }

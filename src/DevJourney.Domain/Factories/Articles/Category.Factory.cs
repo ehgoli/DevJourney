@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Articles;
@@ -30,7 +31,7 @@ public partial class Category
     {
         if (_translations.Any(x => x.Language == language))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 $"A translation for '{language}' already exists.");
         }
 
@@ -50,14 +51,14 @@ public partial class Category
         string description)
     {
         var translation = _translations.FirstOrDefault(x => x.Id == translationId)
-            ?? throw new InvalidOperationException(
+            ?? throw new DomainException(
                 $"Category translation '{translationId}' was not found.");
 
         if (_translations.Any(x =>
                 x.Id != translationId &&
                 x.Language == language))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 $"A translation for '{language}' already exists.");
         }
 
@@ -67,7 +68,7 @@ public partial class Category
     public void RemoveTranslation(Guid translationId)
     {
         var translation = _translations.FirstOrDefault(x => x.Id == translationId)
-            ?? throw new InvalidOperationException(
+            ?? throw new DomainException(
                 $"Category translation '{translationId}' was not found.");
 
         _translations.Remove(translation);

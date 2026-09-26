@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DevJourney.Domain.Exceptions;
 
 
 namespace DevJourney.Domain.Entities.Profile;
@@ -20,7 +21,7 @@ public partial class Timeline
     internal static Timeline Create(DateOnly fromDate, DateOnly? toDate)
     {
         if (toDate.HasValue && fromDate > toDate.Value)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "From date cannot be later than To date.");
         
         return new Timeline(
@@ -32,7 +33,7 @@ public partial class Timeline
     public void Modify(DateOnly fromDate, DateOnly? toDate)
     {
         if (toDate.HasValue && fromDate > toDate.Value)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "From date cannot be later than To date.");
         
         this.FromDate = fromDate;

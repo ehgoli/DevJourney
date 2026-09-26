@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Portfolio;
@@ -100,7 +101,7 @@ public partial class Project
     public void ChangeStatus(ProjectStatus status)
     {
         if (!Enum.IsDefined(status))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Invalid project status.");
 
         Status = status;
@@ -138,7 +139,7 @@ public partial class Project
     {
         if (_translations.Any(x => x.Language == language))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "A translation for this language already exists.");
         }
 
@@ -205,23 +206,23 @@ public partial class Project
         string? gitHubUrl)
     {
         if (string.IsNullOrWhiteSpace(cover))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Cover cannot be empty.");
 
         if (!Enum.IsDefined(status))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Invalid project status.");
 
         if (string.IsNullOrWhiteSpace(mainTechnology))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Main technology cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(projectType))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Project type cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(primaryLanguage))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Primary language cannot be empty.");
 
         ValidateGitHubUrl(gitHubUrl);
@@ -237,20 +238,20 @@ public partial class Project
                 UriKind.Absolute,
                 out var uri))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "GitHub URL is invalid.");
         }
 
         if (uri.Scheme != Uri.UriSchemeHttp &&
             uri.Scheme != Uri.UriSchemeHttps)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "GitHub URL must use HTTP or HTTPS.");
 
         if (!uri.Host.Equals(
                 "github.com",
                 StringComparison.OrdinalIgnoreCase))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "URL must belong to GitHub.");
         }
     }

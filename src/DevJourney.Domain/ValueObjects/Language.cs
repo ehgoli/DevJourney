@@ -1,3 +1,5 @@
+using DevJourney.Domain.Exceptions;
+
 namespace DevJourney.Domain.ValueObjects;
 
 public readonly record struct Language
@@ -12,17 +14,17 @@ public readonly record struct Language
     public static Language Create(string code)
     {
         if (string.IsNullOrWhiteSpace(code))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Language cannot be empty.");
 
         var normalizedCode = code.Trim().ToLowerInvariant();
 
         if (normalizedCode.Length != 2)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Language code must contain exactly two characters.");
 
         if (!normalizedCode.All(char.IsLetter))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Language code must contain only letters.");
 
         return new Language(normalizedCode);

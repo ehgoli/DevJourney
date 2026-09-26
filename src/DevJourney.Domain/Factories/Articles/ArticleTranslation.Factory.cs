@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Articles;
@@ -51,7 +52,7 @@ public partial class ArticleTranslation
     {
         if (string.IsNullOrWhiteSpace(tag))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Tag cannot be empty.");
         }
 
@@ -63,7 +64,7 @@ public partial class ArticleTranslation
                     tag,
                     StringComparison.OrdinalIgnoreCase)))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 $"Tag '{tag}' already exists.");
         }
 
@@ -74,7 +75,7 @@ public partial class ArticleTranslation
     {
         if (string.IsNullOrWhiteSpace(tag))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Tag cannot be empty.");
         }
 
@@ -86,7 +87,7 @@ public partial class ArticleTranslation
 
         if (existingTag is null)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 $"Tag '{tag}' was not found.");
         }
 
@@ -101,25 +102,25 @@ public partial class ArticleTranslation
     {
         if (articleId == Guid.Empty)
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article ID cannot be empty.");
         }
 
         if (string.IsNullOrWhiteSpace(title))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article title cannot be empty.");
         }
 
         if (string.IsNullOrWhiteSpace(shortDescription))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article short description cannot be empty.");
         }
 
         if (string.IsNullOrWhiteSpace(content))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Article content cannot be empty.");
         }
     }

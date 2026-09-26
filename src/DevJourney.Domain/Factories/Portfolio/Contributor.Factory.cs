@@ -1,3 +1,5 @@
+using DevJourney.Domain.Exceptions;
+
 namespace DevJourney.Domain.Entities.Portfolio;
 
 public partial class Contributor
@@ -55,19 +57,19 @@ public partial class Contributor
         string image)
     {
         if (projectId == Guid.Empty)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Project ID cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(name))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Contributor name cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(heading))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Contributor heading cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(githubUrl))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Contributor GitHub URL cannot be empty.");
 
         if (!Uri.TryCreate(
@@ -77,7 +79,7 @@ public partial class Contributor
             (uri.Scheme != Uri.UriSchemeHttp &&
              uri.Scheme != Uri.UriSchemeHttps))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Contributor GitHub URL must be a valid HTTP or HTTPS URL.");
         }
 
@@ -89,12 +91,12 @@ public partial class Contributor
                 ".github.com",
                 StringComparison.OrdinalIgnoreCase))
         {
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Contributor URL must be a GitHub URL.");
         }
 
         if (string.IsNullOrWhiteSpace(image))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Contributor image cannot be empty.");
     }
 }

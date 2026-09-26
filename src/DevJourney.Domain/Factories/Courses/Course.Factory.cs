@@ -1,3 +1,4 @@
+using DevJourney.Domain.Exceptions;
 using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Courses;
@@ -91,11 +92,11 @@ public partial class Course
         public void StartRecording()
     {
         if (ProductionStatus == CourseProductionStatus.Discontinued)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "A discontinued course cannot be started.");
 
         if (ProductionStatus == CourseProductionStatus.Completed)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "A completed course cannot be started again.");
 
         ProductionStatus = CourseProductionStatus.Recording;
@@ -104,11 +105,11 @@ public partial class Course
     public void CompleteRecording()
     {
         if (ProductionStatus != CourseProductionStatus.Recording)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only a course in recording state can be completed.");
 
         if (_episodes.Count == 0)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "A course must have at least one episode before it can be completed.");
 
         ProductionStatus = CourseProductionStatus.Completed;
@@ -128,7 +129,7 @@ public partial class Course
     public void Activate()
     {
         if (ProductionStatus != CourseProductionStatus.Completed)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only a completed course can be activated.");
 
         PublicationStatus = CoursePublicationStatus.Active;
@@ -138,7 +139,7 @@ public partial class Course
     public void Deactivate()
     {
         if (PublicationStatus != CoursePublicationStatus.Active)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only an active course can be deactivated.");
 
         PublicationStatus = CoursePublicationStatus.Draft;
@@ -148,15 +149,15 @@ public partial class Course
     public void Schedule(DateTimeOffset scheduledAt)
     {
         if (ProductionStatus != CourseProductionStatus.Completed)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only a completed course can be scheduled.");
 
         if (PublicationStatus == CoursePublicationStatus.Active)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "An active course cannot be scheduled.");
 
         if (scheduledAt <= DateTimeOffset.UtcNow)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Scheduled time must be in the future.");
 
         PublicationStatus = CoursePublicationStatus.Scheduled;
@@ -166,7 +167,7 @@ public partial class Course
     public void CancelSchedule()
     {
         if (PublicationStatus != CoursePublicationStatus.Scheduled)
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Only a scheduled course can cancel its schedule.");
 
         PublicationStatus = CoursePublicationStatus.Draft;
@@ -209,19 +210,19 @@ public partial class Course
         string description)
     {
         if (string.IsNullOrWhiteSpace(title))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Course title cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(cover))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Course cover cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(shortDescription))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Course short description cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(description))
-            throw new InvalidOperationException(
+            throw new DomainException(
                 "Course description cannot be empty.");
     }
 
