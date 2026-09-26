@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Articles;
 
 public partial class Article
@@ -67,7 +69,7 @@ public partial class Article
         Guid? parentCommentId,
         string name,
         string email,
-        string language,
+        Language language,
         string content)
     {
         var comment = Comment.Create(
@@ -82,13 +84,9 @@ public partial class Article
         this._comments.Add(comment);
     }
 
-    public void AddTranslation(Guid articleId, string language, string title, string shortDescription, string content)
+    public void AddTranslation(Guid articleId, Language language, string title, string shortDescription, string content)
     {
-        if (_translations.Any(x =>
-                string.Equals(
-                    x.Language,
-                    language,
-                    StringComparison.OrdinalIgnoreCase)))
+        if (_translations.Any(x => x.Language == language))
         {
             throw new InvalidOperationException(
                 $"A translation for '{language}' already exists.");

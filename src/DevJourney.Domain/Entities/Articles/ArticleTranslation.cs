@@ -4,6 +4,7 @@ using System.Text;
 
 
 using DevJourney.Domain.Entities.Common;
+using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Articles;
 
@@ -11,7 +12,7 @@ public sealed partial class ArticleTranslation : BaseEntity
 {
     public Guid ArticleId { get; private set; }
 
-    public string Language { get; private set; } = null!;
+    public Language Language { get; private set; }
 
     public string Title { get; private set; } = null!;
 

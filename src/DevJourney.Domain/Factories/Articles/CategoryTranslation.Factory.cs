@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Articles;
 
 public partial class CategoryTranslation
@@ -8,13 +10,12 @@ public partial class CategoryTranslation
 
     private CategoryTranslation(
         Guid categoryId,
-        string language,
+        Language language,
         string title,
         string description)
     {
         Validate(
             categoryId,
-            language,
             title,
             description);
 
@@ -26,7 +27,7 @@ public partial class CategoryTranslation
 
     internal static CategoryTranslation Create(
         Guid categoryId,
-        string language,
+        Language language,
         string title,
         string description)
     {
@@ -37,35 +38,25 @@ public partial class CategoryTranslation
             description: description);
     }
 
-    public void Modify(
-        string language,
-        string title,
-        string description)
+    public void Modify(string title, string description)
     {
         Validate(
             CategoryId,
-            language,
             title,
             description);
 
-        Language = language;
-        Title = title;
-        Description = description;
+        this.Title = title;
+        this.Description = description;
     }
 
     private static void Validate(
         Guid categoryId,
-        string language,
         string title,
         string description)
     {
         if (categoryId == Guid.Empty)
             throw new InvalidOperationException(
                 "Category ID cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(language))
-            throw new InvalidOperationException(
-                "Language cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
             throw new InvalidOperationException(

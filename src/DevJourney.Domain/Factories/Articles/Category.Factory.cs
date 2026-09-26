@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Articles;
 
 public partial class Category
@@ -22,15 +24,11 @@ public partial class Category
     }
 
     public void AddTranslation(
-        string language,
+        Language language,
         string title,
         string description)
     {
-        if (_translations.Any(x =>
-            string.Equals(
-                x.Language,
-                language,
-                StringComparison.OrdinalIgnoreCase)))
+        if (_translations.Any(x => x.Language == language))
         {
             throw new InvalidOperationException(
                 $"A translation for '{language}' already exists.");
@@ -47,7 +45,7 @@ public partial class Category
 
     public void ModifyTranslation(
         Guid translationId,
-        string language,
+        Language language,
         string title,
         string description)
     {
@@ -56,20 +54,14 @@ public partial class Category
                 $"Category translation '{translationId}' was not found.");
 
         if (_translations.Any(x =>
-            x.Id != translationId &&
-            string.Equals(
-                x.Language,
-                language,
-                StringComparison.OrdinalIgnoreCase)))
+                x.Id != translationId &&
+                x.Language == language))
         {
             throw new InvalidOperationException(
                 $"A translation for '{language}' already exists.");
         }
 
-        translation.Modify(
-            language: language,
-            title: title,
-            description: description);
+        translation.Modify(title: title, description: description);
     }
 
     public void RemoveTranslation(Guid translationId)

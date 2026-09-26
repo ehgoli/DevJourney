@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Portfolio;
 
 public partial class Achievement
@@ -68,15 +70,11 @@ public partial class Achievement
     }
     
     public void AddTranslation(
-        string language,
+        Language language,
         string title,
         string? description)
     {
-        if (_translations.Any(x =>
-                string.Equals(
-                    x.Language,
-                    language,
-                    StringComparison.OrdinalIgnoreCase)))
+        if (_translations.Any(x => x.Language == language))
         {
             throw new InvalidOperationException(
                 $"A translation for '{language}' already exists.");

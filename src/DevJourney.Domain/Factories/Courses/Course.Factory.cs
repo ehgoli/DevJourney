@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Courses;
 
 public partial class Course
@@ -13,7 +15,7 @@ public partial class Course
         string cover,
         string shortDescription,
         CourseLevel level,
-        string language,
+        Language language,
         string description,
         string? prerequisites)
     {
@@ -21,14 +23,13 @@ public partial class Course
             title: title,
             cover: cover,
             shortDescription: shortDescription,
-            language: language,
             description: description);
 
         Title = title.Trim();
         Cover = cover.Trim();
         ShortDescription = shortDescription.Trim();
         Level = level;
-        Language = language.Trim();
+        Language = language;
         Description = description.Trim();
         Prerequisites = prerequisites?.Trim();
 
@@ -47,7 +48,7 @@ public partial class Course
         string cover,
         string shortDescription,
         CourseLevel level,
-        string language,
+        Language language,
         string description,
         string? prerequisites = null)
     {
@@ -73,7 +74,6 @@ public partial class Course
             title: title,
             cover: cover,
             shortDescription: shortDescription,
-            language: Language,
             description: description);
 
         Title = title.Trim();
@@ -206,7 +206,6 @@ public partial class Course
         string title,
         string cover,
         string shortDescription,
-        string language,
         string description)
     {
         if (string.IsNullOrWhiteSpace(title))
@@ -220,10 +219,6 @@ public partial class Course
         if (string.IsNullOrWhiteSpace(shortDescription))
             throw new InvalidOperationException(
                 "Course short description cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(language))
-            throw new InvalidOperationException(
-                "Course language cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(description))
             throw new InvalidOperationException(

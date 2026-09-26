@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DevJourney.Domain.Entities.Common;
+using DevJourney.Domain.ValueObjects;
 
 namespace DevJourney.Domain.Entities.Courses;
 
@@ -18,7 +19,7 @@ public sealed partial class Course : BaseEntity
 
     public TimeSpan Duration { get; private set; }
 
-    public string Language { get; private set; } = null!;
+    public Language Language { get; private set; }
 
     public string Description { get; private set; } = null!;
 

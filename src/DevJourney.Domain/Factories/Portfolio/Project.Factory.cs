@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Portfolio;
 
 public partial class Project
@@ -129,16 +131,12 @@ public partial class Project
     #region Translations
 
     public void AddTranslation(
-        string language,
+        Language language,
         string title,
         string shortDescription,
         string description)
     {
-        if (_translations.Any(x =>
-                string.Equals(
-                    x.Language.Trim(),
-                    language.Trim(),
-                    StringComparison.OrdinalIgnoreCase)))
+        if (_translations.Any(x => x.Language == language))
         {
             throw new InvalidOperationException(
                 "A translation for this language already exists.");

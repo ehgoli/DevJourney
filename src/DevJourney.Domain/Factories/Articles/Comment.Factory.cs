@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Articles;
 
 public partial class Comment
@@ -13,7 +15,7 @@ public partial class Comment
         string name,
         string email,
         string content,
-        string language,
+        Language language,
         CommentStatus status)
     {
         Validate(
@@ -40,7 +42,7 @@ public partial class Comment
         Guid? parentCommentId,
         string name,
         string email,
-        string language,
+        Language language,
         string content)
     {
         return new Comment(

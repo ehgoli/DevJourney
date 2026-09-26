@@ -1,4 +1,5 @@
 ﻿using DevJourney.Domain.Entities.Common;
+using DevJourney.Domain.ValueObjects;
 
 
 namespace DevJourney.Domain.Entities.Profile;
@@ -10,7 +11,7 @@ public sealed partial class ProfileTranslation
     }
 
     public ProfileTranslation(Guid profileId, 
-        string language, 
+        Language language, 
         string fullName, 
         string heading, 
         string bio, 
@@ -25,7 +26,7 @@ public sealed partial class ProfileTranslation
     }
 
     public static ProfileTranslation Create(Guid profileId, 
-            string language, 
+            Language language, 
             string fullName, 
             string heading, 
             string bio, 

@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Portfolio;
 
 public partial class ProjectTranslation
@@ -8,20 +10,19 @@ public partial class ProjectTranslation
 
     private ProjectTranslation(
         Guid projectId,
-        string language,
+        Language language,
         string title,
         string shortDescription,
         string description)
     {
         Validate(
             projectId,
-            language,
             title,
             shortDescription,
             description);
 
         ProjectId = projectId;
-        Language = language.Trim();
+        Language = language;
         Title = title.Trim();
         ShortDescription = shortDescription.Trim();
         Description = description.Trim();
@@ -29,7 +30,7 @@ public partial class ProjectTranslation
 
     internal static ProjectTranslation Create(
         Guid projectId,
-        string language,
+        Language language,
         string title,
         string shortDescription,
         string description)
@@ -43,19 +44,18 @@ public partial class ProjectTranslation
     }
 
     public void Modify(
-        string language,
+        Language language,
         string title,
         string shortDescription,
         string description)
     {
         Validate(
             ProjectId,
-            language,
             title,
             shortDescription,
             description);
 
-        Language = language.Trim();
+        Language = language;
         Title = title.Trim();
         ShortDescription = shortDescription.Trim();
         Description = description.Trim();
@@ -63,7 +63,6 @@ public partial class ProjectTranslation
 
     private static void Validate(
         Guid projectId,
-        string language,
         string title,
         string shortDescription,
         string description)
@@ -71,10 +70,6 @@ public partial class ProjectTranslation
         if (projectId == Guid.Empty)
             throw new InvalidOperationException(
                 "Project ID cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(language))
-            throw new InvalidOperationException(
-                "Language cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
             throw new InvalidOperationException(

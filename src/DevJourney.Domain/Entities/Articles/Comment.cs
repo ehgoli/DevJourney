@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DevJourney.Domain.Entities.Common;
+using DevJourney.Domain.ValueObjects;
 
 
 namespace DevJourney.Domain.Entities.Articles;
@@ -20,7 +21,7 @@ public sealed partial class Comment : BaseEntity
 
     public string Content { get; private set; } = null!;
 
-    public string Language { get; set; } = null!;
+    public Language Language { get; private set; }
     
     public CommentStatus Status { get; private set; } = CommentStatus.Pending;
 }

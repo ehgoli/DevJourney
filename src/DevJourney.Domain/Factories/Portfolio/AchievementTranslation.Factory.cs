@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Portfolio;
 
 public partial class AchievementTranslation
@@ -6,22 +8,19 @@ public partial class AchievementTranslation
     {
     }
     
-    private AchievementTranslation(Guid achievementId, string language, string title, string? description)
+    private AchievementTranslation(Guid achievementId, Language language, string title, string? description)
     {
         this.AchievementId = achievementId;
         this.Language = language;
         this.Title = title;
         this.Description = description;
         
-        Validate(
-            achievementId,
-            language,
-            title);
+        Validate(achievementId, title);
     }
     
     internal static AchievementTranslation Create(
         Guid achievementId,
-        string language,
+        Language language,
         string title,
         string? description)
     {
@@ -33,33 +32,23 @@ public partial class AchievementTranslation
     }
     
     public void Modify(
-        string language,
+        Language language,
         string title,
         string? description)
     {
-        Validate(
-            AchievementId,
-            language,
-            title);
+        Validate(AchievementId, title);
 
-        this.Language = language.Trim();
+        this.Language = language;
         this.Title = title.Trim();
         this.Description = description?.Trim();
     }
 
     
-    private static void Validate(
-        Guid achievementId,
-        string language,
-        string title)
+    private static void Validate(Guid achievementId, string title)
     {
         if (achievementId == Guid.Empty)
             throw new InvalidOperationException(
                 "Achievement ID cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(language))
-            throw new InvalidOperationException(
-                "Language cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
             throw new InvalidOperationException(

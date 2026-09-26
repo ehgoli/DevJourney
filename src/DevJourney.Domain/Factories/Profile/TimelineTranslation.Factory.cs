@@ -4,6 +4,7 @@ using System.Text;
 
 
 using DevJourney.Domain.Entities.Common;
+using DevJourney.Domain.ValueObjects;
 
 
 namespace DevJourney.Domain.Entities.Profile;
@@ -16,11 +17,11 @@ public partial class TimelineTranslation
 
     private TimelineTranslation(
         Guid timelineId,
-        string language,
+        Language language,
         string title,
         string description)
     {
-        Validate(timelineId, language, title, description);
+        Validate(timelineId, title, description);
 
         this.TimelineId = timelineId;
         this.Language = language;
@@ -30,7 +31,7 @@ public partial class TimelineTranslation
 
     internal static TimelineTranslation Create(
         Guid timelineId,
-        string language,
+        Language language,
         string title,
         string description)
     {
@@ -43,11 +44,11 @@ public partial class TimelineTranslation
 
     public void Modify(
         Guid timelineId,
-        string language,
+        Language language,
         string title,
         string description)
     {
-        Validate(timelineId, language, title, description);
+        Validate(timelineId, title, description);
 
         this.TimelineId = timelineId;
         this.Language = language;
@@ -57,17 +58,12 @@ public partial class TimelineTranslation
 
     private static void Validate(
         Guid timelineId,
-        string language,
         string title,
         string description)
     {
         if (timelineId == Guid.Empty)
             throw new InvalidOperationException(
                 "Timeline ID cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(language))
-            throw new InvalidOperationException(
-                "Language cannot be empty.");
 
         if (string.IsNullOrWhiteSpace(title))
             throw new InvalidOperationException(

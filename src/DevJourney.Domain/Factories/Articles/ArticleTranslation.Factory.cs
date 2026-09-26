@@ -1,3 +1,5 @@
+using DevJourney.Domain.ValueObjects;
+
 namespace DevJourney.Domain.Entities.Articles;
 
 public partial class ArticleTranslation
@@ -6,11 +8,10 @@ public partial class ArticleTranslation
     {
     }
 
-    private ArticleTranslation(Guid articleId, string language, string title, string shortDescription, string content)
+    private ArticleTranslation(Guid articleId, Language language, string title, string shortDescription, string content)
     {
         Validate(
             ArticleId,
-            language,
             title,
             shortDescription,
             content);
@@ -22,7 +23,7 @@ public partial class ArticleTranslation
         this.Content = content;
     }
 
-    internal static ArticleTranslation Create(Guid articleId, string language, string title, string shortDescription, string content)
+    internal static ArticleTranslation Create(Guid articleId, Language language, string title, string shortDescription, string content)
     {
         return new ArticleTranslation(
             articleId: articleId,
@@ -36,7 +37,6 @@ public partial class ArticleTranslation
     {
         Validate(
             ArticleId,
-            null,
             title,
             shortDescription,
             content);
@@ -95,7 +95,6 @@ public partial class ArticleTranslation
     
     private static void Validate(
         Guid articleId,
-        string language,
         string title,
         string shortDescription,
         string content)
