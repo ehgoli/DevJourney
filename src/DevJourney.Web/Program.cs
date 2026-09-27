@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using DevJourney.Infrastructure;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,8 @@ var localizationOptions = new RequestLocalizationOptions
 };
 
 app.UseRequestLocalization(localizationOptions);
+
+app.UseHangfireDashboard("/hangfire");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
