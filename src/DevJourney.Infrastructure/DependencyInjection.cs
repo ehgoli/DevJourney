@@ -4,6 +4,8 @@ using System.Text;
 using DevJourney.Application.Interfaces.Infrastructure.AI;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
+using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Email;
+using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Sms;
 using DevJourney.Application.Interfaces.Infrastructure.Media;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Articles;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Courses;
@@ -16,6 +18,8 @@ using DevJourney.Domain.Entities.Identity;
 using DevJourney.Infrastructure.AI;
 using DevJourney.Infrastructure.BackgroundJobs;
 using DevJourney.Infrastructure.Caching;
+using DevJourney.Infrastructure.ExternalServices.Email;
+using DevJourney.Infrastructure.ExternalServices.Sms;
 using DevJourney.Infrastructure.Media;
 using DevJourney.Infrastructure.Persistence.Context;
 using DevJourney.Infrastructure.Persistence.Repositories.Articles;
@@ -174,6 +178,25 @@ public static class DependencyInjection
         #region Security
 
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+        #endregion
+
+        #region External Services
+
+        #region Email
+
+        services.Configure<EmailOptions>(
+            configuration.GetSection("Email"));
+        
+        services.AddScoped<IEmailSender, SmtpEmailSender>();
+
+        #endregion
+
+        #region Sms
+
+        services.AddScoped<ISmsSender, SmsSender>();
+
+        #endregion
 
         #endregion
     }
