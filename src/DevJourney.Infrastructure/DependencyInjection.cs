@@ -44,8 +44,10 @@ public static class DependencyInjection
     {
         #region AI
         
-        services.Configure<GeminiOptions>(
-            configuration.GetSection("Gemini"));
+        services.AddOptions<GeminiOptions>()
+            .Bind(configuration.GetSection(GeminiOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         services.AddSingleton<IAiModerationService, GeminiModerationService>();
         
@@ -85,17 +87,21 @@ public static class DependencyInjection
 
         services.AddMemoryCache();
 
-        services.Configure<CacheOptions>(
-            configuration.GetSection(CacheOptions.SectionName));
-
+        services.AddOptions<CacheOptions>()
+            .Bind(configuration.GetSection(CacheOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
         services.AddScoped<ICacheService, MemoryCacheService>();
 
         #endregion
 
         #region Storage
 
-        services.Configure<StorageOptions>(
-            configuration.GetSection("Storage"));
+        services.AddOptions<StorageOptions>()
+            .Bind(configuration.GetSection(StorageOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         services.AddSingleton<IFileStorage, LocalFileStorage>();
 
@@ -103,17 +109,23 @@ public static class DependencyInjection
         
         #region Security
 
-        services.Configure<ClamAvOptions>(
-            configuration.GetSection("ClamAV"));
+        services.AddOptions<ClamAvOptions>()
+            .Bind(configuration.GetSection(ClamAvOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         services.AddSingleton<IFileScanner, ClamAvFileScanner>();
+
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         #endregion
 
         #region Media
 
-        services.Configure<ImageProcessingOptions>(
-            configuration.GetSection("ImageProcessing"));
+        services.AddOptions<ImageProcessingOptions>()
+            .Bind(configuration.GetSection(ImageProcessingOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         services.AddSingleton<IImageProcessor, ImageSharpImageProcessor>();
 
@@ -175,18 +187,14 @@ public static class DependencyInjection
         
         #endregion
 
-        #region Security
-
-        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
-        #endregion
-
         #region External Services
 
         #region Email
 
-        services.Configure<EmailOptions>(
-            configuration.GetSection("Email"));
+        services.AddOptions<EmailOptions>()
+            .Bind(configuration.GetSection(EmailOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
         
         services.AddScoped<IEmailSender, SmtpEmailSender>();
 
