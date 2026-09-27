@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DevJourney.Application.Interfaces.Infrastructure.AI;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
 using DevJourney.Application.Interfaces.Infrastructure.Media;
 using DevJourney.Application.Interfaces.Infrastructure.Security;
 using DevJourney.Application.Interfaces.Infrastructure.Storage;
+using DevJourney.Infrastructure.AI;
 using DevJourney.Infrastructure.BackgroundJobs;
 using DevJourney.Infrastructure.Caching;
 using DevJourney.Infrastructure.Media;
@@ -21,6 +23,15 @@ public static class DependencyInjection
 {
     public static void Register(IServiceCollection services, IConfiguration configuration)
     {
+        #region AI
+        
+        services.Configure<GeminiOptions>(
+            configuration.GetSection("Gemini"));
+
+        services.AddSingleton<IAiModerationService, GeminiModerationService>();
+        
+        #endregion
+        
         #region Background Service
 
         var hangfireConnectionString = configuration.GetConnectionString("HangfireConnection");

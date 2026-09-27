@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AI\" />
     <Folder Include="ExternalServices\" />
     <Folder Include="Configuration\" />
     <Folder Include="Logging\" />
@@ -19,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.GenAI" Version="1.22.0" />
     <PackageReference Include="Hangfire" Version="1.8.24" />
     <PackageReference Include="Hangfire.Core" Version="1.8.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
