@@ -19,4 +19,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevJourney.Domain\DevJourney.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

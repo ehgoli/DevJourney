@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Factories\Profile\Profile.Factory.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Factories\Profile\Profile.Factory.cs" />
-  </ItemGroup>
-
 </Project>

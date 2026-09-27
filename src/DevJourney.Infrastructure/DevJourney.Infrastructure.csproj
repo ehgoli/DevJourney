@@ -10,18 +10,28 @@
     <Folder Include="ExternalServices\" />
     <Folder Include="Configuration\" />
     <Folder Include="Logging\" />
-    <Folder Include="Persistence\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DevJourney.Application\DevJourney.Application.csproj" />
+    <ProjectReference Include="..\DevJourney.Domain\DevJourney.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Google.GenAI" Version="1.22.0" />
     <PackageReference Include="Hangfire" Version="1.8.24" />
     <PackageReference Include="Hangfire.Core" Version="1.8.24" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="SixLabors.ImageSharp" Version="4.1.2" />
   </ItemGroup>
 

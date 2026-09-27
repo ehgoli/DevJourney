@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using DevJourney.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ builder.Services.AddLocalization(options =>
 {
     options.ResourcesPath = "Resources";
 });
+
+builder.Services.RegisterInfrastructure(builder.Configuration);
 
 builder.Services
     .AddRazorPages()

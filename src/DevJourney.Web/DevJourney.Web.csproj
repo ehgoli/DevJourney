@@ -10,10 +10,24 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevJourney.Application\DevJourney.Application.csproj" />
+    <ProjectReference Include="..\DevJourney.Domain\DevJourney.Domain.csproj" />
+    <ProjectReference Include="..\DevJourney.Infrastructure\DevJourney.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

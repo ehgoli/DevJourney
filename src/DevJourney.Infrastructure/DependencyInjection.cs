@@ -5,15 +5,30 @@ using DevJourney.Application.Interfaces.Infrastructure.AI;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
 using DevJourney.Application.Interfaces.Infrastructure.Media;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Articles;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Courses;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Identity;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Portfolio;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Profile;
 using DevJourney.Application.Interfaces.Infrastructure.Security;
 using DevJourney.Application.Interfaces.Infrastructure.Storage;
+using DevJourney.Domain.Entities.Identity;
 using DevJourney.Infrastructure.AI;
 using DevJourney.Infrastructure.BackgroundJobs;
 using DevJourney.Infrastructure.Caching;
 using DevJourney.Infrastructure.Media;
+using DevJourney.Infrastructure.Persistence.Context;
+using DevJourney.Infrastructure.Persistence.Repositories.Articles;
+using DevJourney.Infrastructure.Persistence.Repositories.Courses;
+using DevJourney.Infrastructure.Persistence.Repositories.Identity;
+using DevJourney.Infrastructure.Persistence.Repositories.Portfolio;
+using DevJourney.Infrastructure.Persistence.Repositories.Profile;
+using DevJourney.Infrastructure.Persistence.Seed;
 using DevJourney.Infrastructure.Security;
 using DevJourney.Infrastructure.Storage;
 using Hangfire;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,7 +36,7 @@ namespace DevJourney.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static void Register(IServiceCollection services, IConfiguration configuration)
+    public static void RegisterInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         #region AI
         
@@ -97,6 +112,68 @@ public static class DependencyInjection
             configuration.GetSection("ImageProcessing"));
 
         services.AddSingleton<IImageProcessor, ImageSharpImageProcessor>();
+
+        #endregion
+        
+        #region Persistence
+        
+        var connectionString =
+            configuration.GetConnectionString("DefaultConnection")
+            ?? throw new InvalidOperationException(
+                "Connection string 'DefaultConnection' was not found.");
+
+        services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseSqlServer(
+                connectionString,
+                sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure();
+                });
+        });
+        
+        
+        // Aggregate Root repositories
+        
+        services.AddScoped<IProfileRepository, ProfileRepository>();
+        services.AddScoped<IProjectRepository, ProjectRepository>();
+        services.AddScoped<IAchievementRepository, AchievementRepository>();
+
+        services.AddScoped<IArticleRepository, ArticleRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICommentRepository, CommentRepository>();
+
+        services.AddScoped<ICourseRepository, CourseRepository>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+
+        
+        #region Seeders
+
+        var seederType = typeof(ISeeder);
+
+        var seederTypes = typeof(DependencyInjection)
+            .Assembly
+            .GetTypes()
+            .Where(type =>
+                type is { IsClass: true, IsAbstract: false } &&
+                seederType.IsAssignableFrom(type));
+
+        foreach (var implementationType in seederTypes)
+        {
+            services.AddScoped(seederType, implementationType);
+        }
+
+        services.AddScoped<DatabaseSeeder>();
+
+        #endregion
+        
+        #endregion
+
+        #region Security
+
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         #endregion
     }
