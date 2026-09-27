@@ -56,7 +56,7 @@ public static class DependencyInjection
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180);
                 config.UseSimpleAssemblyNameTypeSerializer();
                 config.UseRecommendedSerializerSettings();
-                // config.UseSqlServer(options => options.UseNpgsqlConnection(hangfireConnectionString));
+                config.UseSqlServerStorage(hangfireConnectionString);
 
                 config.UseFilter(new AutomaticRetryAttribute
                 {
