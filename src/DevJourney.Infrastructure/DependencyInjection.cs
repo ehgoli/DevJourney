@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
+using DevJourney.Application.Interfaces.Infrastructure.Media;
+using DevJourney.Application.Interfaces.Infrastructure.Security;
+using DevJourney.Application.Interfaces.Infrastructure.Storage;
 using DevJourney.Infrastructure.BackgroundJobs;
 using DevJourney.Infrastructure.Caching;
+using DevJourney.Infrastructure.Media;
+using DevJourney.Infrastructure.Security;
+using DevJourney.Infrastructure.Storage;
 using Hangfire;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,6 +59,33 @@ public static class DependencyInjection
             configuration.GetSection(CacheOptions.SectionName));
 
         services.AddScoped<ICacheService, MemoryCacheService>();
+
+        #endregion
+
+        #region Storage
+
+        services.Configure<StorageOptions>(
+            configuration.GetSection("Storage"));
+
+        services.AddSingleton<IFileStorage, LocalFileStorage>();
+
+        #endregion
+        
+        #region Security
+
+        services.Configure<ClamAvOptions>(
+            configuration.GetSection("ClamAV"));
+
+        services.AddSingleton<IFileScanner, ClamAvFileScanner>();
+
+        #endregion
+
+        #region Media
+
+        services.Configure<ImageProcessingOptions>(
+            configuration.GetSection("ImageProcessing"));
+
+        services.AddSingleton<IImageProcessor, ImageSharpImageProcessor>();
 
         #endregion
     }
