@@ -19,6 +19,6 @@ public sealed partial class Profile : BaseEntity
 
     public IReadOnlyCollection<ProfileTranslation> Translations => _translations;
     public IReadOnlyCollection<Skill> Skills => _skills;
-    public IReadOnlyCollection<Timeline> Timeline => _timeline;
-    public IReadOnlyCollection<SocialMedia> SocialMedia => _socialMedia;
+    public IReadOnlyCollection<Timeline> Timelines => _timeline;
+    public IReadOnlyCollection<SocialMedia> SocialMedias => _socialMedia;
 }
