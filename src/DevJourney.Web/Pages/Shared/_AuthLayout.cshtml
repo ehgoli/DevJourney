@@ -1,0 +1,40 @@
+@{
+    bool isRtl = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+}
+
+<!DOCTYPE html>
+<html html lang="@CultureInfo.CurrentUICulture.Name"
+      dir="@(isRtl ? "rtl" : "ltr")">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="description" content="">
+
+        <title> @ViewData["Title"] </title>
+
+        <partial name="_Stylesheets" />
+
+        <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
+        <link href="assets/css/auth.css" rel="stylesheet">
+    </head>
+    <body class="auth-body">
+
+        <!--
+            ======================================================
+            THEME TOGGLE (light/dark)
+            Fixed floating button, identical on every page.
+            ======================================================
+        -->
+        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
+            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+            <i class="bi bi-sun theme-toggle-icon-light"></i>
+        </button>
+
+        @RenderBody()
+
+        <!-- Scripts -->
+        <partial name="_Scripts"/>
+
+        <script src="assets/js/auth-password-toggle.js"></script>
+    </body>
+</html>

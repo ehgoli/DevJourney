@@ -153,4 +153,46 @@
   <data name="Github" xml:space="preserve">
     <value>گیت‌هاب</value>
   </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>ورود به سایت</value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>ورود به سیستم</value>
+  </data>
+  <data name="LoginSubtitle" xml:space="preserve">
+    <value>خوش برگشتید! برای ادامه، اطلاعات حساب خود را وارد کنید.</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>فراموشی کلمه عبور</value>
+  </data>
+  <data name="HidePassword" xml:space="preserve">
+    <value>مخفی کردن کلمه عبور</value>
+  </data>
+  <data name="InvalidLoginMessage" xml:space="preserve">
+    <value>اطلاعات کاربری صحیح نیست.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>حساب کاربری ندارید؟</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>کلمه عبور</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>شماره تلفن</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت‌نام</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>نمایش کلمه عبور</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>مرا به خاطر بسپار</value>
+  </data>
+  <data name="RegisterPrompt" xml:space="preserve">
+    <value>ثبت‌نام کنید</value>
+  </data>
 </root>
