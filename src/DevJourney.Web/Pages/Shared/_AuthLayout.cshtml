@@ -15,7 +15,7 @@
         <partial name="_Stylesheets" />
 
         <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
-        <link href="assets/css/auth.css" rel="stylesheet">
+        <link href="/assets/css/auth.css" rel="stylesheet">
     </head>
     <body class="auth-body">
 
@@ -32,9 +32,14 @@
 
         @RenderBody()
 
-        <!-- Scripts -->
+        
         <partial name="_Scripts"/>
+        
+        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+        <script src="/assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+        <script src="/assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+        <script src="/assets/js/particles-bg.js"></script>
 
-        <script src="assets/js/auth-password-toggle.js"></script>
+        <script src="/assets/js/auth-password-toggle.js"></script>
     </body>
 </html>
