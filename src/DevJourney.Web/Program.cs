@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using DevJourney.Application;
 using DevJourney.Infrastructure;
+using DevJourney.Web.Configuration;
 using Hangfire;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +14,13 @@ builder.Services.AddLocalization(options =>
 });
 
 builder.Services.RegisterInfrastructure(builder.Configuration);
+builder.Services.RegisterApplication(builder.Configuration);
 
 builder.Services
     .AddRazorPages()
     .AddDataAnnotationsLocalization();
+
+builder.Services.AddAppAuthentication();
 
 var app = builder.Build();
 

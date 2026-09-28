@@ -31,39 +31,42 @@
         </div>
 
         <!--
-            Server-side message placeholder — hidden by default.
-            Remove d-none once the backend can render a real
-            error here (e.g. invalid credentials).
+        Server-side message placeholder — hidden by default.
+        Remove d-none once the backend can render a real
+        error here (e.g. invalid credentials).
         -->
-        <div class="auth-alert d-none" id="loginAlert" role="alert">
-            <i class="bi bi-exclamation-triangle"></i>
-            <span>
-                @Localizer["InvalidLoginMessage"]
-            </span>
-        </div>
+        @if (!string.IsNullOrEmpty(Model.LoginInputs.ErrorMessage))
+        {
+            <div class="auth-alert" id="loginAlert" role="alert">
+                <i class="bi bi-exclamation-triangle"></i>
+                <span>
+                    @Model.LoginInputs.ErrorMessage
+                </span>
+            </div>
 
-        <form action="#" class="auth-form" id="loginForm" method="post">
+        }
+        <form asp-page="/Login" class="auth-form" id="loginForm" method="post">
 
             <!-- Phone — kept LTR like any digit string (see .github-stars in components.css for the same convention) -->
             <div class="mb-3">
-                <label class="contact-label" for="loginPhone">
+                <label class="contact-label" asp-for="LoginInputs.Phone">
                     @Localizer["PhoneNumber"]
                 </label>
-                <input autocomplete="tel" class="form-control contact-input" dir="ltr" id="loginPhone" inputmode="tel"
-                       name="phone" placeholder="09123456789" required="" type="tel">
+                <input autocomplete="tel" class="form-control contact-input" dir="ltr" inputmode="tel"
+                       asp-for="LoginInputs.Phone" placeholder="09123456789" required="" type="tel">
             </div>
 
             <!-- Password -->
             <div class="mb-3">
-                <label class="contact-label" for="loginPassword">
+                <label class="contact-label" asp-for="LoginInputs.Password">
                     @Localizer["Password"]
                 </label>
                 <div class="auth-password-field">
-                    <input autocomplete="current-password" class="form-control contact-input" id="loginPassword"
-                           name="password" placeholder="@(Localizer["Password"])" required="" type="password">
+                    <input autocomplete="current-password" class="form-control contact-input"
+                           asp-for="LoginInputs.Password" placeholder="@(Localizer["Password"])" required="">
                     <button aria-label="@(Localizer["ShowPassword"])" aria-pressed="false" class="auth-password-toggle"
                             data-hide-label="@(Localizer["HidePassword"])" data-show-label="@(Localizer["ShowPassword"])"
-                            data-target="loginPassword" type="button">
+                            data-target="LoginInputs_HidePassword" type="button">
                         <i class="bi bi-eye"></i>
                     </button>
                 </div>
@@ -72,8 +75,8 @@
             <!-- Remember me + Forgot password -->
             <div class="auth-form-row">
                 <div class="auth-check">
-                    <input class="form-check-input" id="rememberMe" name="rememberMe" type="checkbox">
-                    <label for="rememberMe">
+                    <input class="form-check-input" asp-for="LoginInputs.RememberMe" type="checkbox">
+                    <label asp-for="LoginInputs.RememberMe">
                         @Localizer["RememberMe"]
                     </label>
                 </div>

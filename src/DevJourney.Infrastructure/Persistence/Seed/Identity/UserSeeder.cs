@@ -1,13 +1,13 @@
+using DevJourney.Application.Interfaces.Infrastructure.Identity;
 using DevJourney.Domain.Entities.Identity;
 using DevJourney.Infrastructure.Persistence.Context;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevJourney.Infrastructure.Persistence.Seed.Identity;
 
 public sealed class AdminUserSeeder(
     AppDbContext context,
-    IPasswordHasher<User> passwordHasher) : ISeeder
+    IPasswordHasher passwordHasher) : ISeeder
 {
     private const string AdminRoleName = "Admin";
 
@@ -39,9 +39,7 @@ public sealed class AdminUserSeeder(
 
         if (user is null)
         {
-            var passwordHash = passwordHasher.HashPassword(
-                null!,
-                SamplePassword);
+            var passwordHash = passwordHasher.Hash(SamplePassword);
 
             user = User.Create(
                 fullName: SampleFullName,

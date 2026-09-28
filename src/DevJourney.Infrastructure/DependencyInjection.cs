@@ -22,6 +22,7 @@ using DevJourney.Infrastructure.Caching;
 using DevJourney.Infrastructure.ExternalServices.Email;
 using DevJourney.Infrastructure.ExternalServices.Sms;
 using DevJourney.Infrastructure.Identity.Authentication;
+using DevJourney.Infrastructure.Identity.Password;
 using DevJourney.Infrastructure.Media;
 using DevJourney.Infrastructure.Persistence.Context;
 using DevJourney.Infrastructure.Persistence.Repositories.Articles;
@@ -210,11 +211,11 @@ public static class DependencyInjection
         
         #region Identity
         
-        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+        
         services.AddHttpContextAccessor();
         services.AddScoped<ISignInManager, SignInManager>();
-            
+        
         #endregion
     }
 }
