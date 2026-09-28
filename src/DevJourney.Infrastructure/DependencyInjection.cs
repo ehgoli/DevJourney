@@ -6,6 +6,7 @@ using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
 using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Email;
 using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Sms;
+using DevJourney.Application.Interfaces.Infrastructure.Identity;
 using DevJourney.Application.Interfaces.Infrastructure.Media;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Articles;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Courses;
@@ -20,6 +21,7 @@ using DevJourney.Infrastructure.BackgroundJobs;
 using DevJourney.Infrastructure.Caching;
 using DevJourney.Infrastructure.ExternalServices.Email;
 using DevJourney.Infrastructure.ExternalServices.Sms;
+using DevJourney.Infrastructure.Identity.Authentication;
 using DevJourney.Infrastructure.Media;
 using DevJourney.Infrastructure.Persistence.Context;
 using DevJourney.Infrastructure.Persistence.Repositories.Articles;
@@ -116,8 +118,6 @@ public static class DependencyInjection
 
         services.AddSingleton<IFileScanner, ClamAvFileScanner>();
 
-        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
         #endregion
 
         #region Media
@@ -206,6 +206,15 @@ public static class DependencyInjection
 
         #endregion
 
+        #endregion
+        
+        #region Identity
+        
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+        services.AddHttpContextAccessor();
+        services.AddScoped<ISignInManager, SignInManager>();
+            
         #endregion
     }
 }
