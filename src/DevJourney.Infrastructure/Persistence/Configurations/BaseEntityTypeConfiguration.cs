@@ -15,6 +15,8 @@ public abstract class BaseEntityTypeConfiguration<TEntity>
         builder.Property(x => x.Id)
             .ValueGeneratedNever();
 
+        builder.HasQueryFilter(x => !x.IsDeleted);
+        
         ConfigureEntity(builder);
     }
 

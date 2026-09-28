@@ -17,4 +17,15 @@ public abstract class BaseEntity
     {
         Id = id;
     }
+    
+    
+    public void SoftDelete()
+    {
+        IsDeleted = true;
+    }
+
+    public void Restore()
+    {
+        IsDeleted = false;
+    }
 }
