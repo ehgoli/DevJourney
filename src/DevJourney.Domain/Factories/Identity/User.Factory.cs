@@ -94,10 +94,6 @@ public partial class User
 
     public void Activate()
     {
-        if (Status == UserStatus.Banned)
-            throw new DomainException(
-                "A banned user cannot be activated.");
-
         if (Status == UserStatus.Active)
             return;
 
@@ -106,24 +102,12 @@ public partial class User
 
     public void Suspend()
     {
-        if (Status == UserStatus.Banned)
-            throw new DomainException(
-                "A banned user cannot be suspended.");
-
         if (Status == UserStatus.Suspended)
             return;
 
         Status = UserStatus.Suspended;
     }
 
-    public void Ban()
-    {
-        if (Status == UserStatus.Banned)
-            return;
-
-        Status = UserStatus.Banned;
-    }
-    
     public void AddRole(Guid roleId)
     {
         if (roleId == Guid.Empty)
