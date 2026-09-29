@@ -1,8 +1,19 @@
-﻿<!-- Set theme (light/dark) early, right before the first stylesheet -->
+﻿@{
+    bool isRtl = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+}
+
+<!-- Set theme (light/dark) early, right before the first stylesheet -->
 <script src="/assets/js/theme-init.js"></script>
 
 <!-- Bootstrap — standard build -->
+@if (isRtl)
+{
+    <link href="/assets/vendor/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
+}
+else
+{
 <link href="/assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+}
 
 <!-- Bootstrap icons -->
 <link href="/assets/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
