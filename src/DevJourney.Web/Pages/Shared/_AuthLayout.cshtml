@@ -5,41 +5,46 @@
 <!DOCTYPE html>
 <html html lang="@CultureInfo.CurrentUICulture.Name"
       dir="@(isRtl ? "rtl" : "ltr")">
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-        <meta name="description" content="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="description" content="">
 
-        <title> @ViewData["Title"] </title>
+    <title> @ViewData["Title"] </title>
 
-        <partial name="_Stylesheets" />
+    <partial name="_Stylesheets"/>
 
-        <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
-        <link href="/assets/css/auth.css" rel="stylesheet">
-    </head>
-    <body class="auth-body">
+    <!-- Auth pages: shared by Login, Signup, and Forgot Password -->
+    <link href="/assets/css/auth.css" rel="stylesheet">
 
-        <!--
-            ======================================================
-            THEME TOGGLE (light/dark)
-            Fixed floating button, identical on every page.
-            ======================================================
-        -->
-        <button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn" title="تغییر پوسته تاریک/روشن" type="button">
-            <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
-            <i class="bi bi-sun theme-toggle-icon-light"></i>
-        </button>
+    @await RenderSectionAsync("Stylesheets", required: false)
+</head>
+<body class="auth-body">
 
-        @RenderBody()
+<!--
+    ======================================================
+    THEME TOGGLE (light/dark)
+    Fixed floating button, identical on every page.
+    ======================================================
+-->
+<button aria-label="تغییر پوسته تاریک/روشن" aria-pressed="false" class="theme-toggle-btn" id="themeToggleBtn"
+        title="تغییر پوسته تاریک/روشن" type="button">
+    <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+    <i class="bi bi-sun theme-toggle-icon-light"></i>
+</button>
 
-        
-        <partial name="_Scripts"/>
-        
-        <!-- Same tsParticles stack/config entrypoint used by Resume.html -->
-        <script src="/assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
-        <script src="/assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
-        <script src="/assets/js/particles-bg.js"></script>
+@RenderBody()
 
-        <script src="/assets/js/auth-password-toggle.js"></script>
-    </body>
+
+<partial name="_Scripts"/>
+
+<!-- Same tsParticles stack/config entrypoint used by Resume.html -->
+<script src="/assets/vendor/tsparticles/tsparticles.engine.min.js"></script>
+<script src="/assets/vendor/tsparticles/tsparticles.slim.bundle.min.js"></script>
+<script src="/assets/js/particles-bg.js"></script>
+
+<script src="/assets/js/auth-password-toggle.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
 </html>

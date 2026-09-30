@@ -1,11 +1,12 @@
 using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Sms;
+using Microsoft.Extensions.Logging;
 
 namespace DevJourney.Infrastructure.ExternalServices.Sms;
 
-public class SmsSender : ISmsSender
+public class SmsSender(ILogger<SmsSender> logger) : ISmsSender
 {
-    public Task SendAsync(SmsMessage message, CancellationToken cancellationToken = default)
+    public async Task SendAsync(SmsMessage message, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await Task.Run(() => logger.LogInformation($"SMS: {message.PhoneNumber} -> {message.Message}"), cancellationToken);
     }
 }

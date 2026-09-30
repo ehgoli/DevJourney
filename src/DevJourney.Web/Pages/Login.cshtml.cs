@@ -1,4 +1,5 @@
 using DevJourney.Application.DTOs.Auth;
+using DevJourney.Application.DTOs.Auth.Login;
 using DevJourney.Application.Interfaces.Services;
 using DevJourney.Web.Mappers;
 using DevJourney.Web.ViewModels.Auth;
@@ -21,7 +22,8 @@ public sealed class LoginModel(
     [BindProperty]
     public LoginViewModel LoginInputs { get; set; } = new();
     
-    public async Task<IActionResult> OnPostAsync(string? returnUrl = "/")
+    public async Task<IActionResult> OnPostAsync(string? returnUrl = "/", 
+        CancellationToken cancellationToken = default)
     {
         if (!Url.IsLocalUrl(returnUrl))
         {
@@ -37,7 +39,7 @@ public sealed class LoginModel(
 
         var request = AuthMapper.ToLoginRequest(LoginInputs);
 
-        var response = await authService.LoginAsync(request, LoginInputs.RememberMe);
+        var response = await authService.LoginAsync(request, LoginInputs.RememberMe, cancellationToken);
 
         if(response.IsSuccess)    
             return Redirect(returnUrl);
@@ -56,8 +58,10 @@ public sealed class LoginModel(
             LoginError.PendingActivation =>
                 localizer["PendingActivation"],
 
-            _ =>
-                localizer["UnexpectedError"]
+            LoginError.TooManyAttempts =>
+                localizer["TooManyLoginAttempts"],
+            
+            _ => localizer["UnexpectedError"]
         };
         
         return Page();

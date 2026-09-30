@@ -1,6 +1,4 @@
-using DevJourney.Domain.Entities.Identity;
-
-namespace DevJourney.Application.DTOs.Auth;
+namespace DevJourney.Application.DTOs.Auth.Login;
 
 public sealed record LoginResponse(
     bool IsSuccess,
@@ -20,4 +18,7 @@ public sealed record LoginResponse(
 
     public static LoginResponse PendingActivation()
         => new(false, LoginError.PendingActivation);
+
+    public static LoginResponse TooManyAttempts()
+        => new(false, LoginError.TooManyAttempts);
 };

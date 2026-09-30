@@ -4,5 +4,8 @@ namespace DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositor
 
 public interface IUserRepository
 {
-    Task<User?> GetByPhoneAsync(string phone);
+    Task<User?> GetByIdAsync(Guid userId, CancellationToken cancellationToken = default);
+    Task<User?> GetByPhoneAsync(string phone, CancellationToken cancellationToken = default);
+ 
+    Task UpdateAsync(User user, CancellationToken cancellationToken = default);
 }

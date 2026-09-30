@@ -1,4 +1,5 @@
 using DevJourney.Application.DTOs.Auth;
+using DevJourney.Application.DTOs.Auth.Login;
 using DevJourney.Web.ViewModels.Auth;
 
 namespace DevJourney.Web.Mappers;

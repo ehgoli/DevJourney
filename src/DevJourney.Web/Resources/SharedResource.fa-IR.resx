@@ -215,4 +215,113 @@
     <data name="UnexpectedError" xml:space="preserve">
   <value>خطای غیرمنتظره‌ای رخ داد. لطفاً بعداً دوباره تلاش کنید.</value>
 </data>
+
+    <data name="EnterPhoneForVerification" xml:space="preserve">
+  <value>شماره تماس خود را وارد کنید تا کد تأیید برایتان پیامک شود.</value>
+</data>
+
+    <data name="SendVerificationCode" xml:space="preserve">
+  <value>ارسال کد تأیید</value>
+</data>
+
+    <data name="EnterVerificationCode" xml:space="preserve">
+  <value>کد تأیید را وارد کنید</value>
+</data>
+
+    <data name="VerificationCodeSentTo" xml:space="preserve">
+  <value>کد ۵ رقمی ارسال‌شده به شماره {0} را وارد کنید.</value>
+</data>
+
+    <data name="InvalidVerificationCode" xml:space="preserve">
+  <value>کد وارد شده صحیح نیست.</value>
+</data>
+
+    <data name="VerificationCode" xml:space="preserve">
+  <value>کد تأیید</value>
+</data>
+
+    <data name="DidNotReceiveCode" xml:space="preserve">
+  <value>کد را دریافت نکردید؟</value>
+</data>
+
+    <data name="ResendCode" xml:space="preserve">
+  <value>ارسال مجدد</value>
+</data>
+
+    <data name="VerifyCode" xml:space="preserve">
+  <value>تأیید کد</value>
+</data>
+
+    <data name="BackAndEditPhone" xml:space="preserve">
+  <value>بازگشت و ویرایش شماره</value>
+</data>
+
+    <data name="SetNewPassword" xml:space="preserve">
+  <value>تنظیم رمز عبور جدید</value>
+</data>
+
+    <data name="EnterNewPassword" xml:space="preserve">
+  <value>رمز عبور جدید خود را وارد کنید.</value>
+</data>
+
+    <data name="PasswordsDoNotMatch" xml:space="preserve">
+  <value>رمز عبور و تکرار آن یکسان نیستند.</value>
+</data>
+
+    <data name="NewPassword" xml:space="preserve">
+  <value>رمز عبور جدید</value>
+</data>
+
+    <data name="ConfirmNewPassword" xml:space="preserve">
+  <value>تکرار رمز عبور جدید</value>
+</data>
+
+    <data name="SaveNewPassword" xml:space="preserve">
+  <value>ثبت رمز عبور جدید</value>
+</data>
+
+    <data name="PasswordChangedSuccessfully" xml:space="preserve">
+  <value>رمز عبور با موفقیت تغییر کرد.</value>
+</data>
+
+    <data name="LoginWithNewPassword" xml:space="preserve">
+  <value>اکنون می‌توانید با رمز عبور جدید خود وارد حساب کاربری‌تان شوید.</value>
+</data>
+
+    <data name="RememberedPassword" xml:space="preserve">
+  <value>رمز عبورتان را به خاطر آوردید؟</value>
+</data>
+
+    <data name="SignIn" xml:space="preserve">
+  <value>وارد شوید</value>
+</data>
+
+    <data name="LoginToAccount" xml:space="preserve">
+  <value>ورود به حساب کاربری</value>
+</data>
+
+    <data name="ForgotPasswordPageTitle" xml:space="preserve">
+      <value>بازیابی رمز عبور</value>
+    </data>
+
+    <data name="VerificationCodeExpired" xml:space="preserve">
+    <value>کد تأیید منقضی شده است. لطفاً کد جدیدی درخواست کنید.</value>
+</data>
+
+    <data name="TooManyVerificationAttempts" xml:space="preserve">
+    <value>تعداد تلاش‌های مجاز برای وارد کردن کد به پایان رسیده است.</value>
+</data>
+
+    <data name="ResendCodeTooSoon" xml:space="preserve">
+    <value>لطفاً برای درخواست مجدد کد کمی صبر کنید.</value>
+</data>
+
+    <data name="InvalidResetToken" xml:space="preserve">
+    <value>درخواست بازیابی رمز عبور نامعتبر یا منقضی شده است.</value>
+</data>
+    
+    <data name="TooManyLoginAttempts" xml:space="preserve">
+    <value> تعداد تلاش‌های ناموفق برای ورود بیش از حد مجاز بوده است. حساب شما موقتاً قفل شده است. لطفاً بعداً دوباره تلاش کنید. </value>
+</data>
+    
 </root>

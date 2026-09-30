@@ -1,15 +1,17 @@
 /* =========================================================
-   FORGOT PASSWORD — step wizard
+   FORGOT PASSWORD
    -----------------------------------------------------------
-   Three panels (phone -> code -> new password) plus a final
-   "done" panel, all inside one card. No backend yet: each
-   form's submit is intercepted and just advances to the next
-   panel after its own required fields pass native validation.
-   Swap the advance calls below for real API calls once the
-   backend exists — the phone lookup and code check are not
-   actually verified against anything yet.
+   Server-side flow:
+   - Step transitions are handled by Razor Pages.
+   - Form submissions are NOT intercepted.
+   - Backend validates phone, OTP, and reset token.
 
-   Self-contained: no-ops if the page has no .auth-step-panel.
+   Client-side responsibilities:
+   - Mask the phone number on the verification step.
+   - Manage the resend countdown for UX only.
+
+   Security-sensitive operations must always be enforced
+   on the server.
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,132 +21,114 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const dots = document.querySelectorAll(".auth-step");
-    const stepsWrap = document.getElementById("authSteps");
+    let resendIntervalId = null;
 
-    const showPanel = (key) => {
-        panels.forEach((panel) => {
-            panel.classList.toggle("d-none", panel.dataset.step !== key);
-        });
+    /* ---------------------------------------------------------
+       Phone masking
+    --------------------------------------------------------- */
 
-        if (key === "done") {
-            if (stepsWrap) {
-                stepsWrap.classList.add("d-none");
-            }
-            return;
-        }
-
-        const stepNumber = Number(key);
-        dots.forEach((dot, index) => {
-            dot.classList.toggle("is-active", index < stepNumber);
-        });
-    };
-
-    // Iranian mobile numbers only, matching the placeholder/type used
-    // on the phone field — good enough for a static prototype.
     const maskPhone = (raw) => {
         const digits = raw.replace(/\D/g, "");
+
         if (digits.length <= 6) {
             return raw;
         }
+
         const head = digits.slice(0, 4);
         const tail = digits.slice(-3);
-        const middle = "*".repeat(Math.max(digits.length - 7, 3));
+        const middle = "*".repeat(
+            Math.max(digits.length - 7, 3)
+        );
+
         return `${head}${middle}${tail}`;
     };
 
-    let resendIntervalId = null;
+    const updateMaskedPhone = () => {
+        const phoneInput = document.getElementById("forgotPhone");
+        const maskedElement =
+            document.getElementById("forgotPhoneMasked");
+
+        if (!phoneInput || !maskedElement) {
+            return;
+        }
+
+        maskedElement.textContent =
+            maskPhone(phoneInput.value);
+    };
+
+    updateMaskedPhone();
+
+    /* ---------------------------------------------------------
+       Resend countdown
+       ---------------------------------------------------------
+       This timer is for UX only.
+       The actual 60-second restriction is enforced
+       by the backend.
+    --------------------------------------------------------- */
 
     const startResendTimer = (seconds) => {
-        const btn = document.getElementById("resendCodeBtn");
-        const timer = document.getElementById("resendTimer");
-        if (!btn || !timer) {
+        const button =
+            document.getElementById("resendCodeBtn");
+
+        const timer =
+            document.getElementById("resendTimer");
+
+        if (!button || !timer) {
             return;
         }
 
         clearInterval(resendIntervalId);
+
         let remaining = seconds;
-        btn.disabled = true;
+
+        button.disabled = true;
 
         const tick = () => {
-            const mm = String(Math.floor(remaining / 60)).padStart(2, "0");
-            const ss = String(remaining % 60).padStart(2, "0");
-            timer.textContent = `(${mm}:${ss})`;
+            const minutes = String(
+                Math.floor(remaining / 60)
+            ).padStart(2, "0");
+
+            const seconds = String(
+                remaining % 60
+            ).padStart(2, "0");
+
+            timer.textContent = `(${minutes}:${seconds})`;
 
             if (remaining <= 0) {
                 clearInterval(resendIntervalId);
-                btn.disabled = false;
+
+                button.disabled = false;
                 timer.textContent = "";
+
                 return;
             }
+
             remaining -= 1;
         };
 
         tick();
-        resendIntervalId = setInterval(tick, 1000);
+
+        resendIntervalId = setInterval(
+            tick,
+            1000
+        );
     };
 
-    // Step 1 -> Step 2
-    const step1Form = document.getElementById("forgotStep1Form");
-    if (step1Form) {
-        step1Form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const phoneInput = document.getElementById("forgotPhone");
-            const maskedEl = document.getElementById("forgotPhoneMasked");
-            if (phoneInput && maskedEl) {
-                maskedEl.textContent = maskPhone(phoneInput.value);
-            }
-            showPanel("2");
-            startResendTimer(60);
-        });
+    /* ---------------------------------------------------------
+       Start timer when verification step is displayed.
+       A successful request or resend creates a new 60-second
+       cooldown on the server.
+    --------------------------------------------------------- */
+
+    const verificationPanel =
+        document.querySelector(
+            '.auth-step-panel[data-step="2"]'
+        );
+
+    if (
+        verificationPanel &&
+        !verificationPanel.classList.contains("d-none")
+    ) {
+        startResendTimer(60);
     }
-
-    // Resend code
-    const resendBtn = document.getElementById("resendCodeBtn");
-    if (resendBtn) {
-        resendBtn.addEventListener("click", () => startResendTimer(60));
-    }
-
-    // Back to step 1 (e.g. the phone number was mistyped)
-    const backToPhoneBtn = document.getElementById("backToPhoneBtn");
-    if (backToPhoneBtn) {
-        backToPhoneBtn.addEventListener("click", () => {
-            clearInterval(resendIntervalId);
-            showPanel("1");
-        });
-    }
-
-    // Step 2 -> Step 3
-    const step2Form = document.getElementById("forgotStep2Form");
-    if (step2Form) {
-        step2Form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            clearInterval(resendIntervalId);
-            showPanel("3");
-        });
-    }
-
-    // Step 3 -> Done (this one check IS real: it only compares the
-    // two fields on this page, no backend needed for that part)
-    const step3Form = document.getElementById("forgotStep3Form");
-    if (step3Form) {
-        step3Form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const pass = document.getElementById("forgotNewPassword").value;
-            const confirm = document.getElementById("forgotConfirmPassword").value;
-            const alertEl = document.getElementById("forgotAlert3");
-
-            if (pass !== confirm) {
-                if (alertEl) {
-                    alertEl.classList.remove("d-none");
-                }
-                return;
-            }
-            if (alertEl) {
-                alertEl.classList.add("d-none");
-            }
-            showPanel("done");
-        });
-    }
-
 });

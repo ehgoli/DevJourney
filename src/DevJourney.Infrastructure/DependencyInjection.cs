@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DevJourney.Application.Common.Configuration.Identity;
 using DevJourney.Application.Interfaces.Infrastructure.AI;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
@@ -212,6 +213,12 @@ public static class DependencyInjection
         #region Identity
         
         services.AddScoped<IPasswordHasher, PasswordHasher>();
+        
+        
+        services.AddOptions<PasswordResetOptions>()
+            .Bind(configuration.GetSection(PasswordResetOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
         
         services.AddHttpContextAccessor();
         services.AddScoped<ISignInManager, SignInManager>();
