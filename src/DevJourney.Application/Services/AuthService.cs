@@ -1,12 +1,18 @@
 using System.Security.Cryptography;
+using DevJourney.Application.Common.Configuration;
 using DevJourney.Application.Common.Configuration.Identity;
+using DevJourney.Application.Common.Security;
 using DevJourney.Application.DTOs.Auth;
 using DevJourney.Application.DTOs.Auth.ForgotPassword;
 using DevJourney.Application.DTOs.Auth.Login;
+using DevJourney.Application.DTOs.Auth.Register;
+using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
+using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Email;
 using DevJourney.Application.Interfaces.Infrastructure.ExternalServices.Sms;
 using DevJourney.Application.Interfaces.Infrastructure.Identity;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Identity;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Transactions;
 using DevJourney.Application.Interfaces.Services;
 using DevJourney.Domain.Entities.Identity;
 using Microsoft.Extensions.Options;
@@ -19,11 +25,18 @@ public sealed class AuthService(
     ISignInManager signInManager,
     IPasswordHasher passwordHasher,
     ISmsSender smsSender,
+    IEmailSender emailSender,
     ICacheService cacheService,
-    IOptions<PasswordResetOptions> passwordResetOptions) : IAuthService
+    IOptions<PasswordResetOptions> passwordResetOptions,
+    IOptions<SiteOptions> siteOptions,
+    IDatabaseTransaction transaction,
+    IBackgroundJobService backgroundService) : IAuthService
 {
     private readonly PasswordResetOptions _passwordResetOptions =
         passwordResetOptions.Value;
+
+    private readonly SiteOptions _siteOptions =
+        siteOptions.Value;
 
 
     #region Login / Logout
@@ -39,18 +52,30 @@ public sealed class AuthService(
         if (user is null)
             return LoginResponse.NotFound();
 
-        if (user.Status == UserStatus.Suspended)
-            return LoginResponse.Suspended();
-
-        if (user.Status != UserStatus.Active)
-            throw new InvalidOperationException(
-                $"Unsupported user status: {user.Status}");
-        
         // The temporary security lock is independent of UserStatus.
         // It blocks login and password reset operations for the configured duration.
         if (await IsUserLockedAsync(user.Id, ct))
             return LoginResponse.TooManyAttempts();
 
+
+        switch (user.Status)
+        {
+            case UserStatus.Suspended:
+                return LoginResponse.Suspended();
+
+            case UserStatus.PendingActivationEmail:
+                return LoginResponse.EmailVerificationRequired();
+
+            case UserStatus.PendingActivationMobile:
+                return LoginResponse.PhoneVerificationRequired();
+
+            case UserStatus.Active:
+                break;
+
+            default:
+                throw new InvalidOperationException(
+                    $"Unsupported user status: {user.Status}");
+        }
 
         if (!passwordHasher.Verify(loginRequest.Password, user.PasswordHash))
             return LoginResponse.InvalidCredentials();
@@ -60,7 +85,7 @@ public sealed class AuthService(
         return LoginResponse.Success();
     }
 
-
+    
     /// <summary>
     /// Signs out the currently authenticated user.
     /// </summary>
@@ -119,7 +144,7 @@ public sealed class AuthService(
                 return PasswordResetResponse.ResendTooSoon();
         }
 
-        var code = GenerateVerificationCode();
+        string code = SecureTokenGenerator.Generate();
 
         var state = new PasswordResetState(
             UserId: user.Id,
@@ -210,7 +235,7 @@ public sealed class AuthService(
             return PasswordResetResendCodeResponse.TooSoon(retryAfter);
         }
 
-        var code = GenerateVerificationCode();
+        string code = SecureTokenGenerator.Generate();
 
         var updatedState = state with
         {
@@ -423,6 +448,62 @@ public sealed class AuthService(
 
     #endregion
 
+    
+    #region Register
+
+    public async Task<RegisterResponse> RegisterAsync(RegisterRequest request,
+        CancellationToken cancellationToken = default)
+    {
+        bool isExistMobile = await userRepo.PhoneNumberExists(request.PhoneNumber, cancellationToken);
+        if (isExistMobile)
+            return RegisterResponse.PhoneNumberAlreadyRegistered();
+
+        bool isExistEmail = await userRepo.EmailExists(request.Email, cancellationToken);
+        if (isExistEmail)
+            return RegisterResponse.EmailAlreadyRegistered();
+        
+
+        string passwordHash = passwordHasher.Hash(request.Password);
+
+        string activationCode = SecureTokenGenerator.Generate();
+
+        var user = User.Create(
+            fullName: request.FullName,
+            email: request.Email,
+            phone: request.PhoneNumber,
+            profileImage: null,
+            passwordHash:passwordHash,
+            activationCode: activationCode);
+        await userRepo.CreateAsync(user, cancellationToken);
+
+        
+        string siteUrl = _siteOptions.BaseUrl;
+
+        string verificationUrl = $"{siteUrl}/Account/VerifyEmail/{Uri.EscapeDataString(activationCode)}";
+
+            string emailBody = $@"
+Hello {request.FullName}, \n\n
+Thank you for registering on our website! \n
+To verify your email address and activate your account, please click the link below: \n\n
+{verificationUrl} \n\n
+If you did not create this account, you can safely ignore this email. \n
+Best regards,
+The DevJourney Team";
+
+        backgroundService.Enqueue<IEmailSender>(
+            sender => sender.SendAsync(
+                new EmailMessage(
+                    Recipient: request.Email,
+                    Subject: "Verify You Account",
+                    Body: emailBody),
+                cancellationToken: CancellationToken.None));
+
+        return RegisterResponse.Success();
+
+    }
+    
+    #endregion
+    
 
     #region User Authentication Lock
 
@@ -455,19 +536,26 @@ public sealed class AuthService(
 
     #region Helpers
 
-    private static string GenerateVerificationCode()
-        => RandomNumberGenerator
-            .GetInt32(10_000, 100_000)
-            .ToString("D5");
-
     private static string GetPasswordResetKey(string phoneNumber)
         => $"password-reset:{phoneNumber}";
 
     private static string GetResetTokenKey(string resetToken)
         => $"reset-token:{resetToken}";
 
+    
     private static string GetUserLockKey(Guid userId)
         => $"user-lock:{userId}";
 
+    
+    private static string GetRegistrationVerificationKey(
+        string phoneNumber)
+        => $"registration-verification:{phoneNumber}";
+
+    private static string GetRegistrationLockKey(
+        string phoneNumber)
+        => $"registration-lock:{phoneNumber}";
+    
     #endregion
+    
+  
 }

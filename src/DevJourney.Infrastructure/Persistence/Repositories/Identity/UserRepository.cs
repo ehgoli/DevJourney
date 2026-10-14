@@ -15,7 +15,23 @@ public class UserRepository(AppDbContext context) : IUserRepository
         return await context.Users.SingleOrDefaultAsync(x => x.Phone == phone, cancellationToken);
     }
 
-    
+    public async Task<bool> PhoneNumberExists(string phone, CancellationToken cancellationToken)
+    {
+        return await context.Users.AnyAsync(x => x.Phone == phone, cancellationToken);
+    }
+
+    public async Task<bool> EmailExists(string email, CancellationToken cancellationToken)
+    {
+        return await context.Users.AnyAsync(x => x.Email == email, cancellationToken);
+    }
+
+    public async Task CreateAsync(User user, CancellationToken cancellationToken)
+    {
+        context.Attach(user).State = EntityState.Added;
+        await context.SaveChangesAsync(cancellationToken);
+    }
+
+
     public Task UpdateAsync(User user, CancellationToken cancellationToken)
     {
         context.Attach(user).State = EntityState.Modified;

@@ -1,6 +1,7 @@
 using DevJourney.Application.DTOs.Auth;
 using DevJourney.Application.DTOs.Auth.ForgotPassword;
 using DevJourney.Application.DTOs.Auth.Login;
+using DevJourney.Application.DTOs.Auth.Register;
 
 
 namespace DevJourney.Application.Interfaces.Services;
@@ -13,6 +14,9 @@ public interface IAuthService
     Task<LoginResponse> LoginAsync(LoginRequest loginRequest, bool rememberMe = false,
         CancellationToken cancellationToken = default);
 
+    Task<RegisterResponse> RegisterAsync(RegisterRequest request,
+        CancellationToken cancellationToken = default);
+    
     Task LogoutAsync(CancellationToken cancellationToken = default);
 
 

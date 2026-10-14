@@ -324,4 +324,97 @@
     <value> تعداد تلاش‌های ناموفق برای ورود بیش از حد مجاز بوده است. حساب شما موقتاً قفل شده است. لطفاً بعداً دوباره تلاش کنید. </value>
 </data>
     
+    <data name="SignupPageTitle" xml:space="preserve">
+    <value> ایجاد حساب کاربری </value>
+</data>
+
+    <data name="CreateAccount" xml:space="preserve">
+    <value>ایجاد حساب کاربری</value>
+</data>
+
+    <data name="CompleteRegistrationInformation" xml:space="preserve">
+    <value>برای استفاده از امکانات سایت، اطلاعات زیر را تکمیل کنید.</value>
+</data>
+
+    <data name="FullName" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+</data>
+
+    <data name="FullNamePlaceholder" xml:space="preserve">
+    <value>نام و نام خانوادگی شما</value>
+</data>
+
+    <data name="Email" xml:space="preserve">
+    <value>ایمیل</value>
+</data>
+
+    <data name="EmailPlaceholder" xml:space="preserve">
+    <value>example@example.com</value>
+</data>
+
+    <data name="IAgreeToThe" xml:space="preserve">
+    <value>با</value>
+</data>
+
+    <data name="TermsAndConditions" xml:space="preserve">
+    <value>قوانین و مقررات سایت</value>
+</data>
+
+    <data name="SignUp" xml:space="preserve">
+    <value>ثبت‌نام</value>
+</data>
+    
+    <data name="RegisterOnWebsite" xml:space="preserve">
+  <value>ثبت‌نام در سایت</value>
+</data>
+
+    <data name="AlreadyHaveAnAccount" xml:space="preserve">
+    <value>حساب کاربری دارید؟</value>
+</data>
+
+    <data name="PhoneNumberAlreadyRegistered" xml:space="preserve">
+    <value>این شماره تماس قبلاً ثبت‌نام کرده است.</value>
+</data>
+
+    <data name="EmailAlreadyRegistered" xml:space="preserve">
+    <value>این آدرس ایمیل قبلاً ثبت‌نام کرده است.</value>
+</data>
+
+    
+    <data name="EmailConfirmationPageTitle" xml:space="preserve">
+    <value>تأیید ایمیل</value>
+  </data>
+    
+    <data name="RegistrationSuccessfulTitle" xml:space="preserve">
+    <value>ثبت‌نام با موفقیت انجام شد</value>
+  </data>
+    
+    <data name="EmailConfirmationGreeting" xml:space="preserve">
+    <value>{0} عزیز،</value>
+  </data>
+    
+    <data name="EmailConfirmationMessage" xml:space="preserve">
+    <value>از ثبت‌نام شما سپاسگزاریم. ایمیلی حاوی لینک تأیید حساب کاربری برای شما ارسال شده است؛ لطفاً صندوق ورودی ایمیل خود را بررسی کنید و برای فعال‌سازی حساب کاربری روی لینک کلیک کنید.</value>
+  </data>
+    
+    <data name="OpenEmailInbox" xml:space="preserve">
+    <value>باز کردن صندوق ایمیل</value>
+  </data>
+    
+    <data name="EmailAlreadyVerifiedPrompt" xml:space="preserve">
+    <value>ایمیل خود را تأیید کرده‌اید؟</value>
+  </data>
+    
+    <data name="LoginLink" xml:space="preserve">
+    <value>وارد شوید</value>
+  </data>
+
+<data name="EmailVerificationRequired" xml:space="preserve">
+  <value>برای ورود به حساب کاربری، ابتدا ایمیل خود را تأیید کنید.</value>
+</data>
+
+<data name="PhoneVerificationRequired" xml:space="preserve">
+  <value>ایمیل شما تأیید شده است. برای فعال‌سازی حساب کاربری، ابتدا شماره تلفن خود را تأیید کنید.</value>
+</data>
+
 </root>

@@ -1,4 +1,4 @@
-namespace DevJourney.Web.ViewModels;
+namespace DevJourney.Web.ViewModels.Auth;
 
 public sealed class ForgotPasswordViewModel
 {

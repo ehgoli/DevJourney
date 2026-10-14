@@ -14,7 +14,8 @@ public partial class User
         string phone,
         string passwordHash,
         string? profileImage,
-        string? activationCode)
+        string? activationCode,
+        UserStatus status)
     {
         Validate(
             fullName: fullName,
@@ -30,7 +31,7 @@ public partial class User
         this.ProfileImage = profileImage?.Trim();
         this.ActivationCode = activationCode?.Trim();
 
-        Status = UserStatus.Active;
+        this.Status = status;
     }
 
     public static User Create(
@@ -47,7 +48,8 @@ public partial class User
             phone: phone,
             passwordHash: passwordHash,
             profileImage: profileImage,
-            activationCode: activationCode);
+            activationCode: activationCode,
+            status: UserStatus.PendingActivationEmail);
     }
 
     public void Modify(

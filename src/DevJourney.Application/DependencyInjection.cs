@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DevJourney.Application.Common.Configuration;
 using DevJourney.Application.Interfaces.Services;
 using DevJourney.Application.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace DevJourney.Application;
 
@@ -17,5 +16,11 @@ public static class DependencyInjection
         services.AddScoped<IAuthService, AuthService>();
 
         #endregion
+
+
+        services.AddOptions<SiteOptions>()
+            .Bind(configuration.GetSection(SiteOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
     }
 }

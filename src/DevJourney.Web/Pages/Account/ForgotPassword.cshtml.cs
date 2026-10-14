@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Localization;
 
-namespace DevJourney.Web.Pages;
+namespace DevJourney.Web.Pages.Account;
 
 public class ForgotPasswordModel(
     IAuthService authService,

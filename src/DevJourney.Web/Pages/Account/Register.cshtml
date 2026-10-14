@@ -1,0 +1,174 @@
+@page
+@model DevJourney.Web.Pages.Account.RegisterModel
+
+@{
+    ViewData["Title"] = Localizer["SignupPageTitle"];
+    Layout = "Shared/_AuthLayout";
+}
+
+
+<main class="auth-page">
+    <div aria-hidden="true" id="particles-bg"></div>
+
+    <div class="auth-card card-custom">
+        <!-- Brand -->
+        <div class="auth-brand">
+            <a class="site-logo" asp-page="/Index">
+                <span class="site-logo-mark">
+                    EG
+                </span>
+
+                <span class="site-logo-text">
+                    Ehsan Goli
+                </span>
+            </a>
+        </div>
+
+
+        <!-- Heading -->
+        <div class="auth-heading">
+            <h1 class="auth-title">
+                @Localizer["CreateAccount"]
+            </h1>
+
+            <p class="auth-subtitle">
+                @Localizer["CompleteRegistrationInformation"]
+            </p>
+        </div>
+
+
+        <!-- Server-side error -->
+        @if (!string.IsNullOrWhiteSpace(Model.RegisterInputs.ErrorMessage))
+        {
+            <div class="auth-alert" role="alert">
+                <i class="bi bi-exclamation-triangle"></i>
+
+                <span>
+                    @Model.RegisterInputs.ErrorMessage
+                </span>
+            </div>
+        }
+
+
+        <form method="post" class="auth-form" id="signupForm">
+
+            <div class="row g-3">
+
+                <!-- Full Name -->
+                <div class="col-12">
+                    <label class="contact-label" asp-for="RegisterInputs.FullName">
+                        @Localizer["FullName"]
+                    </label>
+
+                    <input asp-for="RegisterInputs.FullName" autocomplete="name"
+                           class="form-control contact-input"
+                           placeholder="@Localizer["FullNamePlaceholder"]" type="text"/>
+
+                    <span asp-validation-for="RegisterInputs.FullName"
+                          class="text-danger"></span>
+                </div>
+
+
+                <!-- Email -->
+                <div class="col-12">
+                    <label class="contact-label" asp-for="RegisterInputs.Email">
+                        @Localizer["Email"]
+                    </label>
+
+                    <input asp-for="RegisterInputs.Email" autocomplete="email"
+                           class="form-control contact-input"
+                           placeholder="@Localizer["EmailPlaceholder"]"
+                           type="email" />
+
+                    <span asp-validation-for="RegisterInputs.Email"
+                          class="text-danger"></span>
+                </div>
+
+
+                <!-- Phone Number -->
+                <div class="col-12">
+                    <label class="contact-label" asp-for="RegisterInputs.PhoneNumber">
+                        @Localizer["PhoneNumber"]
+                    </label>
+
+                    <input asp-for="RegisterInputs.PhoneNumber" type="tel"
+                           inputmode="tel"
+                           autocomplete="tel"
+                           class="form-control contact-input"
+                           dir="ltr"
+                           id="signupPhone"
+                           placeholder="09123456789" />
+
+                    <span asp-validation-for="RegisterInputs.PhoneNumber" class="text-danger"></span>
+                </div>
+
+
+                <!-- Password -->
+                <div class="col-12">
+                    <label class="contact-label" asp-for="RegisterInputs.Password">
+                        @Localizer["Password"]
+                    </label>
+
+                    <div class="auth-password-field">
+                        <input asp-for="RegisterInputs.Password" autocomplete="new-password"
+                               class="form-control contact-input"
+                               id="signupPassword"
+                               placeholder="@Localizer["Password"]"
+                               type="password" />
+
+                        <button aria-label="@Localizer["ShowPassword"]"
+                                aria-pressed="false"
+                                class="auth-password-toggle"
+                                data-hide-label="@Localizer["HidePassword"]"
+                                data-show-label="@Localizer["ShowPassword"]"
+                                data-target="signupPassword"
+                                type="button">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+
+                    <span asp-validation-for="RegisterInputs.Password" class="text-danger"></span>
+                </div>
+
+
+                <!-- Terms -->
+                <div class="col-12">
+                    <div class="auth-check">
+                        <input asp-for="RegisterInputs.AcceptTerms" type="checkbox"
+                               class="form-check-input"
+                               id="signupTerms" />
+
+                        <label asp-for="RegisterInputs.AcceptTerms">
+                            @Localizer["IAgreeToThe"]
+
+                            <a class="auth-link" asp-page="/Terms">
+                                @Localizer["TermsAndConditions"]
+                            </a>
+                        </label>
+                    </div>
+
+                    <span asp-validation-for="RegisterInputs.AcceptTerms" class="text-danger"></span>
+                </div>
+
+
+                <!-- Submit -->
+                <div class="col-12">
+                    <button class="contact-submit" type="submit">
+                        <span> @Localizer["RegisterOnWebsite"] </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="auth-switch">
+            @Localizer["AlreadyHaveAnAccount"]
+
+            <a class="auth-link" asp-page="/Login">
+                @Localizer["SignIn"]
+            </a>
+        </div>
+
+    </div>
+
+</main>

@@ -5,6 +5,7 @@ public enum LoginError
     NotFound,
     InvalidCredentials,
     UserSuspended,
-    PendingActivation,
-    TooManyAttempts
+    TooManyAttempts,
+    EmailVerificationRequired,
+    PhoneVerificationRequired
 }

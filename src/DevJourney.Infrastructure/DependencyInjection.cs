@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DevJourney.Application.Common.Configuration.Identity;
+﻿using DevJourney.Application.Common.Configuration.Identity;
 using DevJourney.Application.Interfaces.Infrastructure.AI;
 using DevJourney.Application.Interfaces.Infrastructure.BackgroundJobs;
 using DevJourney.Application.Interfaces.Infrastructure.Caching;
@@ -14,9 +11,9 @@ using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Identity;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Portfolio;
 using DevJourney.Application.Interfaces.Infrastructure.Persistence.Repositories.Profile;
+using DevJourney.Application.Interfaces.Infrastructure.Persistence.Transactions;
 using DevJourney.Application.Interfaces.Infrastructure.Security;
 using DevJourney.Application.Interfaces.Infrastructure.Storage;
-using DevJourney.Domain.Entities.Identity;
 using DevJourney.Infrastructure.AI;
 using DevJourney.Infrastructure.BackgroundJobs;
 using DevJourney.Infrastructure.Caching;
@@ -32,10 +29,10 @@ using DevJourney.Infrastructure.Persistence.Repositories.Identity;
 using DevJourney.Infrastructure.Persistence.Repositories.Portfolio;
 using DevJourney.Infrastructure.Persistence.Repositories.Profile;
 using DevJourney.Infrastructure.Persistence.Seed;
+using DevJourney.Infrastructure.Persistence.Transaction;
 using DevJourney.Infrastructure.Security;
 using DevJourney.Infrastructure.Storage;
 using Hangfire;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -150,6 +147,8 @@ public static class DependencyInjection
                 });
         });
         
+        services.AddScoped<IDatabaseTransaction, EfDatabaseTransaction>();
+        
         
         // Aggregate Root repositories
         
@@ -213,7 +212,6 @@ public static class DependencyInjection
         #region Identity
         
         services.AddScoped<IPasswordHasher, PasswordHasher>();
-        
         
         services.AddOptions<PasswordResetOptions>()
             .Bind(configuration.GetSection(PasswordResetOptions.SectionName))

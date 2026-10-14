@@ -1,0 +1,57 @@
+@page
+@model DevJourney.Web.Pages.Account.SuccessRegister
+
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@{
+    Layout = "Shared/_AuthLayout";
+
+    ViewData["Title"] = Localizer["EmailConfirmationPageTitle"];
+}
+
+<main class="auth-page">
+    <div id="particles-bg"></div>
+
+    <div class="auth-card card-custom">
+        <!-- Brand — also doubles as the way back to the site -->
+        <div class="auth-brand">
+            <a class="site-logo" href="/">
+                <span class="site-logo-mark"> EG </span>
+                <span class="site-logo-text">
+                    Ehsan Goli
+                </span>
+            </a>
+        </div>
+
+        <div class="auth-step-panel" data-step="done">
+            <div class="auth-heading">
+                <h1 class="auth-title">
+                    @Localizer["RegistrationSuccessfulTitle"]
+                </h1>
+
+                <p class="auth-subtitle">
+                    <b>
+                        @Localizer["EmailConfirmationGreeting", Localizer["SiteOwnerName"].Value]
+                    </b>
+                    @Localizer["EmailConfirmationMessage"]
+                </p>
+            </div>
+
+            <a class="contact-submit" href="">
+                <span>
+                    @Localizer["OpenEmailInbox"]
+                </span>
+
+                <i class="bi bi-box-arrow-in-right"></i>
+            </a>
+        </div>
+
+        <div class="auth-switch">
+            @Localizer["EmailAlreadyVerifiedPrompt"]
+
+            <a class="auth-link" asp-page="./Login">
+                @Localizer["LoginLink"]
+            </a>
+        </div>
+    </div>
+</main>

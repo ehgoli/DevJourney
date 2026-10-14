@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Localization;
 
-namespace DevJourney.Web.Pages;
+namespace DevJourney.Web.Pages.Account;
 
 public sealed class LoginModel(
     IAuthService authService,
@@ -43,7 +43,7 @@ public sealed class LoginModel(
 
         if(response.IsSuccess)    
             return Redirect(returnUrl);
-        
+
         LoginInputs.ErrorMessage = response.Error switch
         {
             LoginError.NotFound =>
@@ -55,15 +55,18 @@ public sealed class LoginModel(
             LoginError.UserSuspended =>
                 localizer["UserSuspended"],
 
-            LoginError.PendingActivation =>
-                localizer["PendingActivation"],
+            LoginError.EmailVerificationRequired =>
+                localizer["EmailVerificationRequired"],
+
+            LoginError.PhoneVerificationRequired =>
+                localizer["PhoneVerificationRequired"],
 
             LoginError.TooManyAttempts =>
                 localizer["TooManyLoginAttempts"],
-            
+
             _ => localizer["UnexpectedError"]
         };
-        
+
         return Page();
     }
 }

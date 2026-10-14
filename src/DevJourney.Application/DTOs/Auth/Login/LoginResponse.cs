@@ -16,9 +16,12 @@ public sealed record LoginResponse(
     public static LoginResponse Suspended()
         => new(false, LoginError.UserSuspended);
 
-    public static LoginResponse PendingActivation()
-        => new(false, LoginError.PendingActivation);
-
     public static LoginResponse TooManyAttempts()
         => new(false, LoginError.TooManyAttempts);
+
+    public static LoginResponse EmailVerificationRequired()
+        => new(false, LoginError.EmailVerificationRequired);
+
+    public static LoginResponse PhoneVerificationRequired()
+        => new(false, LoginError.PhoneVerificationRequired);
 };
