@@ -12,6 +12,7 @@
    Structure:
      1) Shell (sidebar + main column)
      2) Sidebar (brand, collapse toggle, nav)
+     2b) Nested menus (collapsible groups + submenus in the nav)
      3) Mobile offcanvas sidebar (reuses .site-offcanvas-nav
         styling from layout.css almost as-is)
      4) Header (mobile menu button, page title, theme toggle,
@@ -215,36 +216,232 @@
     font-size: 14px;
 }
 
-/* Collapsed (desktop icon-only) state */
+/* Collapsed (desktop icon-only) state
+   Desktop only. The offcanvas used below 992px lives inside
+   .admin-shell too, so without this media query a collapsed state
+   saved on desktop would also strip the labels out of the mobile menu
+   (e.g. a tablet rotated from landscape to portrait). */
 
-.admin-shell.is-collapsed .admin-sidebar {
-    flex-basis: 76px;
-    width: 76px;
+@media (min-width: 992px) {
+    .admin-shell.is-collapsed .admin-sidebar {
+        flex-basis: 76px;
+        width: 76px;
+    }
+
+    .admin-shell.is-collapsed .admin-sidebar-brand-text,
+    .admin-shell.is-collapsed .admin-nav-link span,
+    .admin-shell.is-collapsed .admin-sidebar-back span {
+        display: none;
+    }
+
+    .admin-shell.is-collapsed .admin-sidebar-header {
+        padding-inline: 21px;
+    }
+
+    .admin-shell.is-collapsed .admin-nav-link {
+        justify-content: center;
+        padding-inline: 0;
+    }
+
+    .admin-shell.is-collapsed .admin-nav-link i {
+        width: auto;
+    }
+
+    .admin-shell.is-collapsed .admin-sidebar-footer {
+        padding-inline: 0;
+        display: flex;
+        justify-content: center;
+    }
 }
 
-.admin-shell.is-collapsed .admin-sidebar-brand-text,
-.admin-shell.is-collapsed .admin-nav-link span,
-.admin-shell.is-collapsed .admin-sidebar-back span {
-    display: none;
+/* =========================================================
+   2b) NESTED MENUS (collapsible groups + submenus)
+   -----------------------------------------------------------
+   A group is a <button class="admin-nav-link admin-nav-toggle">
+   (it borrows .admin-nav-link's look) followed by a Bootstrap
+   .collapse panel (.admin-subnav). A submenu can hold one more
+   level the same way: <button class="admin-subnav-link
+   admin-subnav-toggle"> + a nested .admin-subnav panel.
+
+   Open/close is Bootstrap's own collapse (data-bs-toggle=
+   "collapse"). admin-sidebar.js only adds what Bootstrap does
+   not do on its own: opening the group that holds the current
+   page, the icon-only sidebar behavior, and scroll-into-view.
+
+   The same markup is used by the desktop sidebar and by the
+   mobile offcanvas — only the element ids differ.
+========================================================= */
+
+/* Group toggle (level 1) */
+
+.admin-nav-toggle {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    text-align: start;
+    cursor: pointer;
 }
 
-.admin-shell.is-collapsed .admin-sidebar-header {
-    padding-inline: 21px;
+.admin-nav-toggle[aria-expanded="true"] {
+    color: var(--text);
 }
 
-.admin-shell.is-collapsed .admin-nav-link {
-    justify-content: center;
-    padding-inline: 0;
+/* The group that holds the current page: the same "you are here" color
+   as .is-active, without the background — the actual link inside the
+   open submenu carries that. */
+
+.admin-nav-toggle.has-active {
+    color: var(--primary-dark);
+    font-weight: 700;
 }
 
-.admin-shell.is-collapsed .admin-nav-link i {
+/* Chevron (levels 1 and 2). Vertical, so it needs no RTL/LTR mirroring. */
+
+.admin-nav-link .admin-nav-chevron,
+.admin-subnav-link .admin-nav-chevron {
+    flex-shrink: 0;
     width: auto;
+    margin-inline-start: auto;
+    font-size: 11px;
+    transition: transform 0.2s ease;
 }
 
-.admin-shell.is-collapsed .admin-sidebar-footer {
-    padding-inline: 0;
+.admin-nav-toggle[aria-expanded="true"] .admin-nav-chevron,
+.admin-subnav-toggle[aria-expanded="true"] .admin-nav-chevron {
+    transform: rotate(180deg);
+}
+
+/* Submenu panel. The indent and the vertical "rail" live on the inner
+   wrapper, not on the .collapse element itself, so Bootstrap's height
+   animation doesn't jump (it can't animate its own margin/padding).
+   The rail is centered under the parent's icon (12px padding + half of
+   the 18px icon = 21px). */
+
+.admin-subnav-inner {
+    margin-inline-start: 21px;
+    padding-block: 2px 4px;
+    padding-inline-start: 12px;
+    border-inline-start: 1px solid var(--border);
+}
+
+.admin-subnav--nested > .admin-subnav-inner {
+    margin-inline-start: 8px;
+}
+
+/* Submenu link (level 2 and 3) — also used by the level-2 group toggle.
+   font-weight 500 resolves to Regular in IRANYekanX (it only ships 400 and
+   700) and to Medium in Inter, so submenu items read a step lighter than
+   the bold top-level items in both languages. */
+
+.admin-subnav-link {
+    position: relative;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 1px;
+    padding: 8px 10px;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: start;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-subnav-link:hover {
+    background: var(--section-bg);
+    color: var(--text);
+}
+
+.admin-subnav-link.is-active {
+    background: var(--section-bg);
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* Active marker: a short bar drawn over the rail.
+   -14px = the inner wrapper's 12px padding + its 1px rail + 1px so the
+   3px bar is centered on the rail. */
+
+.admin-subnav-link.is-active::before {
+    content: "";
+    position: absolute;
+    inset-block: 7px;
+    inset-inline-start: -14px;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--primary-dark);
+}
+
+/* Level-2 group toggle (e.g. "Comments" inside "Articles") */
+
+.admin-subnav-toggle {
+    cursor: pointer;
+}
+
+.admin-subnav-toggle[aria-expanded="true"] {
+    color: var(--text);
+}
+
+.admin-subnav-toggle.has-active {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* Divider between the content groups and the account items */
+
+.admin-nav-divider {
+    height: 1px;
+    margin: 10px 4px 12px;
+    background: var(--light-gray);
+}
+
+/* Log out — the template's one semantic red (--danger), same as the
+   header user menu's log-out item. */
+
+.admin-nav-link--danger {
+    color: var(--danger);
+}
+
+.admin-nav-link--danger:hover {
+    background: var(--danger-soft-bg);
+    color: var(--danger);
+}
+
+/* Icon-only (collapsed) desktop sidebar: submenus can't fit in the 76px
+   rail, so they stay hidden — clicking a group's icon expands the sidebar
+   and opens that group (admin-sidebar.js). A group that holds the current
+   page keeps the full "you are here" highlight, since its label and the
+   active link inside it are both hidden in this mode. */
+
+@media (min-width: 992px) {
+    .admin-shell.is-collapsed .admin-sidebar .admin-subnav,
+    .admin-shell.is-collapsed .admin-sidebar .admin-nav-chevron {
+        display: none;
+    }
+
+    .admin-shell.is-collapsed .admin-sidebar .admin-nav-toggle.has-active {
+        background: var(--section-bg);
+    }
+
+    .admin-shell.is-collapsed .admin-sidebar .admin-nav-toggle.has-active::before {
+        content: "";
+        position: absolute;
+        inset-block: 8px;
+        inset-inline-start: -14px;
+        width: 3px;
+        border-radius: 0 3px 3px 0;
+        background: var(--primary-dark);
+    }
+
+    [dir="ltr"] .admin-shell.is-collapsed .admin-sidebar .admin-nav-toggle.has-active::before {
+        border-radius: 3px 0 0 3px;
+    }
 }
 
 /* =========================================================
@@ -267,6 +464,14 @@
 
 .admin-offcanvas .admin-sidebar-footer {
     border-top: 1px solid var(--light-gray);
+}
+
+/* Touch-friendly rows for the nested menu (about 41px tall, same as
+   the top-level items). */
+
+.admin-offcanvas .admin-subnav-link {
+    padding-block: 10px;
+    font-size: 14px;
 }
 
 /* =========================================================
@@ -614,6 +819,7 @@
 ========================================================= */
 
 .admin-nav-link:focus-visible,
+.admin-subnav-link:focus-visible,
 .admin-header-theme-btn:focus-visible,
 .admin-sidebar-collapse-btn:focus-visible,
 .admin-user:focus-visible,
@@ -624,7 +830,9 @@
 
 @media (prefers-reduced-motion: reduce) {
     .admin-sidebar,
-    .admin-sidebar-collapse-btn {
+    .admin-sidebar-collapse-btn,
+    .admin-subnav-link,
+    .admin-nav-chevron {
         transition: none;
     }
 }

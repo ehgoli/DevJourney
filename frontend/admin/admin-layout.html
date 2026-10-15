@@ -11,9 +11,26 @@
       1. Copy this file and rename it.
       2. Update <title>, the header eyebrow/title, and mark the
          matching sidebar link (in both the desktop sidebar and
-         the mobile offcanvas copy of it) with class="is-active".
+         the mobile offcanvas copy of it) with class="is-active"
+         and aria-current="page". If that link lives inside a
+         submenu there is nothing more to do: admin-sidebar.js
+         opens its parent group(s) on page load.
       3. Replace the content inside <main class="admin-content">.
          Leave the sidebar, header chrome, and footer as they are.
+
+    Sidebar menu — 3 kinds of items, up to 2 levels of nesting:
+      - Plain link   <a class="admin-nav-link">
+      - Group        <button class="admin-nav-link admin-nav-toggle"
+                     data-bs-toggle="collapse" ...> followed by a
+                     <div class="collapse admin-subnav"> holding
+                     <a class="admin-subnav-link"> items. One group
+                     is open at a time (data-bs-parent).
+      - Sub-group    inside a submenu: <button class="admin-subnav-link
+                     admin-subnav-toggle"> followed by a nested
+                     <div class="collapse admin-subnav admin-subnav--nested">.
+      The desktop <aside> and the mobile offcanvas hold two copies of
+      the same menu — keep them in sync. Only the ids differ:
+      adminNav / adminSub-* on desktop, adminNavM / adminSubM-* on mobile.
 
     See DEVELOPER-GUIDE.md for the full walkthrough.
     ==============================================================
@@ -74,34 +91,103 @@
                     </button>
                 </div>
 
-                <nav aria-label="ناوبری پنل مدیریت" class="admin-nav">
+                <nav aria-label="ناوبری پنل مدیریت" class="admin-nav" id="adminNav">
                     <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.html" title="داشبورد">
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span>داشبورد</span>
                     </a>
-                    <a class="admin-nav-link" href="#" title="پروژه‌ها">
-                        <i class="bi bi-kanban"></i>
-                        <span>پروژه‌ها</span>
-                    </a>
-                    <a class="admin-nav-link" href="#" title="مقالات">
+                    <!-- Group: Profile -->
+                    <button aria-controls="adminSub-profile" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-profile" data-bs-toggle="collapse" title="پروفایل" type="button">
+                        <i class="bi bi-person-badge"></i>
+                        <span>پروفایل</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-profile">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">اطلاعات پروفایل</a>
+                            <a class="admin-subnav-link" href="#">مهارت‌ها</a>
+                            <a class="admin-subnav-link" href="#">مسیر حرفه‌ای</a>
+                            <a class="admin-subnav-link" href="#">گواهی‌نامه‌ها</a>
+                        </div>
+                    </div>
+                    <!-- Group: Articles -->
+                    <button aria-controls="adminSub-articles" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-articles" data-bs-toggle="collapse" title="مقالات" type="button">
                         <i class="bi bi-journal-text"></i>
                         <span>مقالات</span>
-                    </a>
-                    <a class="admin-nav-link" href="#" title="دوره‌ها">
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-articles">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">همه مقالات</a>
+                            <a class="admin-subnav-link" href="#">دسته‌بندی مقالات</a>
+                            <a class="admin-subnav-link" href="#">تقویم انتشار</a>
+                            <a class="admin-subnav-link" href="#">نوشتن مقاله</a>
+                            <!-- Sub-group (2nd level): Comments -->
+                            <button aria-controls="adminSub-articles-comments" aria-expanded="false" class="admin-subnav-link admin-subnav-toggle collapsed" data-bs-target="#adminSub-articles-comments" data-bs-toggle="collapse" type="button">
+                                <span>نظرات</span>
+                                <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                            </button>
+                            <div class="collapse admin-subnav admin-subnav--nested" id="adminSub-articles-comments">
+                                <div class="admin-subnav-inner">
+                                    <a class="admin-subnav-link" href="#">همه نظرات</a>
+                                    <a class="admin-subnav-link" href="#">نظرات بررسی نشده</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Group: Courses -->
+                    <button aria-controls="adminSub-courses" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-courses" data-bs-toggle="collapse" title="دوره‌ها" type="button">
                         <i class="bi bi-mortarboard"></i>
                         <span>دوره‌ها</span>
-                    </a>
-                    <a class="admin-nav-link" href="#" title="گواهی‌نامه‌ها">
-                        <i class="bi bi-award"></i>
-                        <span>گواهی‌نامه‌ها</span>
-                    </a>
-                    <a class="admin-nav-link" href="#" title="پیام‌ها">
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-courses">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">همه دوره‌ها</a>
+                            <a class="admin-subnav-link" href="#">دوره جدید</a>
+                        </div>
+                    </div>
+                    <!-- Group: Portfolio -->
+                    <button aria-controls="adminSub-portfolio" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-portfolio" data-bs-toggle="collapse" title="نمونه‌کارها" type="button">
+                        <i class="bi bi-kanban"></i>
+                        <span>نمونه‌کارها</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-portfolio">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">همه نمونه‌کارها</a>
+                            <a class="admin-subnav-link" href="#">نمونه‌کار جدید</a>
+                        </div>
+                    </div>
+                    <!-- Group: Users -->
+                    <button aria-controls="adminSub-users" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-users" data-bs-toggle="collapse" title="مدیریت کاربران" type="button">
+                        <i class="bi bi-people"></i>
+                        <span>مدیریت کاربران</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-users">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">نمایش همه</a>
+                            <a class="admin-subnav-link" href="#">ثبت‌نام کاربر جدید</a>
+                            <a class="admin-subnav-link" href="#">سطل اشغال</a>
+                        </div>
+                    </div>
+                    <a class="admin-nav-link" href="#" title="پیام‌های دریافتی">
                         <i class="bi bi-envelope"></i>
-                        <span>پیام‌ها</span>
+                        <span>پیام‌های دریافتی</span>
                     </a>
-                    <a class="admin-nav-link" href="#" title="تنظیمات">
+                    <a class="admin-nav-link" href="#" title="تنظیمات سایت">
                         <i class="bi bi-gear"></i>
-                        <span>تنظیمات</span>
+                        <span>تنظیمات سایت</span>
+                    </a>
+                    <div class="admin-nav-divider" role="separator"></div>
+                    <a class="admin-nav-link" href="#" title="حساب کاربری">
+                        <i class="bi bi-person-circle"></i>
+                        <span>حساب کاربری</span>
+                    </a>
+                    <a class="admin-nav-link admin-nav-link--danger" href="#" title="خروج">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>خروج</span>
                     </a>
                 </nav>
 
@@ -132,34 +218,103 @@
                     <button aria-label="بستن منو" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <nav aria-label="ناوبری پنل مدیریت (موبایل)" class="admin-nav">
+                    <nav aria-label="ناوبری پنل مدیریت (موبایل)" class="admin-nav" id="adminNavM">
                         <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.html">
                             <i class="bi bi-grid-1x2-fill"></i>
                             <span>داشبورد</span>
                         </a>
-                        <a class="admin-nav-link" href="#">
-                            <i class="bi bi-kanban"></i>
-                            <span>پروژه‌ها</span>
-                        </a>
-                        <a class="admin-nav-link" href="#">
+                        <!-- Group: Profile -->
+                        <button aria-controls="adminSubM-profile" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-profile" data-bs-toggle="collapse" type="button">
+                            <i class="bi bi-person-badge"></i>
+                            <span>پروفایل</span>
+                            <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                        </button>
+                        <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-profile">
+                            <div class="admin-subnav-inner">
+                                <a class="admin-subnav-link" href="#">اطلاعات پروفایل</a>
+                                <a class="admin-subnav-link" href="#">مهارت‌ها</a>
+                                <a class="admin-subnav-link" href="#">مسیر حرفه‌ای</a>
+                                <a class="admin-subnav-link" href="#">گواهی‌نامه‌ها</a>
+                            </div>
+                        </div>
+                        <!-- Group: Articles -->
+                        <button aria-controls="adminSubM-articles" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-articles" data-bs-toggle="collapse" type="button">
                             <i class="bi bi-journal-text"></i>
                             <span>مقالات</span>
-                        </a>
-                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                        </button>
+                        <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-articles">
+                            <div class="admin-subnav-inner">
+                                <a class="admin-subnav-link" href="#">همه مقالات</a>
+                                <a class="admin-subnav-link" href="#">دسته‌بندی مقالات</a>
+                                <a class="admin-subnav-link" href="#">تقویم انتشار</a>
+                                <a class="admin-subnav-link" href="#">نوشتن مقاله</a>
+                                <!-- Sub-group (2nd level): Comments -->
+                                <button aria-controls="adminSubM-articles-comments" aria-expanded="false" class="admin-subnav-link admin-subnav-toggle collapsed" data-bs-target="#adminSubM-articles-comments" data-bs-toggle="collapse" type="button">
+                                    <span>نظرات</span>
+                                    <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                                </button>
+                                <div class="collapse admin-subnav admin-subnav--nested" id="adminSubM-articles-comments">
+                                    <div class="admin-subnav-inner">
+                                        <a class="admin-subnav-link" href="#">همه نظرات</a>
+                                        <a class="admin-subnav-link" href="#">نظرات بررسی نشده</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Group: Courses -->
+                        <button aria-controls="adminSubM-courses" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-courses" data-bs-toggle="collapse" type="button">
                             <i class="bi bi-mortarboard"></i>
                             <span>دوره‌ها</span>
-                        </a>
-                        <a class="admin-nav-link" href="#">
-                            <i class="bi bi-award"></i>
-                            <span>گواهی‌نامه‌ها</span>
-                        </a>
+                            <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                        </button>
+                        <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-courses">
+                            <div class="admin-subnav-inner">
+                                <a class="admin-subnav-link" href="#">همه دوره‌ها</a>
+                                <a class="admin-subnav-link" href="#">دوره جدید</a>
+                            </div>
+                        </div>
+                        <!-- Group: Portfolio -->
+                        <button aria-controls="adminSubM-portfolio" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-portfolio" data-bs-toggle="collapse" type="button">
+                            <i class="bi bi-kanban"></i>
+                            <span>نمونه‌کارها</span>
+                            <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                        </button>
+                        <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-portfolio">
+                            <div class="admin-subnav-inner">
+                                <a class="admin-subnav-link" href="#">همه نمونه‌کارها</a>
+                                <a class="admin-subnav-link" href="#">نمونه‌کار جدید</a>
+                            </div>
+                        </div>
+                        <!-- Group: Users -->
+                        <button aria-controls="adminSubM-users" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-users" data-bs-toggle="collapse" type="button">
+                            <i class="bi bi-people"></i>
+                            <span>مدیریت کاربران</span>
+                            <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                        </button>
+                        <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-users">
+                            <div class="admin-subnav-inner">
+                                <a class="admin-subnav-link" href="#">نمایش همه</a>
+                                <a class="admin-subnav-link" href="#">ثبت‌نام کاربر جدید</a>
+                                <a class="admin-subnav-link" href="#">سطل اشغال</a>
+                            </div>
+                        </div>
                         <a class="admin-nav-link" href="#">
                             <i class="bi bi-envelope"></i>
-                            <span>پیام‌ها</span>
+                            <span>پیام‌های دریافتی</span>
                         </a>
                         <a class="admin-nav-link" href="#">
                             <i class="bi bi-gear"></i>
-                            <span>تنظیمات</span>
+                            <span>تنظیمات سایت</span>
+                        </a>
+                        <div class="admin-nav-divider" role="separator"></div>
+                        <a class="admin-nav-link" href="#">
+                            <i class="bi bi-person-circle"></i>
+                            <span>حساب کاربری</span>
+                        </a>
+                        <a class="admin-nav-link admin-nav-link--danger" href="#">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>خروج</span>
                         </a>
                     </nav>
                     <div class="admin-sidebar-footer">
