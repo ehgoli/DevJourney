@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html html lang="@CultureInfo.CurrentUICulture.Name"
       dir="@(isRtl ? "rtl" : "ltr")">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -15,235 +16,386 @@
     </title>
 
 
-    <partial name="_Stylesheets"/>
+    <partial name="_Stylesheets" />
 
     <!-- Admin layout: sidebar, header, footer -->
     <link href="/assets/css/admin-layout.css" rel="stylesheet">
 
     @await RenderSectionAsync("_Stylesheets", required: false)
 </head>
+
 <body class="admin-body">
 
-<div class="admin-shell" id="adminShell">
+    <div class="admin-shell" id="adminShell">
 
-    <!-- ================= DESKTOP SIDEBAR ================= -->
-    <aside class="admin-sidebar d-none d-lg-flex">
-        <div class="admin-sidebar-header">
-            <a class="admin-sidebar-brand" href="/">
-                        <span class="admin-sidebar-brand-mark">
-                            EG
+        <!-- ================= DESKTOP SIDEBAR ================= -->
+        <aside class="admin-sidebar d-none d-lg-flex">
+            <div class="admin-sidebar-header">
+                <a class="admin-sidebar-brand" href="AdminLayout.html">
+                    <span class="admin-sidebar-brand-mark">
+                        EG
+                    </span>
+                    <span class="admin-sidebar-brand-text">
+                        <span class="admin-sidebar-brand-title">
+                            @Localizer["Admin.Brand.Title"]
                         </span>
-                <span class="admin-sidebar-brand-text">
-                            <span class="admin-sidebar-brand-title">
-                                Admin Panel
-                            </span>
-                            <span class="admin-sidebar-brand-subtitle">
-                                Ehsan Goli
-                            </span>
+                        <span class="admin-sidebar-brand-subtitle">
+                            Ehsan Goli
                         </span>
-            </a>
-            <button aria-expanded="true" aria-label="Collapse/expand sidebar" class="admin-sidebar-collapse-btn"
-                    id="adminSidebarCollapseBtn" type="button">
-                <i class="bi bi-list"></i>
-            </button>
-        </div>
-
-        <nav aria-label="Admin navigation" class="admin-nav">
-            <a aria-current="page" class="admin-nav-link is-active" href="/Admin" title="Dashboard">
-                <i class="bi bi-grid-1x2-fill"></i>
-                <span>Dashboard</span>
-            </a>
-            <a class="admin-nav-link" href="#" title="Projects">
-                <i class="bi bi-kanban"></i>
-                <span>Projects</span>
-            </a>
-            <a class="admin-nav-link" href="#" title="Articles">
-                <i class="bi bi-journal-text"></i>
-                <span>Articles</span>
-            </a>
-            <a class="admin-nav-link" href="#" title="Courses">
-                <i class="bi bi-mortarboard"></i>
-                <span>Courses</span>
-            </a>
-            <a class="admin-nav-link" href="#" title="Certificates">
-                <i class="bi bi-award"></i>
-                <span>Certificates</span>
-            </a>
-            <a class="admin-nav-link" href="#" title="Messages">
-                <i class="bi bi-envelope"></i>
-                <span>Messages</span>
-            </a>
-            <a class="admin-nav-link" href="#" title="Settings">
-                <i class="bi bi-gear"></i>
-                <span>Settings</span>
-            </a>
-        </nav>
-
-        <div class="admin-sidebar-footer">
-            <a class="admin-sidebar-back" href="/" title="Back to site">
-                <i class="bi bi-house-door"></i>
-                <span>Back to site</span>
-            </a>
-        </div>
-    </aside>
-
-    <!-- ================= MOBILE OFFCANVAS SIDEBAR ================= -->
-    <div aria-labelledby="adminOffcanvasLabel" class="offcanvas offcanvas-@(isRtl?"start":"end") site-offcanvas admin-offcanvas"
-         id="adminOffcanvas" tabindex="-1">
-        <div class="offcanvas-header">
-            <a class="admin-sidebar-brand" href="/">
-                        <span class="admin-sidebar-brand-mark">
-                            EG
-                        </span>
-                <span class="admin-sidebar-brand-text">
-                            <span class="admin-sidebar-brand-title" id="adminOffcanvasLabel">
-                                Admin Panel
-                            </span>
-                            <span class="admin-sidebar-brand-subtitle">
-                                Ehsan Goli
-                            </span>
-                        </span>
-            </a>
-            <button aria-label="Close menu" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
-        </div>
-        <div class="offcanvas-body">
-            <nav aria-label="Admin navigation (mobile)" class="admin-nav">
-                <a aria-current="page" class="admin-nav-link is-active" href="/Admin">
-                    <i class="bi bi-grid-1x2-fill"></i>
-                    <span>Dashboard</span>
+                    </span>
                 </a>
-                <a class="admin-nav-link" href="#">
-                    <i class="bi bi-kanban"></i>
-                    <span>Projects</span>
-                </a>
-                <a class="admin-nav-link" href="#">
-                    <i class="bi bi-journal-text"></i>
-                    <span>Articles</span>
-                </a>
-                <a class="admin-nav-link" href="#">
-                    <i class="bi bi-mortarboard"></i>
-                    <span>Courses</span>
-                </a>
-                <a class="admin-nav-link" href="#">
-                    <i class="bi bi-award"></i>
-                    <span>Certificates</span>
-                </a>
-                <a class="admin-nav-link" href="#">
-                    <i class="bi bi-envelope"></i>
-                    <span>Messages</span>
-                </a>
-                <a class="admin-nav-link" href="#">
-                    <i class="bi bi-gear"></i>
-                    <span>Settings</span>
-                </a>
-            </nav>
-            <div class="admin-sidebar-footer">
-                <a class="admin-sidebar-back" href="/">
-                    <i class="bi bi-house-door"></i>
-                    <span>Back to site</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= MAIN COLUMN ================= -->
-    <div class="admin-main">
-
-        <!-- HEADER -->
-        <header class="admin-header">
-            <button aria-controls="adminOffcanvas" aria-label="Open menu" class="admin-header-menu-btn"
-                    data-bs-target="#adminOffcanvas" data-bs-toggle="offcanvas" type="button">
-                <i class="bi bi-list"></i>
-            </button>
-
-            <div class="admin-header-titles">
-                <div class="admin-header-eyebrow">
-                    Admin Panel
-                </div>
-                <h1 class="admin-header-title">
-                    Dashboard
-                </h1>
-            </div>
-
-            <div class="admin-header-actions">
-                <button aria-label="Toggle dark/light mode" aria-pressed="false" class="admin-header-theme-btn"
-                        id="themeToggleBtn" title="Toggle dark/light mode" type="button">
-                    <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
-                    <i class="bi bi-sun theme-toggle-icon-light"></i>
+                <button aria-expanded="true" aria-label="@Localizer["Admin.Sidebar.CollapseExpand"]" class="admin-sidebar-collapse-btn" id="adminSidebarCollapseBtn" type="button">
+                    <i class="bi bi-list"></i>
                 </button>
+            </div>
 
-                <div class="dropdown">
-                    <button aria-expanded="false" class="admin-user" data-bs-toggle="dropdown" type="button">
-                        <img alt="Ehsan Goli" class="admin-user-avatar" src="/assets/images/avatar.jpg">
-                        <span class="admin-user-name">
-                                    Ehsan Goli
-                                </span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end admin-user-menu">
-                        <div class="admin-user-menu-header">
-                            <img alt="Ehsan Goli" class="admin-user-menu-avatar" src="/assets/images/avatar.jpg">
-                            <div class="admin-user-menu-identity">
-                                        <span class="admin-user-menu-name">
-                                            Ehsan Goli
-                                        </span>
-                                <span class="admin-user-menu-email">
-                                            demo@example.com
-                                        </span>
+            <nav aria-label="@Localizer["Admin.Navigation.DesktopLabel"]" class="admin-nav" id="adminNav">
+                <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.html" title="@Localizer["Admin.Navigation.Dashboard"]">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>@Localizer["Admin.Navigation.Dashboard"]</span>
+                </a>
+
+                <!-- Group: Profile -->
+                <button aria-controls="adminSub-profile" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-profile" data-bs-toggle="collapse" title="@Localizer["Admin.Navigation.Profile"]" type="button">
+                    <i class="bi bi-person-badge"></i>
+                    <span>@Localizer["Admin.Navigation.Profile"]</span>
+                    <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                </button>
+                <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-profile">
+                    <div class="admin-subnav-inner">
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.Information"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.Skills"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.CareerPath"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.Certificates"]</a>
+                    </div>
+                </div>
+
+                <!-- Group: Articles -->
+                <button aria-controls="adminSub-articles" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-articles" data-bs-toggle="collapse" title="@Localizer["Admin.Navigation.Articles"]" type="button">
+                    <i class="bi bi-journal-text"></i>
+                    <span>@Localizer["Admin.Navigation.Articles"]</span>
+                    <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                </button>
+                <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-articles">
+                    <div class="admin-subnav-inner">
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.All"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Categories"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.PublicationCalendar"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Write"]</a>
+
+                        <!-- Sub-group (2nd level): Comments -->
+                        <button aria-controls="adminSub-articles-comments" aria-expanded="false" class="admin-subnav-link admin-subnav-toggle collapsed" data-bs-target="#adminSub-articles-comments" data-bs-toggle="collapse" type="button">
+                            <span>@Localizer["Admin.Navigation.Articles.Comments"]</span>
+                            <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                        </button>
+                        <div class="collapse admin-subnav admin-subnav--nested" id="adminSub-articles-comments">
+                            <div class="admin-subnav-inner">
+                                <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Comments.All"]</a>
+                                <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Comments.Unreviewed"]</a>
                             </div>
-                        </div>
-                        <div class="admin-user-menu-group">
-                            <a class="admin-user-menu-item" href="/">
-                                <i class="bi bi-house"></i>
-                                View homepage
-                            </a>
-                            <a class="admin-user-menu-item" href="#">
-                                <i class="bi bi-person"></i>
-                                My profile
-                            </a>
-                            <a class="admin-user-menu-item" href="#">
-                                <i class="bi bi-gear"></i>
-                                Site settings
-                            </a>
-                            <a class="admin-user-menu-item" href="">
-                                <i class="bi bi-question-circle"></i>
-                                Developer guide
-                            </a>
-                        </div>
-                        <div class="admin-user-menu-divider"></div>
-                        <div class="admin-user-menu-group">
-                            <a class="admin-user-menu-item admin-user-menu-item--danger" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                Log out
-                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
 
-        <!-- PAGE CONTENT — replace with the real page content -->
-        @RenderBody()
+                <!-- Group: Courses -->
+                <button aria-controls="adminSub-courses" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-courses" data-bs-toggle="collapse" title="@Localizer["Admin.Navigation.Courses"]" type="button">
+                    <i class="bi bi-mortarboard"></i>
+                    <span>@Localizer["Admin.Navigation.Courses"]</span>
+                    <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                </button>
+                <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-courses">
+                    <div class="admin-subnav-inner">
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Courses.All"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Courses.New"]</a>
+                    </div>
+                </div>
 
-        <!-- FOOTER -->
-        <footer class="admin-footer">
-            <a href="">
-                Documentation
-            </a>
-            <div class="admin-footer-credit">
-                <strong>Admin Panel</strong>
-                — © 2026 Ehsan Goli
+                <!-- Group: Portfolio -->
+                <button aria-controls="adminSub-portfolio" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-portfolio" data-bs-toggle="collapse" title="@Localizer["Admin.Navigation.Portfolio"]" type="button">
+                    <i class="bi bi-kanban"></i>
+                    <span>@Localizer["Admin.Navigation.Portfolio"]</span>
+                    <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                </button>
+                <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-portfolio">
+                    <div class="admin-subnav-inner">
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Portfolio.All"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Portfolio.New"]</a>
+                    </div>
+                </div>
+
+                <!-- Group: Users -->
+                <button aria-controls="adminSub-users" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSub-users" data-bs-toggle="collapse" title="@Localizer["Admin.Navigation.Users"]" type="button">
+                    <i class="bi bi-people"></i>
+                    <span>@Localizer["Admin.Navigation.Users"]</span>
+                    <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                </button>
+                <div class="collapse admin-subnav" data-bs-parent="#adminNav" id="adminSub-users">
+                    <div class="admin-subnav-inner">
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Users.All"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Users.New"]</a>
+                        <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Users.Trash"]</a>
+                    </div>
+                </div>
+
+                <a class="admin-nav-link" href="#" title="@Localizer["Admin.Navigation.Messages.Inbox"]">
+                    <i class="bi bi-envelope"></i>
+                    <span>@Localizer["Admin.Navigation.Messages.Inbox"]</span>
+                </a>
+                <a class="admin-nav-link" href="#" title="@Localizer["Admin.Navigation.Settings"]">
+                    <i class="bi bi-gear"></i>
+                    <span>@Localizer["Admin.Navigation.Settings"]</span>
+                </a>
+                <div class="admin-nav-divider" role="separator"></div>
+                <a class="admin-nav-link" href="#" title="@Localizer["Admin.Navigation.Account"]">
+                    <i class="bi bi-person-circle"></i>
+                    <span>@Localizer["Admin.Navigation.Account"]</span>
+                </a>
+                <a class="admin-nav-link admin-nav-link--danger" href="#" title="@Localizer["Admin.Navigation.Logout"]">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>@Localizer["Admin.Navigation.Logout"]</span>
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <a class="admin-sidebar-back" href="Resume.html" title="@Localizer["Admin.Navigation.BackToSite"]">
+                    <i class="bi bi-house-door"></i>
+                    <span>@Localizer["Admin.Navigation.BackToSite"]</span>
+                </a>
             </div>
-        </footer>
+        </aside>
+
+        <!-- ================= MOBILE OFFCANVAS SIDEBAR ================= -->
+        <div aria-labelledby="adminOffcanvasLabel" class="offcanvas offcanvas-start site-offcanvas admin-offcanvas" id="adminOffcanvas" tabindex="-1">
+            <div class="offcanvas-header">
+                <a class="admin-sidebar-brand" href="AdminLayout.html">
+                    <span class="admin-sidebar-brand-mark">
+                        EG
+                    </span>
+                    <span class="admin-sidebar-brand-text">
+                        <span class="admin-sidebar-brand-title" id="adminOffcanvasLabel">
+                            @Localizer["Admin.Brand.Title"]
+                        </span>
+                        <span class="admin-sidebar-brand-subtitle">
+                            Ehsan Goli
+                        </span>
+                    </span>
+                </a>
+                <button aria-label="@Localizer["Admin.Offcanvas.CloseMenu"]" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav aria-label="@Localizer["Admin.Navigation.MobileLabel"]" class="admin-nav" id="adminNavM">
+                    <a aria-current="page" class="admin-nav-link is-active" href="AdminLayout.html">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <span>@Localizer["Admin.Navigation.Dashboard"]</span>
+                    </a>
+
+                    <!-- Group: Profile -->
+                    <button aria-controls="adminSubM-profile" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-profile" data-bs-toggle="collapse" type="button">
+                        <i class="bi bi-person-badge"></i>
+                        <span>@Localizer["Admin.Navigation.Profile"]</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-profile">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.Information"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.Skills"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.CareerPath"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Profile.Certificates"]</a>
+                        </div>
+                    </div>
+
+                    <!-- Group: Articles -->
+                    <button aria-controls="adminSubM-articles" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-articles" data-bs-toggle="collapse" type="button">
+                        <i class="bi bi-journal-text"></i>
+                        <span>@Localizer["Admin.Navigation.Articles"]</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-articles">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.All"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Categories"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.PublicationCalendar"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Write"]</a>
+
+                            <!-- Sub-group (2nd level): Comments -->
+                            <button aria-controls="adminSubM-articles-comments" aria-expanded="false" class="admin-subnav-link admin-subnav-toggle collapsed" data-bs-target="#adminSubM-articles-comments" data-bs-toggle="collapse" type="button">
+                                <span>@Localizer["Admin.Navigation.Articles.Comments"]</span>
+                                <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                            </button>
+                            <div class="collapse admin-subnav admin-subnav--nested" id="adminSubM-articles-comments">
+                                <div class="admin-subnav-inner">
+                                    <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Comments.All"]</a>
+                                    <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Articles.Comments.Unreviewed"]</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group: Courses -->
+                    <button aria-controls="adminSubM-courses" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-courses" data-bs-toggle="collapse" type="button">
+                        <i class="bi bi-mortarboard"></i>
+                        <span>@Localizer["Admin.Navigation.Courses"]</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-courses">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Courses.All"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Courses.New"]</a>
+                        </div>
+                    </div>
+
+                    <!-- Group: Portfolio -->
+                    <button aria-controls="adminSubM-portfolio" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-portfolio" data-bs-toggle="collapse" type="button">
+                        <i class="bi bi-kanban"></i>
+                        <span>@Localizer["Admin.Navigation.Portfolio"]</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-portfolio">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Portfolio.All"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Portfolio.New"]</a>
+                        </div>
+                    </div>
+
+                    <!-- Group: Users -->
+                    <button aria-controls="adminSubM-users" aria-expanded="false" class="admin-nav-link admin-nav-toggle collapsed" data-bs-target="#adminSubM-users" data-bs-toggle="collapse" type="button">
+                        <i class="bi bi-people"></i>
+                        <span>@Localizer["Admin.Navigation.Users"]</span>
+                        <i class="bi bi-chevron-down admin-nav-chevron"></i>
+                    </button>
+                    <div class="collapse admin-subnav" data-bs-parent="#adminNavM" id="adminSubM-users">
+                        <div class="admin-subnav-inner">
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Users.All"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Users.New"]</a>
+                            <a class="admin-subnav-link" href="#">@Localizer["Admin.Navigation.Users.Trash"]</a>
+                        </div>
+                    </div>
+
+                    <a class="admin-nav-link" href="#">
+                        <i class="bi bi-envelope"></i>
+                        <span>@Localizer["Admin.Navigation.Messages.Inbox"]</span>
+                    </a>
+                    <a class="admin-nav-link" href="#">
+                        <i class="bi bi-gear"></i>
+                        <span>@Localizer["Admin.Navigation.Settings"]</span>
+                    </a>
+                    <div class="admin-nav-divider" role="separator"></div>
+                    <a class="admin-nav-link" href="#">
+                        <i class="bi bi-person-circle"></i>
+                        <span>@Localizer["Admin.Navigation.Account"]</span>
+                    </a>
+                    <a class="admin-nav-link admin-nav-link--danger" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>@Localizer["Admin.Navigation.Logout"]</span>
+                    </a>
+                </nav>
+
+                <div class="admin-sidebar-footer">
+                    <a class="admin-sidebar-back" href="Resume.html">
+                        <i class="bi bi-house-door"></i>
+                        <span>@Localizer["Admin.Navigation.BackToSite"]</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= MAIN COLUMN ================= -->
+        <div class="admin-main">
+
+            <!-- HEADER -->
+            <header class="admin-header">
+                <button aria-controls="adminOffcanvas" aria-label="@Localizer["Admin.Header.OpenMenu"]" class="admin-header-menu-btn" data-bs-target="#adminOffcanvas" data-bs-toggle="offcanvas" type="button">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="admin-header-titles">
+                    <div class="admin-header-eyebrow">
+                        @Localizer["Admin.Header.Eyebrow"]
+                    </div>
+                    <h1 class="admin-header-title">
+                        @Localizer["Admin.Header.DashboardTitle"]
+                    </h1>
+                </div>
+
+                <div class="admin-header-actions">
+                    <button aria-label="@Localizer["Admin.Theme.Toggle"]" aria-pressed="false" class="admin-header-theme-btn" id="themeToggleBtn" title="@Localizer["Admin.Theme.Toggle"]" type="button">
+                        <i class="bi bi-moon-stars theme-toggle-icon-dark"></i>
+                        <i class="bi bi-sun theme-toggle-icon-light"></i>
+                    </button>
+
+                    <div class="dropdown">
+                        <button aria-expanded="false" class="admin-user" data-bs-toggle="dropdown" type="button">
+                            <img alt="@Localizer["Admin.User.AvatarAlt"]" class="admin-user-avatar" src="/assets/images/avatar.jpg">
+                            <span class="admin-user-name">
+                                Ehsan Goli
+                            </span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end admin-user-menu">
+                            <div class="admin-user-menu-header">
+                                <img alt="@Localizer["Admin.User.AvatarAlt"]" class="admin-user-menu-avatar" src="/assets/images/avatar.jpg">
+                                <div class="admin-user-menu-identity">
+                                    <span class="admin-user-menu-name">
+                                        Ehsan Goli
+                                    </span>
+                                    <span class="admin-user-menu-email">
+                                        demo@example.com
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="admin-user-menu-group">
+                                <a class="admin-user-menu-item" href="Resume.html">
+                                    <i class="bi bi-house"></i>
+                                    @Localizer["Admin.UserMenu.Homepage"]
+                                </a>
+                                <a class="admin-user-menu-item" href="#">
+                                    <i class="bi bi-person"></i>
+                                    @Localizer["Admin.UserMenu.MyProfile"]
+                                </a>
+                                <a class="admin-user-menu-item" href="#">
+                                    <i class="bi bi-gear"></i>
+                                    @Localizer["Admin.UserMenu.SiteSettings"]
+                                </a>
+                                <a class="admin-user-menu-item" href="DEVELOPER-GUIDE.md">
+                                    <i class="bi bi-question-circle"></i>
+                                    @Localizer["Admin.UserMenu.SystemGuide"]
+                                </a>
+                            </div>
+                            <div class="admin-user-menu-divider"></div>
+                            <div class="admin-user-menu-group">
+                                <a class="admin-user-menu-item admin-user-menu-item--danger" href="#">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    @Localizer["Admin.Navigation.Logout"]
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGE CONTENT — replace with the real page content -->
+            @RenderBody()
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+                <a href="DEVELOPER-GUIDE.md">
+                    @Localizer["Admin.Footer.Documentation"]
+                </a>
+                <div class="admin-footer-credit">
+                    <strong>@Localizer["Admin.Brand.Title"]</strong>
+                    @Localizer["Admin.Footer.CopyrightFormat", Localizer["Admin.Brand.Title"], DateTime.Now.Year, "Ehsan Goli"]
+                </div>
+            </footer>
+
+        </div>
 
     </div>
 
-</div>
 
+    <partial name="_Scripts" />
 
-<partial name="_Scripts"/>
-
-<!-- Scripts -->
-<script src="/assets/js/admin-sidebar.js"></script>
+    <!-- Scripts -->
+    <script src="/assets/js/admin-sidebar.js"></script>
 </body>
+
 </html>
